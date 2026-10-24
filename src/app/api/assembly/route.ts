@@ -1,0 +1,10 @@
+import {privateJson} from '@/lib/auth/http';
+import {projectFailure,projectUser} from '@/lib/projects/api';
+import {isUuid,snapshotFurniture,type ProjectSnapshot} from '@/lib/projects/contracts';
+import {snapshotHash} from '@/lib/projects/identity';
+import {createAdminClient} from '@/lib/supabase/admin';
+import {assemblyReview} from '@/lib/assembly/model';
+import {assemblyPdf} from '@/lib/assembly/pdf';
+import type {NestingPlan} from '@/lib/furniture/nesting';
+/** Owner-only, accepted-snapshot review. Never substitutes a newer project or silently re-nests. */
+export async function GET(request:Request){try{const {user}=await projectUser(),id=new URL(request.url).searchParams.get('orderId');if(!isUuid(id))return privateJson({error:'Choose a valid accepted order.'},400);const {data,error}=await createAdminClient().from('customer_orders').select('id,revision_id,accepted_snapshot').eq('id',id).eq('owner_user_id',user.id).maybeSingle();if(error)return privateJson({error:'Accepted document is unavailable. Retry.'},503);if(!data)return privateJson({error:'Accepted order unavailable.'},404);const accepted=data.accepted_snapshot as {revisionId:string;revisionHash:string;design:ProjectSnapshot;nesting:NestingPlan},input=snapshotFurniture(accepted.design);if(!input||accepted.revisionId!==data.revision_id||accepted.revisionHash!==snapshotHash(accepted.design)||!('engineVersion' in accepted.design))return privateJson({error:'Accepted design cannot be verified. No newer design was substituted.'},422);const review=await assemblyReview({revisionId:data.revision_id,revisionHash:accepted.revisionHash,engineVersion:accepted.design.engineVersion,templateKey:accepted.design.templateKey,input,nesting:accepted.nesting},'accepted_order',id),bytes=await assemblyPdf(review);return new Response(Buffer.from(bytes),{headers:{'Content-Type':'application/pdf','Content-Disposition':`attachment; filename="REVIEW-ONLY-assembly-${id}.pdf"`,'Cache-Control':'private, no-store','Vary':'Cookie','X-Content-Type-Options':'nosniff'}});}catch(e){return projectFailure(e);}}

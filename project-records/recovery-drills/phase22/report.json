@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "purpose": "isolated_synthetic_recovery",
+  "passed": true,
+  "migrations": 13,
+  "restoredProjects": 4,
+  "restoredDesignDocuments": 4,
+  "ownerIsolation": true,
+  "privateProductionDenied": true,
+  "archiveSha256": "be477711e39facfe7e18a4eb2410cb629879a8003921f6952fff53313325689d",
+  "archiveBytes": 4930688,
+  "hostedRestoreVerified": false,
+  "photoBinaryRestoreVerified": false
+}

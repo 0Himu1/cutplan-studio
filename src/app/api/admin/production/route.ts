@@ -1,0 +1,5 @@
+import {privateJson,sameOrigin} from '@/lib/auth/http';
+import {projectFailure} from '@/lib/projects/api';
+import {fulfillmentActor} from '@/lib/operations/service';
+export async function GET(){try{await fulfillmentActor();return privateJson({releaseEnabled:false,jobsEnabled:false,gates:['Approved machine/controller postprocessor','Tool, material, workholding and spoilboard qualification','Independent controller simulation and supervised physical trial','Admin approval of exact accepted revision and package hash'],message:'Production release is blocked. Synthetic review does not qualify a machine.'});}catch(e){return projectFailure(e);}}
+export async function POST(request:Request){if(!sameOrigin(request))return privateJson({error:'Use the studio origin.'},403);try{await fulfillmentActor(true);return privateJson({code:'production_release_disabled',error:'Machine generation and release require an approved profile and supervised physical qualification.'},422);}catch(e){return projectFailure(e);}}

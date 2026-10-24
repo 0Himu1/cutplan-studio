@@ -1,0 +1,19 @@
+node_modules/
+.next/
+.next-auth-contract/
+out/
+coverage/
+*.tsbuildinfo
+.env*
+!.env.example
+docs/integrations/database-connection-prompt
+.impeccable/review/
+.impeccable/config.local.json
+artifacts/
+supabase/.temp/
+supabase/.branches/
+*.log
+.DS_Store
+
+# Source snapshot archives stay local; Git tracks source history.
+project-records/source-baselines/**/*.zip

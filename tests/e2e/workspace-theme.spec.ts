@@ -1,0 +1,54 @@
+import {test,expect} from '@playwright/test';
+import {mkdir} from 'node:fs/promises';
+
+test('workspace theme changes preserve the live model and cover inspectors, context, drawings and sheets',async({page})=>{
+ await page.addInitScript(()=>localStorage.setItem('theme','light'));
+ await page.setViewportSize({width:1440,height:900});
+ await page.goto('/projects/new?type=cabinet');
+ await page.getByLabel('Project name',{exact:true}).fill('Light drafting studio');
+ await page.getByRole('button',{name:'Create draft',exact:true}).click();
+ const canvas=page.locator('.cad-webgl canvas'),toggle=page.locator('.cad-commandbar').getByRole('button',{name:'Toggle light and dark theme'});
+ await expect(canvas).toBeVisible();await canvas.evaluate(e=>e.setAttribute('data-preserved','yes'));
+ await expect(page.locator('.cad-canvas')).toHaveCSS('background-color','rgb(248, 250, 252)');
+ await expect(page.locator('.cad-webgl')).toHaveAttribute('data-viewport-theme','light');
+ await expect(page.locator('.cad-mode button[aria-pressed=true]')).toHaveCSS('color','rgb(255, 255, 255)');
+ await page.getByRole('button',{name:'X-ray',exact:true}).click();
+ await toggle.click();await expect(page.locator('.cad-webgl')).toHaveAttribute('data-viewport-theme','dark');
+ await expect(page.locator('.cad-canvas')).toHaveCSS('background-color','rgb(12, 13, 23)');
+ await expect(canvas).toHaveAttribute('data-preserved','yes');
+ await toggle.click();await expect(page.locator('.cad-webgl')).toHaveAttribute('data-viewport-theme','light');
+ await expect(canvas).toHaveAttribute('data-preserved','yes');await expect(page.locator('.cad-webgl')).toHaveAttribute('data-xray','true');
+ await page.getByRole('button',{name:'X-ray',exact:true}).click();
+ await page.getByRole('button',{name:'Dimensions',exact:true}).click();
+ await expect(page.locator('.cad-dock')).toHaveCSS('background-color','rgb(255, 255, 255)');
+ await expect(page.getByLabel('Width (mm)',{exact:true})).toHaveCSS('background-color','rgb(255, 255, 255)');
+ await page.getByLabel('Width (mm)',{exact:true}).fill('960');
+ await toggle.click();await expect(page.getByLabel('Width (mm)',{exact:true})).toHaveValue('960');
+ await expect(page.locator('.cad-dock')).toHaveCSS('background-color','rgb(15, 15, 26)');
+ await toggle.click();
+ await mkdir('artifacts/review/workspace-theme',{recursive:true});
+ await page.screenshot({path:'artifacts/review/workspace-theme/light-inspector.png'});
+ await page.getByRole('button',{name:'Apply measurements',exact:true}).click();await expect(page.locator('.cad-dock')).toHaveCount(0);
+ await page.screenshot({path:'artifacts/review/workspace-theme/light-3d.png'});
+ await page.locator('.cad-canvas').click({button:'right',position:{x:200,y:200}});
+ await expect(page.locator('.cad-context-dialog')).toHaveCSS('background-color','rgb(255, 255, 255)');await page.keyboard.press('Escape');
+ await page.getByRole('button',{name:'2D',exact:true}).click();
+ await expect(page.locator('.cad-drawing')).toHaveCSS('color','rgb(71, 85, 105)');
+ await expect(page.locator('.cad-drawing')).toHaveAttribute('aria-label','Front elevation: 960 mm by 1200 mm');
+ await page.screenshot({path:'artifacts/review/workspace-theme/light-2d.png'});
+ await page.getByRole('button',{name:'SHEETS',exact:true}).click();
+ await expect(page.locator('.cut-sheet-card>svg>rect').first()).toHaveCSS('fill','rgb(255, 255, 255)');
+ await expect(page.locator('.cad-sheets svg text').first()).toHaveCSS('fill','rgb(38, 56, 75)');
+ await page.screenshot({path:'artifacts/review/workspace-theme/light-sheets.png'});
+ await toggle.click();await expect(page.locator('.cut-sheet-card>svg>rect').first()).toHaveCSS('fill','rgb(36, 44, 53)');
+ await toggle.click();
+ for(const [width,height]of [[390,844],[720,450]]){
+  await page.setViewportSize({width,height});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.documentElement.scrollHeight<=innerHeight)).toBe(true);
+  await expect(toggle).toBeInViewport();
+  await page.screenshot({path:`artifacts/review/workspace-theme/light-sheets-${width}.png`});
+ }
+ await page.setViewportSize({width:1440,height:900});await page.getByRole('button',{name:'3D',exact:true}).click();await toggle.click();
+ await expect(page.locator('.cad-webgl')).toHaveAttribute('data-viewport-theme','dark');
+ await page.screenshot({path:'artifacts/review/workspace-theme/dark-3d.png'});
+});

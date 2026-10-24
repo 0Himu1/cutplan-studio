@@ -1,0 +1,61 @@
+{
+  "name": "cutplan-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 3100",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3100",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "check:docs": "node scripts/check-docs.mjs",
+    "check:supabase": "node --env-file=.env.local scripts/check-supabase.mjs",
+    "check": "npm run check:docs && npm run test:unit && npm run typecheck && npm run lint && npm run build",
+    "test:e2e": "playwright test",
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test:auth-contract": "playwright test --config=playwright.auth.config.ts",
+    "test:google-contract": "playwright test --config=playwright.google.config.ts",
+    "test:styles": "playwright test --config=playwright.styles.config.ts",
+    "supabase": "supabase",
+    "db:migrations": "supabase migration list --linked",
+    "db:plan": "supabase db push --linked --dry-run",
+    "db:query": "supabase db query --linked",
+    "db:mongo:setup": "node --env-file=.env.local scripts/setup-mongodb.mjs",
+    "photos:cleanup": "node --env-file=.env.local scripts/cleanup-photos.mjs",
+    "recovery:drill": "node scripts/recovery-drill.mjs",
+    "release:check": "node scripts/release-readiness.mjs"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "dependencies": {
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.118.0",
+    "lucide-react": "1.61.0",
+    "mongodb": "7.7.0",
+    "next": "16.4.2",
+    "next-themes": "0.4.6",
+    "pdf-lib": "^1.17.1",
+    "polygon-offset": "0.3.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "0.0.1",
+    "sharp": "^0.35.5",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.11",
+    "@playwright/test": "1.64.1",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.186.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.2",
+    "supabase": "2.121.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-21T12:53:45.6174498Z",
+  "title": "Design System: CutPlan Studio",
+  "extensions": {
+    "colorMeta": {
+      "dark-base": {
+        "tonalRamp": [
+          "oklch(15.00% 0.02267 283.80)",
+          "oklch(26.43% 0.02267 283.80)",
+          "oklch(37.86% 0.02267 283.80)",
+          "oklch(49.29% 0.02267 283.80)",
+          "oklch(60.71% 0.02267 283.80)",
+          "oklch(72.14% 0.02267 283.80)",
+          "oklch(83.57% 0.02267 283.80)",
+          "oklch(95.00% 0.02267 283.80)"
+        ],
+        "displayName": "dark base",
+        "role": "neutral",
+        "canonical": "#0F0F1A"
+      },
+      "dark-surface": {
+        "tonalRamp": [
+          "oklch(15.00% 0.03843 282.93)",
+          "oklch(26.43% 0.03843 282.93)",
+          "oklch(37.86% 0.03843 282.93)",
+          "oklch(49.29% 0.03843 282.93)",
+          "oklch(60.71% 0.03843 282.93)",
+          "oklch(72.14% 0.03843 282.93)",
+          "oklch(83.57% 0.03843 282.93)",
+          "oklch(95.00% 0.03843 282.93)"
+        ],
+        "displayName": "dark surface",
+        "role": "neutral",
+        "canonical": "#1A1A2E"
+      },
+      "dark-elevated": {
+        "tonalRamp": [
+          "oklch(15.00% 0.04933 282.72)",
+          "oklch(26.43% 0.04933 282.72)",
+          "oklch(37.86% 0.04933 282.72)",
+          "oklch(49.29% 0.04933 282.72)",
+          "oklch(60.71% 0.04933 282.72)",
+          "oklch(72.14% 0.04933 282.72)",
+          "oklch(83.57% 0.04933 282.72)",
+          "oklch(95.00% 0.04933 282.72)"
+        ],
+        "displayName": "dark elevated",
+        "role": "neutral",
+        "canonical": "#252540"
+      },
+      "dark-text": {
+        "tonalRamp": [
+          "oklch(15.00% 0.00171 247.84)",
+          "oklch(26.43% 0.00171 247.84)",
+          "oklch(37.86% 0.00171 247.84)",
+          "oklch(49.29% 0.00171 247.84)",
+          "oklch(60.71% 0.00171 247.84)",
+          "oklch(72.14% 0.00171 247.84)",
+          "oklch(83.57% 0.00171 247.84)",
+          "oklch(95.00% 0.00171 247.84)"
+        ],
+        "displayName": "dark text",
+        "role": "neutral",
+        "canonical": "#F9FAFB"
+      },
+      "dark-muted": {
+        "tonalRamp": [
+          "oklch(15.00% 0.01918 261.32)",
+          "oklch(26.43% 0.01918 261.32)",
+          "oklch(37.86% 0.01918 261.32)",
+          "oklch(49.29% 0.01918 261.32)",
+          "oklch(60.71% 0.01918 261.32)",
+          "oklch(72.14% 0.01918 261.32)",
+          "oklch(83.57% 0.01918 261.32)",
+          "oklch(95.00% 0.01918 261.32)"
+        ],
+        "displayName": "dark muted",
+        "role": "neutral",
+        "canonical": "#9CA3AF"
+      },
+      "dark-accent": {
+        "tonalRamp": [
+          "oklch(15.00% 0.20406 277.12)",
+          "oklch(26.43% 0.20406 277.12)",
+          "oklch(37.86% 0.20406 277.12)",
+          "oklch(49.29% 0.20406 277.12)",
+          "oklch(60.71% 0.20406 277.12)",
+          "oklch(72.14% 0.20406 277.12)",
+          "oklch(83.57% 0.20406 277.12)",
+          "oklch(95.00% 0.20406 277.12)"
+        ],
+        "displayName": "dark accent",
+        "role": "primary",
+        "canonical": "#6366F1"
+      },
+      "dark-accent-text": {
+        "tonalRamp": [
+          "oklch(15.00% 0.13515 285.04)",
+          "oklch(26.43% 0.13515 285.04)",
+          "oklch(37.86% 0.13515 285.04)",
+          "oklch(49.29% 0.13515 285.04)",
+          "oklch(60.71% 0.13515 285.04)",
+          "oklch(72.14% 0.13515 285.04)",
+          "oklch(83.57% 0.13515 285.04)",
+          "oklch(95.00% 0.13515 285.04)"
+        ],
+        "displayName": "dark accent text",
+        "role": "primary",
+        "canonical": "#A5A0FF"
+      },
+      "dark-accent-hover": {
+        "tonalRamp": [
+          "oklch(15.00% 0.09651 286.71)",
+          "oklch(26.43% 0.09651 286.71)",
+          "oklch(37.86% 0.09651 286.71)",
+          "oklch(49.29% 0.09651 286.71)",
+          "oklch(60.71% 0.09651 286.71)",
+          "oklch(72.14% 0.09651 286.71)",
+          "oklch(83.57% 0.09651 286.71)",
+          "oklch(95.00% 0.09651 286.71)"
+        ],
+        "displayName": "dark accent hover",
+        "role": "primary",
+        "canonical": "#BEBAFF"
+      },
+      "dark-accent-soft": {
+        "tonalRamp": [
+          "oklch(15.00% 0.05310 285.40)",
+          "oklch(26.43% 0.05310 285.40)",
+          "oklch(37.86% 0.05310 285.40)",
+          "oklch(49.29% 0.05310 285.40)",
+          "oklch(60.71% 0.05310 285.40)",
+          "oklch(72.14% 0.05310 285.40)",
+          "oklch(83.57% 0.05310 285.40)",
+          "oklch(95.00% 0.05310 285.40)"
+        ],
+        "displayName": "dark accent soft",
+        "role": "primary",
+        "canonical": "#24223F"
+      },
+      "dark-border": {
+        "tonalRamp": [
+          "oklch(15.00% 0.05845 282.50)",
+          "oklch(26.43% 0.05845 282.50)",
+          "oklch(37.86% 0.05845 282.50)",
+          "oklch(49.29% 0.05845 282.50)",
+          "oklch(60.71% 0.05845 282.50)",
+          "oklch(72.14% 0.05845 282.50)",
+          "oklch(83.57% 0.05845 282.50)",
+          "oklch(95.00% 0.05845 282.50)"
+        ],
+        "displayName": "dark border",
+        "role": "neutral",
+        "canonical": "#2D2D4E"
+      },
+      "dark-focus": {
+        "tonalRamp": [
+          "oklch(15.00% 0.10413 274.71)",
+          "oklch(26.43% 0.10413 274.71)",
+          "oklch(37.86% 0.10413 274.71)",
+          "oklch(49.29% 0.10413 274.71)",
+          "oklch(60.71% 0.10413 274.71)",
+          "oklch(72.14% 0.10413 274.71)",
+          "oklch(83.57% 0.10413 274.71)",
+          "oklch(95.00% 0.10413 274.71)"
+        ],
+        "displayName": "dark focus",
+        "role": "primary",
+        "canonical": "#A5B4FC"
+      },
+      "dark-diagram": {
+        "tonalRamp": [
+          "oklch(15.00% 0.04551 286.58)",
+          "oklch(26.43% 0.04551 286.58)",
+          "oklch(37.86% 0.04551 286.58)",
+          "oklch(49.29% 0.04551 286.58)",
+          "oklch(60.71% 0.04551 286.58)",
+          "oklch(72.14% 0.04551 286.58)",
+          "oklch(83.57% 0.04551 286.58)",
+          "oklch(95.00% 0.04551 286.58)"
+        ],
+        "displayName": "dark diagram",
+        "role": "neutral",
+        "canonical": "#9392B1"
+      },
+      "light-base": {
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ],
+        "displayName": "light base",
+        "role": "neutral",
+        "canonical": "#FFFFFF"
+      },
+      "light-surface": {
+        "tonalRamp": [
+          "oklch(15.00% 0.00287 264.54)",
+          "oklch(26.43% 0.00287 264.54)",
+          "oklch(37.86% 0.00287 264.54)",
+          "oklch(49.29% 0.00287 264.54)",
+          "oklch(60.71% 0.00287 264.54)",
+          "oklch(72.14% 0.00287 264.54)",
+          "oklch(83.57% 0.00287 264.54)",
+          "oklch(95.00% 0.00287 264.54)"
+        ],
+        "displayName": "light surface",
+        "role": "neutral",
+        "canonical": "#F3F4F6"
+      },
+      "light-elevated": {
+        "tonalRamp": [
+          "oklch(15.00% 0.00581 264.53)",
+          "oklch(26.43% 0.00581 264.53)",
+          "oklch(37.86% 0.00581 264.53)",
+          "oklch(49.29% 0.00581 264.53)",
+          "oklch(60.71% 0.00581 264.53)",
+          "oklch(72.14% 0.00581 264.53)",
+          "oklch(83.57% 0.00581 264.53)",
+          "oklch(95.00% 0.00581 264.53)"
+        ],
+        "displayName": "light elevated",
+        "role": "neutral",
+        "canonical": "#E5E7EB"
+      },
+      "light-text": {
+        "tonalRamp": [
+          "oklch(15.00% 0.03176 264.66)",
+          "oklch(26.43% 0.03176 264.66)",
+          "oklch(37.86% 0.03176 264.66)",
+          "oklch(49.29% 0.03176 264.66)",
+          "oklch(60.71% 0.03176 264.66)",
+          "oklch(72.14% 0.03176 264.66)",
+          "oklch(83.57% 0.03176 264.66)",
+          "oklch(95.00% 0.03176 264.66)"
+        ],
+        "displayName": "light text",
+        "role": "neutral",
+        "canonical": "#111827"
+      },
+      "light-muted": {
+        "tonalRamp": [
+          "oklch(15.00% 0.02753 262.01)",
+          "oklch(26.43% 0.02753 262.01)",
+          "oklch(37.86% 0.02753 262.01)",
+          "oklch(49.29% 0.02753 262.01)",
+          "oklch(60.71% 0.02753 262.01)",
+          "oklch(72.14% 0.02753 262.01)",
+          "oklch(83.57% 0.02753 262.01)",
+          "oklch(95.00% 0.02753 262.01)"
+        ],
+        "displayName": "light muted",
+        "role": "neutral",
+        "canonical": "#626B7B"
+      },
+      "light-accent": {
+        "tonalRamp": [
+          "oklch(15.00% 0.23005 276.97)",
+          "oklch(26.43% 0.23005 276.97)",
+          "oklch(37.86% 0.23005 276.97)",
+          "oklch(49.29% 0.23005 276.97)",
+          "oklch(60.71% 0.23005 276.97)",
+          "oklch(72.14% 0.23005 276.97)",
+          "oklch(83.57% 0.23005 276.97)",
+          "oklch(95.00% 0.23005 276.97)"
+        ],
+        "displayName": "light accent",
+        "role": "primary",
+        "canonical": "#4F46E5"
+      },
+      "light-accent-soft": {
+        "tonalRamp": [
+          "oklch(15.00% 0.02409 288.49)",
+          "oklch(26.43% 0.02409 288.49)",
+          "oklch(37.86% 0.02409 288.49)",
+          "oklch(49.29% 0.02409 288.49)",
+          "oklch(60.71% 0.02409 288.49)",
+          "oklch(72.14% 0.02409 288.49)",
+          "oklch(83.57% 0.02409 288.49)",
+          "oklch(95.00% 0.02409 288.49)"
+        ],
+        "displayName": "light accent soft",
+        "role": "primary",
+        "canonical": "#EEEDFF"
+      },
+      "light-focus": {
+        "tonalRamp": [
+          "oklch(15.00% 0.23005 276.97)",
+          "oklch(26.43% 0.23005 276.97)",
+          "oklch(37.86% 0.23005 276.97)",
+          "oklch(49.29% 0.23005 276.97)",
+          "oklch(60.71% 0.23005 276.97)",
+          "oklch(72.14% 0.23005 276.97)",
+          "oklch(83.57% 0.23005 276.97)",
+          "oklch(95.00% 0.23005 276.97)"
+        ],
+        "displayName": "light focus",
+        "role": "primary",
+        "canonical": "#4F46E5"
+      },
+      "light-diagram": {
+        "tonalRamp": [
+          "oklch(15.00% 0.03049 278.69)",
+          "oklch(26.43% 0.03049 278.69)",
+          "oklch(37.86% 0.03049 278.69)",
+          "oklch(49.29% 0.03049 278.69)",
+          "oklch(60.71% 0.03049 278.69)",
+          "oklch(72.14% 0.03049 278.69)",
+          "oklch(83.57% 0.03049 278.69)",
+          "oklch(95.00% 0.03049 278.69)"
+        ],
+        "displayName": "light diagram",
+        "role": "neutral",
+        "canonical": "#7C7F93"
+      },
+      "button-primary": {
+        "tonalRamp": [
+          "oklch(15.00% 0.23005 276.97)",
+          "oklch(26.43% 0.23005 276.97)",
+          "oklch(37.86% 0.23005 276.97)",
+          "oklch(49.29% 0.23005 276.97)",
+          "oklch(60.71% 0.23005 276.97)",
+          "oklch(72.14% 0.23005 276.97)",
+          "oklch(83.57% 0.23005 276.97)",
+          "oklch(95.00% 0.23005 276.97)"
+        ],
+        "displayName": "button primary",
+        "role": "primary",
+        "canonical": "#4F46E5"
+      },
+      "button-hover": {
+        "tonalRamp": [
+          "oklch(15.00% 0.21458 277.02)",
+          "oklch(26.43% 0.21458 277.02)",
+          "oklch(37.86% 0.21458 277.02)",
+          "oklch(49.29% 0.21458 277.02)",
+          "oklch(60.71% 0.21458 277.02)",
+          "oklch(72.14% 0.21458 277.02)",
+          "oklch(83.57% 0.21458 277.02)",
+          "oklch(95.00% 0.21458 277.02)"
+        ],
+        "displayName": "button hover",
+        "role": "primary",
+        "canonical": "#4338CA"
+      }
+    },
+    "typographyMeta": {
+      "body": {
+        "displayName": "Body",
+        "purpose": "Base UI and full-page empty-state prose."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons and compact interface labels."
+      },
+      "supporting": {
+        "displayName": "Supporting",
+        "purpose": "Introductory paragraphs and page descriptions."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "Introductory furniture message; 31px mobile override."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page title; 24px mobile override."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Compact section heading."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "purpose": "Hover color states; default CSS easing.",
+        "name": "state-transition",
+        "value": "background-color 150ms, color 150ms"
+      },
+      {
+        "purpose": "Reduced-motion transition and animation duration.",
+        "name": "reduced-motion",
+        "value": "0.01ms"
+      },
+      {
+        "purpose": "Anchor scrolling becomes auto for reduced motion.",
+        "name": "anchor-scroll",
+        "value": "smooth"
+      }
+    ],
+    "breakpoints": [
+      {
+        "value": "420px",
+        "name": "narrow-phone-max"
+      },
+      {
+        "value": "760px",
+        "name": "mobile-max"
+      },
+      {
+        "value": "1100px",
+        "name": "compact-desktop-max"
+      },
+      {
+        "value": "1600px",
+        "name": "wide-desktop-min"
+      },
+      {
+        "name": "project-single-column-max",
+        "value": "540px"
+      }
+    ],
+    "draftWorkflow": {
+      "scope": "Phase 2 ordinary extension; Phase 1 primitives and previews preserved.",
+      "layout": "Project grid 3/2/1 columns, 22px gaps: two through 1100px, one through 540px. Picker 4/2 columns at 1100px. Creation max-width 1040px; detail stacks through 760px.",
+      "states": [
+        "loading",
+        "empty",
+        "ready",
+        "inline rename",
+        "native modal deletion/reset",
+        "missing draft",
+        "unavailable storage",
+        "corrupt/newer-data recovery"
+      ],
+      "detectorBaseline": "16 advisory findings in review/phase-02/detector.json against Phase 1 metadata; includes pre-existing font/radius omissions. No CSS repairs or zero-findings assertion.",
+      "modalBackdrop": "rgb(0 0 0 / 65%)"
+    }
+  },
+  "components": [
+    {
+      "description": "Enabled when browser storage is ready; disabled during loading, unavailable storage or pending mutations.",
+      "refersTo": "button-primary",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;min-height:40px;gap:8px;border-radius:7px;padding:10px 16px;font-family:var(--font-inter,Inter),sans-serif;font-size:12px;font-weight:550;cursor:pointer;transition:background-color 150ms,color 150ms;border:0;background:var(--accent-button,#4F46E5);color:#fff}.ds-primary:hover:enabled{background:var(--button-hover,#4338CA)}.ds-primary:disabled{background:var(--bg-elevated,#252540);color:var(--text-muted,#9CA3AF);cursor:not-allowed}.ds-primary:focus-visible{outline:2px solid var(--focus,#A5B4FC);outline-offset:5px;border-radius:4px}@media(max-width:760px){.ds-primary{min-height:44px}}@media(prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0.01ms!important}}",
+      "kind": "button",
+      "name": "Primary button",
+      "html": "<button class=\"ds-primary\">New project</button><button class=\"ds-primary\" disabled>New project</button>"
+    },
+    {
+      "description": "Quiet navigation action used in full-page empty states.",
+      "refersTo": "button-secondary",
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:40px;gap:8px;border-radius:7px;padding:10px 16px;font-family:var(--font-inter,Inter),sans-serif;font-size:12px;font-weight:550;cursor:pointer;transition:background-color 150ms,color 150ms;background:var(--bg-surface,#1A1A2E);color:var(--text-primary,#F9FAFB);border:1px solid var(--border,#2D2D4E);text-decoration:none}.ds-secondary:hover{background:var(--bg-elevated,#252540)}.ds-secondary:focus-visible{outline:2px solid var(--focus,#A5B4FC);outline-offset:5px;border-radius:4px}@media(max-width:760px){.ds-secondary{min-height:44px}}@media(prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0.01ms!important}}",
+      "kind": "button",
+      "name": "Secondary button",
+      "html": "<a class=\"ds-secondary\" href=\"#\">Explore furniture types</a>"
+    },
+    {
+      "description": "Theme-control appearance; visual preview only.",
+      "refersTo": "icon-button",
+      "css": ".ds-icon{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--border,#2D2D4E);border-radius:8px;background:transparent;color:var(--text-muted,#9CA3AF);cursor:pointer;transition:background-color 150ms,color 150ms}.ds-icon:hover{background:var(--bg-surface,#1A1A2E);color:var(--text-primary,#F9FAFB)}.ds-icon:focus-visible{outline:2px solid var(--focus,#A5B4FC);outline-offset:5px;border-radius:4px}@media(max-width:760px){.ds-icon{width:44px;height:44px}}@media(prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0.01ms!important}}",
+      "kind": "button",
+      "name": "Theme icon button",
+      "html": "<button class=\"ds-icon\" aria-label=\"Toggle light and dark theme\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42\"/></svg></button>"
+    },
+    {
+      "name": "Active navigation",
+      "css": ".ds-nav{display:grid;gap:4px;font-family:var(--font-inter,Inter),sans-serif;font-size:14px}.ds-nav a{display:flex;align-items:center;min-height:44px;padding:0 12px;border-radius:7px;color:var(--text-muted,#9CA3AF);font-weight:450;text-decoration:none;transition:background-color 150ms,color 150ms}.ds-nav a:hover{background:var(--bg-elevated,#252540);color:var(--text-primary,#F9FAFB)}.ds-nav a[aria-current]{background:var(--accent-soft,#24223F);color:var(--accent-text,#A5A0FF);font-weight:550}.ds-nav a:focus-visible{outline:2px solid var(--focus,#A5B4FC);outline-offset:5px;border-radius:4px}@media(max-width:760px){.ds-nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.ds-nav a{justify-content:center;padding:0 8px;font-size:13px}}@media(prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0.01ms!important}}",
+      "kind": "nav",
+      "description": "Home, Projects and Orders route treatment.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Preview\"><a href=\"#\" aria-current=\"page\">Home</a><a href=\"#\">Projects</a><a href=\"#\">Orders</a></nav>"
+    },
+    {
+      "description": "True empty content; informational with no hover or action state.",
+      "refersTo": "empty-projects",
+      "css": ".ds-empty{border:1px dashed var(--border,#2D2D4E);border-radius:10px;display:flex;gap:18px;align-items:center;padding:25px 28px;font-family:var(--font-inter,Inter),sans-serif;color:var(--text-primary,#F9FAFB)}.ds-empty h3{margin:0;font-size:13px;font-weight:500}.ds-empty p{font-size:12px;margin:4px 0 0;color:var(--text-muted,#9CA3AF);line-height:1.65}@media(max-width:760px){.ds-empty{padding:22px 18px;gap:12px}}@media(prefers-reduced-motion:reduce){[class^=\"ds-\"]{transition-duration:0.01ms!important}}",
+      "kind": "card",
+      "name": "Empty projects container",
+      "html": "<div class=\"ds-empty\"><div><h3>A little room for your ideas.</h3><p>Create your first project to start a browser draft.</p></div></div>"
+    },
+    {
+      "name": "Furniture family choice",
+      "kind": "custom",
+      "description": "Native radio picker; selected soft-indigo surface and visible group focus. Schematics are decorative.",
+      "html": "<label class=\"ds-choice\"><input type=\"radio\" name=\"family\" checked>Cabinets</label>",
+      "css": ".ds-choice{display:block;position:relative;padding:18px 14px;border:1px solid var(--border,#2D2D4E);border-radius:10px;font:550 14px var(--font-inter,Inter),sans-serif;color:var(--text-primary,#F9FAFB);cursor:pointer;transition:border-color 150ms,background-color 150ms}.ds-choice:has(input:checked){border-color:var(--accent,#6366F1);background:var(--accent-soft,#24223F)}.ds-choice:focus-within{outline:2px solid var(--focus,#A5B4FC);outline-offset:3px}.ds-choice input{width:17px;height:17px;accent-color:var(--accent-button,#4F46E5)}.ds-choice:has(input:disabled){opacity:.65;cursor:not-allowed}@media(max-width:540px){.ds-choice{padding:18px 12px}}"
+    },
+    {
+      "name": "Draft name field",
+      "kind": "input",
+      "description": "Shared creation/inline rename control; 46px minimum height, invalid border and mobile entry size.",
+      "html": "<label class=\"ds-name\">Project name<input value=\"Hallway shoe rack\"></label>",
+      "css": ".ds-name{display:block;font:550 14px var(--font-inter,Inter),sans-serif;color:var(--text-primary,#F9FAFB)}.ds-name input{display:block;width:100%;margin-top:12px;min-height:46px;border:1px solid var(--border,#2D2D4E);border-radius:7px;padding:10px 12px;background:var(--bg-base,#0F0F1A);color:inherit;caret-color:var(--accent-text,#A5A0FF);font:400 14px var(--font-inter,Inter),sans-serif}.ds-name input:focus-visible{outline:2px solid var(--focus,#A5B4FC);outline-offset:5px}.ds-name input[aria-invalid=true]{border-color:var(--danger-text,#FCA5A5)}@media(max-width:760px){.ds-name input{font-size:16px}}"
+    },
+    {
+      "name": "Browser draft card",
+      "kind": "card",
+      "description": "Name/type/date preview; runtime adds a family schematic and separate Rename/Delete controls.",
+      "html": "<article class=\"ds-draft\"><a href=\"#\"><h3>Hallway shoe rack</h3><p>Shoe rack / Browser draft</p><time>Edited 21 Oct 2026</time></a></article>",
+      "css": ".ds-draft{border:1px solid var(--border,#2D2D4E);border-radius:12px;overflow:clip;min-width:0;font-family:var(--font-inter,Inter),sans-serif;color:var(--text-primary,#F9FAFB)}.ds-draft a{display:block;padding:20px;color:inherit;text-decoration:none}.ds-draft a:focus-visible{outline:2px solid var(--focus,#A5B4FC);outline-offset:-4px}.ds-draft h3{margin:0;font-size:16px;font-weight:550;line-height:1.45;overflow-wrap:anywhere}.ds-draft p,.ds-draft time{font-size:12px;color:var(--text-muted,#9CA3AF)}.ds-draft p{margin:7px 0 12px}.ds-draft time{font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Destructive confirmation",
+      "kind": "custom",
+      "description": "Visual content preview. Runtime native showModal provides Cancel-first focus, idle Escape dismissal and trigger restoration; CSS alone does not implement these.",
+      "html": "<section class=\"ds-confirm\"><h2>Delete this draft?</h2><p>This draft will be removed from this browser.</p><div><button>Cancel</button><button class=\"ds-danger\">Delete draft</button></div></section>",
+      "css": ".ds-confirm{width:min(440px,calc(100vw - 40px));padding:28px;border:1px solid var(--border,#2D2D4E);border-radius:12px;background:var(--bg-surface,#1A1A2E);color:var(--text-primary,#F9FAFB);font-family:var(--font-inter,Inter),sans-serif;max-height:calc(100dvh - 40px);overflow-y:auto}.ds-confirm h2{margin:0;font-size:21px;font-weight:550}.ds-confirm p{font-size:14px;line-height:1.65;color:var(--text-muted,#9CA3AF);margin-top:14px}.ds-confirm div{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:24px}.ds-confirm button{padding:10px 16px;min-height:40px;border:1px solid var(--border,#2D2D4E);border-radius:7px;background:var(--bg-surface,#1A1A2E);color:inherit;font:550 12px var(--font-inter,Inter),sans-serif;cursor:pointer;transition:background-color 150ms,color 150ms}.ds-confirm button:hover{background:var(--bg-elevated,#252540)}.ds-confirm button:focus-visible{outline:2px solid var(--focus,#A5B4FC);outline-offset:5px}.ds-confirm .ds-danger{border:0;background:var(--danger-fill,#B91C1C);color:white}.ds-confirm .ds-danger:hover{background:#991B1B}.ds-confirm button:disabled{opacity:.75;cursor:not-allowed}@media(max-width:760px){.ds-confirm button{min-height:44px}}@media(max-width:540px){.ds-confirm{padding:24px}}"
+    },
+    {
+      "name": "Storage recovery notice",
+      "kind": "custom",
+      "description": "Preserves unreadable/newer data; runtime adds wrapping Retry, recovery-download and confirmed Reset actions. Unavailable storage offers Retry.",
+      "html": "<section class=\"ds-storage\"><h2>Your saved drafts could not be read.</h2><p>The existing data has been left untouched. Download a recovery copy before choosing to reset it.</p></section>",
+      "css": ".ds-storage{border:1px solid var(--border,#2D2D4E);border-radius:10px;padding:24px;margin:20px 0;color:var(--text-primary,#F9FAFB);font-family:var(--font-inter,Inter),sans-serif}.ds-storage h2{font-size:17px;font-weight:550;margin:0}.ds-storage p{font-size:13px;color:var(--text-muted,#9CA3AF);line-height:1.65;max-width:70ch;margin-top:8px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The calm furniture workspace",
+    "overview": "CutPlan Studio uses the supplied master palette and a restrained creative-tool shell. Indigo identifies navigation, actions and furniture geometry; neutral surfaces keep ordinary tasks readable. The product remains a calm workspace.\n\nThis record describes the Phase 1 Home, Projects and Orders foundation, extended by the Phase 2 guest draft workflow. Visual authority remains [the design requirement](docs/requirements/03_Design_Specification.md), derived from the owner's master. Composition and implementation differences belong in [the foundation note](docs/design/phase-01-foundation.md); requirements remain separate under docs/requirements.",
+    "donts": [
+      "Don't imply the schematic is a saved design or production drawing.",
+      "Don't introduce decorative gradients, repeated shadows or animated badges into this workspace.",
+      "Don't present later-phase controls as established Phase 1 components."
+    ],
+    "dos": [
+      "Do preserve the master's paired palettes and role-specific contrast adjustments.",
+      "Do use sentence case, Inter, visible focus and reduced-motion behavior.",
+      "Do keep furniture schematics unnumbered until real design measurements exist.",
+      "Do show true empty states and explain unavailable actions."
+    ],
+    "keyCharacteristics": [
+      "Paired dark and light themes.",
+      "Self-hosted Inter and compact sentence-case typography.",
+      "Flat bordered surfaces and geometric furniture linework.",
+      "Honest empty states and explicit unavailable actions."
+    ],
+    "rules": [
+      {
+        "name": "The accent roles rule",
+        "body": "Keep the master indigo for geometry; use accessible text and button derivatives for their respective roles.",
+        "section": "colors"
+      },
+      {
+        "name": "The quiet hierarchy rule",
+        "body": "Reserve the largest type for the introductory furniture message; navigation and supporting copy remain compact and readable.",
+        "section": "typography"
+      },
+      {
+        "name": "The flat surface rule",
+        "body": "Use tonal separation and fine borders rather than shadows to establish depth.",
+        "section": "elevation"
+      }
+    ]
+  }
+}

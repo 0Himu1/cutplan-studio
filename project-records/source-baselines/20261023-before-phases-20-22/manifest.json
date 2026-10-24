@@ -1,0 +1,10 @@
+{
+  "files": 218,
+  "sha256": "7cb87b15afadd39e9e2e2de7ae095a639388f876d53b74ea5bbe9effb92b494c",
+  "excluded": [
+    "environment secrets",
+    "connection prompt",
+    "dependencies",
+    "build caches"
+  ]
+}

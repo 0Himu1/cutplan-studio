@@ -1,0 +1,13 @@
+# Docked forms and transparent panel labels — 24 October 2026
+
+Main editor task forms now open in a non-modal left inspector instead of a centered popup. On a 1440 px desktop it occupies 480 px; the usual width is one-third of the viewport, bounded to 360–640 px. The canvas reserves that width and remains interactive. Orbit orientation and camera target are preserved while the viewport resizes. Nested material pickers, authentication and the canvas context menu retain their existing modal behavior.
+
+Opening and closing use a coordinated 260 ms slide and canvas resize. Apply, Cancel, Close and Escape dismiss the inspector. Its contents remain mounted until the exit animation ends. Apply commits the complete transaction once; Cancel/Escape restore the original input values. Focus returns to the initiating control. Reopening during dismissal cancels the pending close timer. Reduced-motion preferences remove both animations.
+
+Narrow screens use up to 92% of the width for readable controls. Short landscape screens use a wider full-height inspector rather than compressing the form into one-third of an already small viewport. Presentation toolbars are temporarily hidden in the narrow remaining preview to prevent overlaps. The inspected supported layouts retain no document or form scrolling.
+
+The 3D **Show dimensions** labels now match the legacy preview direction: transparent canvas textures, white text and a thin dark glyph outline. They show panel name, width and height only. Thickness is omitted from both visible labels and screen-reader descriptions; actual thickness data, material specifications and calculations are unchanged. Width and height still follow global mm/inch-suta mode, and textures repaint without recreating the 3D canvas.
+
+Verification covers the inspector width and canvas displacement, non-modal model interaction, Apply/Cancel/Escape, exit mounting, reduced motion, nested picker focus, saved/recovered geometry, global-unit label updates and responsive forms. Screenshots are under `artifacts/review/docked-editor/` and `artifacts/review/cabinet-config/`. TypeScript, full lint, ten targeted geometry/storage tests and the production account-contract build passed. All 11 account contracts passed. The standard browser run covered 71 scenarios: 69 passed in the broad run, and two passed on focused rerun after correcting assertions to wait for dismissal and check reduced-motion transition properties. Tests used an isolated provider-disabled preview so the normal development server retained its signed-in configuration.
+
+This supersedes the centered-form and light label-background choices in the earlier cabinet follow-up. No database change, schema change, phase renumbering or release-gate change is involved.
