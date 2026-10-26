@@ -49,7 +49,8 @@ export function CabinetReview() {
               <dt className="text-muted">Board role</dt><dd>{panel.materialSlot === 'front' ? 'Door board' : panel.materialSlot === 'back' ? 'Back board' : 'Body board'}; no catalog material assigned</dd>
               <dt className="text-muted">Center X, Y, Z (mm)</dt><dd className="tabular-nums">{panel.pose.positionMm.map(mm).join(', ')}</dd>
               <dt className="text-muted">Rotation X, Y, Z (rad)</dt><dd className="tabular-nums">{panel.pose.rotationRad.map(mm).join(', ')}</dd>
-              <dt className="text-muted">Stock rotation</dt><dd>{panel.allowedRotationsDeg.join('° or ')}°; grain unrestricted in this example</dd>
+              {panel.notches?.length&&<><dt className="text-muted">Corner notches</dt><dd>{panel.notches.map(n=>`${n.side}: ${mm(n.width)} × ${mm(n.height)} mm`).join("; ")}</dd></>}
+              <dt className="text-muted">Stock rotation</dt><dd>{panel.allowedRotationsDeg.join('° or ')}°; {panel.notches?.length?'corner profile locks orientation':panel.grainAxis==='none'?'grain unrestricted':'grain preserved'}</dd>
             </dl>
           </details>
         </li>)}

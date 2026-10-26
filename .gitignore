@@ -7,6 +7,7 @@ coverage/
 .env*
 !.env.example
 docs/integrations/database-connection-prompt
+**/database-connection-prompt
 .impeccable/review/
 .impeccable/config.local.json
 artifacts/

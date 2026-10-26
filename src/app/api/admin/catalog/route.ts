@@ -19,7 +19,7 @@ export async function POST(request:Request) {
  try {const client=await staff();if(!client)return privateJson({error:'Staff catalog access is required.'},403);
  const input=catalogInput(await readBody(request, 4096));if(!input)return privateJson({error:'Check the required fields, price and unit.'},400);
  const {error}=await client.rpc('cutplan_catalog_change',{p:input});
- if(error){const message=error.message.includes('catalog_conflict')?'This material changed. Reload before saving again.':error.message.includes('catalog_price_required')?'Add a positive current price with the correct unit before publishing.':error.message.includes('catalog_edging_unit')?'Edging must be priced per meter.':error.message.includes('catalog_board_unit')?'Boards must be priced per sheet.':'The change was not saved. Check the material fields and retry.';return privateJson({error:message},409);}
+ if(error){const message=error.message.includes('catalog_variant_exists')?'This category already has that thickness. Edit the existing variant.':error.message.includes('catalog_category_thickness')?'Choose a listed thickness for this board category.':error.message.includes('catalog_conflict')?'This material changed. Reload before saving again.':error.message.includes('catalog_price_required')?'Add a positive current price with the correct unit before publishing.':error.message.includes('catalog_edging_unit')?'Edging must be priced per meter.':error.message.includes('catalog_board_unit')?'Boards must be priced per sheet.':'The change was not saved. Check the material fields and retry.';return privateJson({error:message},409);}
  return privateJson({saved:true});
  }catch{return privateJson({error:'The change was not saved. Retry.'},503);}
 }

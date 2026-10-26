@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-10-26T07:19:42.190Z",
+  "read_only": true,
+  "totalBoardRows": 62,
+  "retiredBoardRows": 23,
+  "activeBoardRows": 39,
+  "activeFinishes": 0,
+  "retiredFinishes": 1,
+  "categories": {
+    "PLAIN-MDF": {
+      "variants": 7,
+      "published": 0,
+      "withColor": 0,
+      "withPriceHistory": 4
+    },
+    "PLAIN-WOOD-PARTICLE": {
+      "variants": 7,
+      "published": 0,
+      "withColor": 0,
+      "withPriceHistory": 7
+    },
+    "MR-PLYWOOD": {
+      "variants": 6,
+      "published": 0,
+      "withColor": 0,
+      "withPriceHistory": 0
+    },
+    "GORJON-PLYWOOD": {
+      "variants": 9,
+      "published": 9,
+      "withColor": 1,
+      "withPriceHistory": 9
+    },
+    "MARINE-PLYWOOD": {
+      "variants": 6,
+      "published": 0,
+      "withColor": 0,
+      "withPriceHistory": 6
+    },
+    "VENEERED-BOARD": {
+      "variants": 4,
+      "published": 0,
+      "withColor": 0,
+      "withPriceHistory": 0
+    }
+  }
+}

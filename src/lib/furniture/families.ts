@@ -53,7 +53,8 @@ export function calculateFurniture(value:unknown):Calculation {
   }
   if(result.blockingErrors.length)return result;
   const core={...Object.fromEntries(baseKeys.map(key=>[key,input[key as keyof CabinetInput]])),...(input.panelOverrides?{panelOverrides:Object.fromEntries(Object.entries(input.panelOverrides).map(([id,assignment])=>[id.replace(family+'/','cabinet/'),assignment]))}:{})};
-  const calculated=calculateCabinet(core);
+  const calculated=calculateCabinet(core,0);
+  if(calculated.stockIssues?.length){result.stockIssues=calculated.stockIssues.map(issue=>({...issue,field:issue.field.replace('cabinet/',family+'/')}));result.warnings.push(...result.stockIssues.map(issue=>issue.message));}
   result.blockingErrors.push(...calculated.blockingErrors.map(issue=>({...issue,field:issue.field.replace('cabinet/',family+'/')})));
   if(result.blockingErrors.length)return result;
   const panels=calculated.panels.map(panel=>({...panel,panelId:panel.panelId.replace('cabinet/',family+'/'),pose:{positionMm:[...panel.pose.positionMm] as [number,number,number],rotationRad:[...panel.pose.rotationRad] as [number,number,number]}}));

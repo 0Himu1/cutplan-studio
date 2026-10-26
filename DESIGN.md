@@ -309,3 +309,31 @@ All CAD chrome inherits the paired app palette. Light drafting uses canvas #f8fa
 ## Scrollable inspectors and cutting worksheets — 24 October 2026
 
 Inspector bodies and Sheets content now scroll by owner request; the 3D/2D canvas and outer document remain fixed. All structural pagination inside docked tasks is removed. Cabinet Size/Construction/Compartments/Sections use a continuous form, with conditional fields retained. An orbit-aware X/Y/Z sphere gizmo at the top right replaces bottom-left orientation buttons. Sheets uses a responsive all-sheet grid and editable cutting table, with stock and G-code tools in the left inspector. These tab-local worksheet edits are separate from canonical furniture geometry and frozen production release. Both themes use the existing thin strokes, one-pixel borders, restrained spacing and semantic colors. See `docs/delivery/cutting-workspace-followup.md` for the complete legacy parity audit.
+
+## Compact cabinet information — 24 October 2026
+
+Cabinet configuration uses short visible labels, icon actions and on-demand help rather than repeated explanatory paragraphs. Shared hints support mouse hover, keyboard focus and taps; Escape dismisses a hint before the inspector. Popovers render outside the scroll container and are constrained to the viewport. Secondary action names remain accessible, and errors stay visible.
+
+Scoped status variables: `--config-available` is #047857 in light and #6ee7b7 in dark; `--config-warning` is #92400e in light and #fcd34d in dark. Existing indigo identifies automatic allocations and help; existing danger text identifies overflow/removal. Summary labels and values are 12 px. Every colored value retains a label and unit; color is never the sole status indicator. Icons use 16 px, 1.5 px strokes with 32 px desktop / 44 px phone hit areas. See docs/delivery/config-hints-followup.md.
+
+## Cabinet section handles — 25 October 2026
+
+Section headers expose compact six-dot handles with indigo feedback, a faded source and insertion marker. Only the handle captures pointer/touch gestures; normal form scrolling remains available. Keyboard arrows/Home/End reorder with focus retention and live announcements. Existing move buttons remain alternatives. A short opacity change respects reduced motion; section values and accordion state remain intact. See docs/delivery/section-reorder-followup.md.
+
+## Top-down section editing — 25 October 2026
+
+Cabinet sections are compact, always-open groups. Section 1 is physically highest; saved bottom-to-top arrays are adapted at the UI boundary. Header actions combine drag, Auto, copy and remove, with type/height alongside below. Manual space is not implicitly filled or turned into new sections. Available empty space uses the existing danger/red role as an advisory; invalid dimensions remain separate blocking errors. Add creates one blank manual-height row below the current stack. See docs/delivery/top-down-sections-followup.md.
+
+## Cabinet field alignment — 25 October 2026
+
+Shared field regions align label tops and control bottoms for mixed selects, metric inputs and inch/suta pairs. Equal fraction columns and an 8 px grid gap align full-width dimensional rows with the main form columns. Calculated outputs share the input-height token (32 px desktop, 44 px narrow/coarse input) but retain a quiet read-only surface. Field help aligns to its label rather than occupying a detached row. See docs/delivery/form-alignment-followup.md.
+
+
+### Cabinet board defaults — 25 October 2026
+
+Keep the existing compact inspector, typography and theme tokens. Group Body, Back and Door choices with thin dividers, aligned shared controls and a small color swatch. Board selection drives read-only SKU thickness; manual thickness is a fallback. Actual compatible finishes and preview-only colors stay distinct. New parts inherit group settings; per-panel overrides remain an advanced action.
+
+
+### Material catalog — 25 October 2026
+
+Use a searchable grid rather than simultaneous list and long form. Cards show a quiet material mark or actual finish swatch, specification, price and labelled state. Clicking replaces the grid with a centered compact editor; successful saves return to the grid. Preserve the existing Inter typography and paired white/ink/indigo theme tokens. Reuse cabinet fields and tooltips, separate editing tasks, and keep the Save footer visible within the available viewport. Phone controls use 44 px targets.

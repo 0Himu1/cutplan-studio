@@ -1,4 +1,5 @@
-import { parseOverrides, type PanelOverrides } from './materials.ts';
+import type {CornerNotch} from './panel-contour.ts';
+import { materialForPanel,parseMaterialDefaults,parseOverrides, type MaterialDefaults,type PanelOverrides } from './materials.ts';
 import {buildCompartments,validCompartments,type CabinetCompartment,type CabinetHardware} from './compartments.ts';
 /** Pure cabinet mathematics. No browser, renderer, database or provider dependencies.
  * Adapted from the legacy body/door/shelf calculators; see docs/delivery/phase-06-report.md.
@@ -15,6 +16,7 @@ export type CabinetInput = {
   stockWidthMm: number; stockHeightMm: number; stockMarginMm: number;
   grainAxis: 'none' | 'width' | 'height';
   panelOverrides?: PanelOverrides;
+  materialDefaults?:MaterialDefaults;
   doorPosition?: 'inset'|'overlay';
   compartmentMode?: 'auto'|'manual';
   compartments?: CabinetCompartment[];
@@ -27,18 +29,22 @@ export type Panel = {
   pose: { positionMm: [number, number, number]; rotationRad: [number, number, number] };
   grainAxis: CabinetInput['grainAxis']; allowedRotationsDeg: (0 | 90)[];
   hingeSide?:'left'|'right';
+  drawerTravelMm?:number;
+  hingeSource?:'side'|'partition'|'frame';
+  notches?:CornerNotch[];
 };
 export type Calculation = {
   schemaVersion: 1; engineVersion: string; templateKey: string;
   manufacturingApproved: false; eligibleForQuote: false;
   panels: Panel[]; blockingErrors: { field: string; message: string }[]; warnings: string[];
+  stockIssues?: {field:string;message:string}[];
   hardware?: CabinetHardware[];
 };
 
 const numericKeys = ['widthMm', 'heightMm', 'depthMm', 'bodyThicknessMm', 'backThicknessMm', 'doorThicknessMm', 'shelfCount', 'doorCount', 'skirtingHeightMm', 'shelfSideClearanceMm', 'doorGapMm', 'plinthSetbackMm', 'stockWidthMm', 'stockHeightMm', 'stockMarginMm'] as const;
-const keys = new Set<string>([...numericKeys, 'backPosition', 'grainAxis', 'panelOverrides','doorPosition','compartmentMode','compartments']);
+const keys = new Set<string>([...numericKeys, 'backPosition', 'grainAxis', 'panelOverrides','materialDefaults','doorPosition','compartmentMode','compartments']);
 
-export function calculateCabinet(value: unknown): Calculation {
+export function calculateCabinet(value: unknown, shelfFrontGapMm=25.4): Calculation {
   const result: Calculation = {
     schemaVersion: 1, engineVersion: ENGINE_VERSION, templateKey: TEMPLATE_KEY,
     manufacturingApproved: false, eligibleForQuote: false, panels: [], blockingErrors: [],
@@ -56,6 +62,7 @@ export function calculateCabinet(value: unknown): Calculation {
   if (!['inset', 'outside'].includes(record.backPosition as string)) error('backPosition', 'Choose an inset or outside back.');
   if (!['none', 'width', 'height'].includes(record.grainAxis as string)) error('grainAxis', 'Choose a supported grain direction.');
   if(record.panelOverrides !== undefined && !parseOverrides(record.panelOverrides)) error('panelOverrides','Panel materials are invalid.');
+  if(record.materialDefaults!==undefined&&!parseMaterialDefaults(record.materialDefaults))error('materialDefaults','Invalid board defaults or preview colors.');
   if(record.doorPosition!==undefined&&!['inset','overlay'].includes(String(record.doorPosition)))error('doorPosition','Choose inset or overlay doors.');
   if(record.compartmentMode!==undefined&&!['auto','manual'].includes(String(record.compartmentMode)))error('compartments','Choose automatic or manual compartments.');
   if(record.compartments!==undefined&&!validCompartments(record.compartments))error('compartments','Invalid compartment tree. Use up to 6 compartments, 8 sections per compartment and 3 nested divider levels (64 nodes total).');
@@ -63,6 +70,7 @@ export function calculateCabinet(value: unknown): Calculation {
   if(record.compartmentMode==='manual'&&record.compartments===undefined)error('compartments','Manual layout needs compartments.');
   if (result.blockingErrors.length) return result;
   const c = record as unknown as CabinetInput;
+  for(const [slot,key]of [['body','bodyThicknessMm'],['back','backThicknessMm'],['front','doorThicknessMm']] as const){const material=c.materialDefaults?.[slot];if(material?.boardId&&material.thicknessMm!==c[key])error('materialDefaults','Board thickness must match its group. Select the board again.');}
   const advanced=c.compartmentMode!==undefined,overlay=c.doorPosition==='overlay';
   for (const key of ['widthMm', 'heightMm', 'depthMm', 'bodyThicknessMm', 'backThicknessMm', 'doorThicknessMm', 'stockWidthMm', 'stockHeightMm'] as const) {
     if (c[key] <= 0) error(key, 'This measurement must be greater than zero.');
@@ -84,7 +92,7 @@ export function calculateCabinet(value: unknown): Calculation {
   const carcassD = d - zStart;
   const doorDepth=Math.max(...Array.from({length:c.doorCount},(_,i)=>thickness('door-'+(i+1),dt)),0);
   const frontReserve = c.doorCount&&!overlay ? doorDepth + c.doorGapMm : 0;
-  const shelfD = d - backT - frontReserve;
+  const shelfD = d - backT - frontReserve - shelfFrontGapMm;
   const shelfW = innerW - 2 * c.shelfSideClearanceMm;
   const shelfThicknesses=Array.from({length:c.shelfCount},(_,i)=>thickness('shelf-'+(i+1),t));
   const opening = (innerH - shelfThicknesses.reduce((sum,value)=>sum+value,0)) / (c.shelfCount + 1);
@@ -97,9 +105,10 @@ export function calculateCabinet(value: unknown): Calculation {
   if (usableW <= 0 || usableH <= 0) error('stockMarginMm', 'Margins must leave positive usable stock dimensions.');
   if (result.blockingErrors.length) return result;
   const panels: Panel[] = [];
-  const add = (id: string, label: string, role: Panel['role'], slot: Panel['materialSlot'], pw: number, ph: number, pt: number, position: Panel['pose']['positionMm'], rotation: Panel['pose']['rotationRad'],hingeSide?:'left'|'right') => {
+  const add = (id: string, label: string, role: Panel['role'], slot: Panel['materialSlot'], pw: number, ph: number, pt: number, position: Panel['pose']['positionMm'], rotation: Panel['pose']['rotationRad'],hingeSide?:'left'|'right',drawerTravelMm?:number,hingeSource?:'side'|'partition'|'frame',notches?:CornerNotch[]) => {
     if(id.startsWith('layout/')&&overrides['cabinet/'+id]?.thicknessMm!==undefined&&overrides['cabinet/'+id].thicknessMm!==pt)error('panelOverrides','Layout parts must use a board matching the configured body, back or door thickness. Change the configuration thickness first.');
-    panels.push({ panelId: `cabinet/${id}`, componentId: id, label, role, materialSlot: slot, widthMm: pw, heightMm: ph, thicknessMm: pt, pose: { positionMm: position, rotationRad: rotation }, grainAxis: overrides['cabinet/'+id]?.grainAxis??c.grainAxis, allowedRotationsDeg: (overrides['cabinet/'+id]?.grainAxis??c.grainAxis) === 'none' ? [0, 90] : [0],...(hingeSide?{hingeSide}:{}) });
+    const assignment=materialForPanel(c,{panelId:'cabinet/'+id,materialSlot:slot});
+    panels.push({ panelId: `cabinet/${id}`, componentId: id, label, role, materialSlot: slot, widthMm: pw, heightMm: ph, thicknessMm: pt, pose: { positionMm: position, rotationRad: rotation }, grainAxis: assignment.grainAxis??c.grainAxis, allowedRotationsDeg: (assignment.grainAxis??c.grainAxis) === 'none' ? [0, 90] : [0],...(hingeSide?{hingeSide}:{}),...(drawerTravelMm?{drawerTravelMm}:{}),...(hingeSource?{hingeSource}:{}),...(notches?.length?{notches,allowedRotationsDeg:[0] as (0|90)[]}: {}) });
   };
   // Full-height sides. Top and bottom fit between them. Depth includes the back and inset doors.
   add('side-left', 'Left side', 'side', 'body', carcassD, h, leftT, [leftT / 2, h / 2, zStart + carcassD / 2], [0, -Math.PI / 2, 0]);
@@ -119,12 +128,16 @@ export function calculateCabinet(value: unknown): Calculation {
   if (s > 0) add('plinth-front', 'Recessed plinth', 'plinth', 'body', innerW, s, thickness('plinth-front',t), [centerX, s / 2, d - c.plinthSetbackMm - thickness('plinth-front',t) / 2], [0, 0, 0]);
   for (const panel of panels) {
     if (!Number.isFinite(panel.widthMm)||!Number.isFinite(panel.heightMm)||!Number.isFinite(panel.thicknessMm)||panel.thicknessMm<=0||panel.widthMm < 50 || panel.heightMm < 50) error(panel.panelId, `${panel.label} has an invalid cut face or a face below 50 mm.`);
-    const assignment=overrides[panel.panelId];
+    const assignment=materialForPanel(c,panel);
     const panelStockW=assignment?.stockWidthMm?assignment.stockWidthMm-2*c.stockMarginMm:usableW;
     const panelStockH=assignment?.stockHeightMm?assignment.stockHeightMm-2*c.stockMarginMm:usableH;
     const fits = panel.widthMm <= panelStockW && panel.heightMm <= panelStockH;
     const rotatedFits = panel.allowedRotationsDeg.includes(90) && panel.heightMm <= panelStockW && panel.widthMm <= panelStockH;
-    if (!fits && !rotatedFits) error(panel.panelId, `${panel.label} does not fit usable stock with the selected grain restriction.`);
+    if (!fits && !rotatedFits) {
+      const message=`${panel.label}: ${Number(panel.widthMm.toFixed(2))} × ${Number(panel.heightMm.toFixed(2))} mm does not fit usable stock ${Number(panelStockW.toFixed(2))} × ${Number(panelStockH.toFixed(2))} mm (${panel.grainAxis} grain). Choose larger stock in Sheets or a suitable board in Materials before cutting.`;
+      (result.stockIssues??=[]).push({field:panel.panelId,message});
+      result.warnings.push(message);
+    }
   }
   for(const id of Object.keys(overrides)) if(!panels.some(panel=>panel.panelId===id)) error('panelOverrides','Remove materials from deleted panels before applying this construction change.');
   if (!result.blockingErrors.length) {result.panels = panels;if(hardware.length)result.hardware=hardware;}

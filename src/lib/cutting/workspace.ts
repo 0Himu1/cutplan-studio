@@ -1,3 +1,4 @@
+import {materialForPanel} from '../furniture/materials.ts';
 import {calculateFurniture,type FurnitureInput} from '../furniture/families.ts';
 import {nestPanels,type PackingAlgorithm} from './legacy/nesting/nesting-engine.ts';
 import {generateGCode} from './legacy/gcode/gcode-generator.ts';
@@ -23,9 +24,9 @@ export function cuttingJob(input:FurnitureInput,s:CuttingSettings):CuttingJob{
  const calc=calculateFurniture(input),job:CuttingJob={sheets:[],parts:[],unplaced:[],errors:[...calc.blockingErrors.map(e=>e.message),...cuttingSettingsIssues(s)],groups:[],utilization:0,area:0};
  if(job.errors.length)return job;
  const grouped=new Map<string,JobPart[]>();
- for(const p of calc.panels){const a=input.panelOverrides?.[p.panelId],stock={width:a?.stockWidthMm??input.stockWidthMm,height:a?.stockHeightMm??input.stockHeightMm,thickness:p.thicknessMm};
+ for(const p of calc.panels){const a=materialForPanel(input,p),stock={width:a?.stockWidthMm??input.stockWidthMm,height:a?.stockHeightMm??input.stockHeightMm,thickness:p.thicknessMm};
   const key=JSON.stringify([a?.boardId??'unassigned',stock.width,stock.height,stock.thickness,a?.frontFinishId??'',a?.backFinishId??'',p.grainAxis,p.materialSlot]);
-  const part:JobPart={id:p.panelId,sourceId:p.panelId,name:p.label,width:p.widthMm,height:p.heightMm,quantity:1,boardType:key,thickness:p.thicknessMm,grain:p.grainAxis,category:p.materialSlot,...s.parts[p.panelId]};
+  const part:JobPart={id:p.panelId,sourceId:p.panelId,name:p.label,width:p.widthMm,height:p.heightMm,quantity:1,boardType:key,thickness:p.thicknessMm,grain:p.grainAxis,category:p.materialSlot,...(p.notches?{notches:structuredClone(p.notches)}:{}),...s.parts[p.panelId]};
   if(!finite(part.width,1,10000)||!finite(part.height,1,10000)||!Number.isInteger(part.quantity)||part.quantity<0||part.quantity>100){job.errors.push(`Invalid worksheet dimensions or quantity for ${p.label}.`);continue;}
   job.parts.push(part);grouped.set(key,[...(grouped.get(key)??[]),part]);
  }
@@ -68,6 +69,6 @@ export function validateOperations(pocket:PocketEngraving|undefined,notches:Notc
 }
 export function partsCsv(parts:JobPart[],unit:'mm'|'in'){
  const scale=unit==='in'?25.4:1,escape=(v:string)=>'"'+(/^[=+@\t\r-]/.test(v)?"'":'')+v.replaceAll('"','""')+'"';
- return `Name,Type,Width (${unit}),Height (${unit}),Quantity,Material,Thickness (mm)\n`+parts.map(p=>[escape(p.name),'Panel',p.width/scale,p.height/scale,p.quantity,escape(p.category),p.thickness].join(',')).join('\n');
+ return `Name,Type,Width (${unit}),Height (${unit}),Quantity,Material,Thickness (mm),Corner notches (mm)\n`+parts.map(p=>[escape(p.name),'Panel',p.width/scale,p.height/scale,p.quantity,escape(p.category),p.thickness,escape((p.notches??[]).map(n=>`${n.side}: ${Number(n.width.toFixed(4))} x ${Number(n.height.toFixed(4))}`).join('; '))].join(',')).join('\n');
 }
 export type {Circle,Notch,PocketEngraving,GCodeAlgorithm,PackingAlgorithm};

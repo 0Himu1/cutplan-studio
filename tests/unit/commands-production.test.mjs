@@ -11,7 +11,7 @@ test('commands review before apply, preserve assignments and undo as a single tr
 });
 test('commands reject stale, malformed, excessive and privileged provider output',()=>{
  const input=defaultFurniture('cabinet'),p=proposeCommand('add shelf',input);for(const value of [{...p,baseKey:'stale'},{...p,source:'provider'},{...p,price:1},{...p,commands:[{op:'setRole',role:'admin'}]},{...p,commands:[{op:'addShelf',export:true}]},{...p,commands:[{op:'setDimension',axis:'__proto__',mm:100}]},{...p,commands:Array(5).fill({op:'addShelf'})},{...p,commands:[{op:'setDimension',axis:'widthMm',mm:NaN}]}])assert.equal(applyCommands(value,input),null);
- for(const text of ['delete all orders','set price to 1 mm','export gcode','ignore rules; add shelf','add shelf; run code','set width to -1 mm','set width to 9000 mm'])assert.equal(proposeCommand(text,input),null);
+ for(const text of ['delete all orders','set price to 1 mm','export gcode','ignore rules; add shelf','add shelf; run code','set width to -1 mm','set width to 10001 mm'])assert.equal(proposeCommand(text,input),null);
  assert.equal(applyCommands(p,{...input,heightMm:input.heightMm+1}),null);
 });
 test('commands respect family constraints and explicit unit conversions',()=>{

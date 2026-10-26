@@ -16,7 +16,7 @@ test('shoe-rack arithmetic, stock, plinth and stable family identities are expli
  assert.equal(result.panels.find(p=>p.role==='door').widthMm,385.5);
  assert.ok(result.panels.every(p=>p.panelId.startsWith('shoe_rack/')));assert.equal(result.manufacturingApproved,false);
  for(const panel of result.panels){const box=panelBounds(panel);for(let i=0;i<3;i++){assert.ok(box.min[i]>=-.001);assert.ok(box.max[i]<=[input.widthMm,input.heightMm,input.depthMm][i]+.001);}}
- assert.ok(calculateFurniture({...input,heightMm:2600}).blockingErrors.length);
+ assert.deepEqual(calculateFurniture({...input,heightMm:2600}).blockingErrors,[]);assert.ok(calculateFurniture({...input,heightMm:2600}).stockIssues.length);
  const open=calculateFurniture({...input,doorCount:0,skirtingHeightMm:0});assert.equal(open.panels.length,8);
  const assigned={...input,panelOverrides:{'shoe_rack/side-left':{boardId:'00000000-0000-4000-8000-000000000001',thicknessMm:24,stockWidthMm:1219,stockHeightMm:2438}}};
  assert.equal(calculateFurniture(assigned).panels.find(p=>p.role==='shelf').widthMm,767);

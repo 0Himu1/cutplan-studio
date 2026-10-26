@@ -1,0 +1,37 @@
+{
+  "record_date": "2026-10-26",
+  "scope": "Documentation-only final handoff",
+  "requests": 68,
+  "source_session_count": 10,
+  "unit": {
+    "passed": 117,
+    "failed": 0,
+    "skipped": 0
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "docs": "passed",
+  "release": {
+    "exit": 2,
+    "decision": "not_ready"
+  },
+  "migrations": {
+    "local": 17,
+    "remote_match": 17
+  },
+  "application_files_fingerprinted": 257,
+  "browser_build_hosted_identity_physical_tests": "Not rerun for this documentation task",
+  "git_head": "74e7f9af4c4d3262e1b27df2c6bca838f7bf05bd",
+  "remote_main": "74e7f9af4c4d3262e1b27df2c6bca838f7bf05bd",
+  "commit_push": "Not performed; later source remains local",
+  "catalog": "See read-only catalog-inventory.json",
+  "thread_sessions_inspected": 12,
+  "sessions_contributing_post22_requests": 10,
+  "documentation_files": 10,
+  "backup_files": 80,
+  "documentation_backup_hashes": "80 matched",
+  "prior_handoff_archive": "matches original hash",
+  "source_hash_recheck": "all 257 unchanged after documentation work",
+  "request_coverage": "68 ledger rows and 68 appendix records verified",
+  "checked_at": "2026-10-26T07:36:23.660554+00:00"
+}

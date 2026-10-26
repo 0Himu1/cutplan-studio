@@ -47,3 +47,8 @@ Object.assign(cabinetSchema.properties,{doorPosition:{enum:['inset','overlay']},
 const assignment=Object.values(cabinetSchema.properties.panelOverrides.patternProperties)[0];
 cabinetSchema.properties.panelOverrides.maxProperties=256;
 cabinetSchema.properties.panelOverrides.patternProperties['^cabinet/layout/([a-zA-Z0-9_-]{1,32}/){1,12}(partition|separator|shelf-([1-9]|1[0-9]|20)|door-[12]|bottom|left|right|back|front|face)$']=assignment;
+
+// Role defaults apply only to cabinets; family schemas above retain their prior contract.
+const groupMaterial=structuredClone(Object.values(cabinetSchema.properties.panelOverrides.patternProperties)[0]);
+groupMaterial.properties.previewColor={bsonType:'string',pattern:'^#[0-9A-Fa-f]{6}$'};
+cabinetSchema.properties.materialDefaults={bsonType:'object',additionalProperties:false,properties:Object.fromEntries(['body','back','front'].map(slot=>[slot,structuredClone(groupMaterial)]))};

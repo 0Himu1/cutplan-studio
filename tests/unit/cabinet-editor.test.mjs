@@ -32,7 +32,7 @@ test('unit conversion retains canonical mm precision; projected dimensions match
   const shelf=panelBounds(result.panels.find(p=>p.componentId==='shelf-1'));
   assert.equal(shelf.max[0]-shelf.min[0],760);
   assert.ok(Math.abs(shelf.max[1]-shelf.min[1]-18)<1e-10);
-  assert.ok(Math.abs(shelf.max[2]-shelf.min[2]-374)<1e-10);
+  assert.ok(Math.abs(shelf.max[2]-shelf.min[2]-348.6)<1e-10);
 });
 
 test('local envelopes read old shells, retain valid geometry and reject corrupt or future geometry',()=>{

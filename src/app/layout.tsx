@@ -13,5 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning><body className={inter.variable}><Providers><StudioShell>{children}</StudioShell></Providers></body></html>;
+  // Browser extensions such as Grammarly add body attributes before hydration.
+  // Suppression applies only to this element, leaving component mismatches visible.
+  return <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning><body className={inter.variable} suppressHydrationWarning><Providers><StudioShell>{children}</StudioShell></Providers></body></html>;
 }

@@ -4,7 +4,8 @@ import {createAdminClient} from '@/lib/supabase/admin';
 import {projectRevision} from '@/lib/projects/service';
 import {ProjectError,snapshotFurniture} from '@/lib/projects/contracts';
 import {publicCatalog} from '@/lib/catalog/public';
-import {validateMaterials} from '@/lib/furniture/materials';
+import {calculateFurniture} from '@/lib/furniture/families';
+import {materialAssignments,validateMaterials} from '@/lib/furniture/materials';
 import {addressInput,decimalMinor,money,priceQuote,type Policy,type Price} from './engine';
 import {customerQuote,type QuoteRecord} from './presentation';
 import {quotePdf} from './pdf';
@@ -32,7 +33,7 @@ async function quoteContext(owner:string,projectId:string){
  const prices:Price[]=(versions??[]).filter(p=>!p.effective_until||Date.parse(p.effective_until)>Date.now()).map(p=>({itemId:p.item_id,versionId:p.id,unit:p.unit,minor:decimalMinor(String(p.price_bdt))??'invalid'}));
  const {data:index,error:indexError}=await client.from('design_revision_index').select('snapshot_hash').eq('id',detail.revision.id).eq('project_id',projectId).single();if(indexError||!index)fail('integrity_error','The saved revision could not be verified.',503);
  const result=priceQuote(input,policy,prices,{projectId,revisionId:detail.revision.id,revisionHash:index!.snapshot_hash});
- const compatibility=validateMaterials(input.panelOverrides??{},await publicCatalog());
+ const compatibility=validateMaterials(materialAssignments(input,calculateFurniture(input).panels),await publicCatalog());
  return {detail,issues:[...result.issues,...compatibility],snapshot:result.snapshot&&{...result.snapshot,design:detail.revision.snapshot}};
 }
 export async function commerceState(owner:string,projectId:string){

@@ -1,5 +1,33 @@
 # Project documentation
 
+**Current entrypoint: [Final implementation handoff — 26 October 2026](handoff-final/README.md).** This reconciles Phase 22 with subsequent requests, current code, migrations and operational limits. Read it before the chronological records below.
+
+Implementation scope is closed; Phase 22 remains the final numbered phase, separate from launch approval. Current board model: six families, 39 active thickness variants. See [current catalog/publication state](handoff-final/05-materials-catalog.md).
+
+## Historical documentation index
+
+The prior index below is preserved as history. Its “latest” labels are not current precedence; the original brand/product import is superseded.
+
+Latest catalog data: [20 Akij/Superboard board entries](../project-records/catalog-imports/2026-10-25-akij-superboard/report.md).
+
+Latest UI: [Compact material catalog grid and editor](delivery/catalog-ui-followup.md).
+
+Latest materials: [Board defaults and role colors](delivery/board-defaults-followup.md).
+
+Latest calculation: [Corner notches and 1-inch shelf setback](delivery/corner-notch-followup.md).
+
+Latest calculation: [Partition door frames](delivery/door-frame-followup.md), following [drawer materials and continuous doors](delivery/drawer-door-followup.md).
+
+Latest UI: [Cabinet field alignment](delivery/form-alignment-followup.md).
+
+Previous UI: [Compact top-down sections and deliberate empty space](delivery/top-down-sections-followup.md).
+
+Previous UI: [Drag-and-drop section ordering](delivery/section-reorder-followup.md).
+
+Latest UI: [Compact help icons and colored space summaries](delivery/config-hints-followup.md).
+
+Latest fix: [Dimension editing and stock-fit warnings](delivery/dimension-stock-followup.md).
+
 Latest UI: [Guided cabinet configuration](delivery/guided-cabinet-followup.md), including the [sourcebook calculation review](design/cabinet-sourcebook-review.md).
 
 Previous UI: [Scrollable inspectors, axis gizmo and full cutting workspace](delivery/cutting-workspace-followup.md).
@@ -51,3 +79,11 @@ The source application lives under `src/`, static assets under `public/`, and lo
 
 
 - [Final design decisions](design/phases-20-22-documents-launch.md): bounded assembly tasks, marketing identity, PDF layout and honest qualification states.
+
+- [Board category and thickness variants](delivery/board-category-variants-followup.md): six selected families, fixed physical variants, independent sheet prices, applied migration and remaining supplier review.
+
+- [Board catalog colors](delivery/board-colors-followup.md): color creation/editing, 3D inheritance, migration and legacy fallback.
+
+- [Materials inspector](delivery/materials-inspector-followup.md): cabinet boards moved from Dimensions, compact role selection, individual overrides and verification.
+
+- [Collision inspection](delivery/collision-inspection-followup.md): notch-aware X-ray overlap regions, assembled inspection, limitations and verification.

@@ -1,0 +1,9 @@
+
+> cutplan-studio@0.1.0 db:migrations
+> supabase migration list --linked
+
+Initialising login role...
+Connecting to remote database...
+{"migrations":[{"local":"202610210001","remote":"202610210001","time":"202610210001"},{"local":"202610220001","remote":"202610220001","time":"202610220001"},{"local":"202610220002","remote":"202610220002","time":"202610220002"},{"local":"202610220003","remote":"202610220003","time":"202610220003"},{"local":"202610220004","remote":"202610220004","time":"202610220004"},{"local":"202610220005","remote":"202610220005","time":"202610220005"},{"local":"202610220006","remote":"202610220006","time":"202610220006"},{"local":"202610230001","remote":"202610230001","time":"202610230001"},{"local":"202610230002","remote":"202610230002","time":"202610230002"},{"local":"202610230003","remote":"202610230003","time":"202610230003"},{"local":"202610230004","remote":"202610230004","time":"202610230004"},{"local":"202610230005","remote":"202610230005","time":"202610230005"},{"local":"202610230006","remote":"202610230006","time":"202610230006"},{"local":"202610240001","remote":"202610240001","time":"202610240001"},{"local":"202610250001","remote":"202610250001","time":"202610250001"},{"local":"202610250002","remote":"202610250002","time":"202610250002"},{"local":"202610250003","remote":"202610250003","time":"202610250003"}],"message":"Migrations listed"}
+A new version of Supabase CLI is available: v2.122.0 (currently installed v2.121.0)
+We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli

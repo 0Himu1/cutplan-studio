@@ -1,0 +1,67 @@
+
+> cutplan-studio@0.1.0 release:check
+> node scripts/release-readiness.mjs
+
+{
+  "schemaVersion": 1,
+  "decision": "not_ready",
+  "releaseAllowed": false,
+  "gates": [
+    {
+      "id": "construction",
+      "title": "Construction and hardware approval",
+      "status": "blocked",
+      "evidence": "Four furniture families still use proposed construction rules. Hardware quantities and joints are not approved.",
+      "required": "Manufacturer-signed drawings, hardware schedules, load and installation limits for representative fixtures."
+    },
+    {
+      "id": "commercial",
+      "title": "Commercial and delivery policies",
+      "status": "blocked",
+      "evidence": "Live quotes, order confirmation, fulfillment and email remain disabled. Test policies have no commercial value.",
+      "required": "Approved prices/margin/inclusions, Dhaka service areas, delivery, tax/discount, cancellation and payment wording."
+    },
+    {
+      "id": "machine",
+      "title": "Machine qualification and file release",
+      "status": "blocked",
+      "evidence": "CNC output is synthetic simulation only. No qualified postprocessor or supervised machine trial is recorded.",
+      "required": "Controller simulation, workholding/tool/material qualification, supervised stock trial and audited approval of exact package hashes."
+    },
+    {
+      "id": "identity",
+      "title": "Hosted identity isolation",
+      "status": "unverified",
+      "evidence": "Local SQL and account contracts pass; a second real hosted identity exercise remains open.",
+      "required": "Two real test accounts must verify project, order, photo and document isolation without exposing customer data."
+    },
+    {
+      "id": "inference",
+      "title": "Live AI and photo privacy",
+      "status": "blocked",
+      "evidence": "Commands use a local grammar; photo suggestions use a labelled demo. Live inference is disabled.",
+      "required": "Approved provider/model, privacy and retention terms, evaluation, spend limits, abuse controls and cleanup scheduling."
+    },
+    {
+      "id": "recovery",
+      "title": "Hosted backup and restore acceptance",
+      "status": "unverified",
+      "evidence": "Local recovery drills do not establish hosted SQL, Atlas or private-photo recovery.",
+      "required": "Approved recovery objectives/retention, scheduled backups, isolated hosted restore exercise and designated incident owners."
+    },
+    {
+      "id": "maintenance",
+      "title": "Development dependency maintenance",
+      "status": "unverified",
+      "evidence": "Runtime audit is clean; development-tool advisories still require a reviewed maintenance decision.",
+      "required": "Review the recorded development dependency advisories without forcing incompatible framework downgrades, then rerun qualification."
+    },
+    {
+      "id": "deployment",
+      "title": "Production deployment and operations",
+      "status": "unverified",
+      "evidence": "The local preview is not a public production deployment. Search indexing remains disabled.",
+      "required": "Approved deployment/domain/environment separation, monitoring, support ownership, production smoke and written launch acceptance."
+    }
+  ]
+}

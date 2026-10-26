@@ -28,7 +28,7 @@ export function parseOverrides(value:unknown):PanelOverrides|null {
   return result;
 }
 
-export type SellableMaterial={id:string;kind:'board'|'finish'|'edging';name:string;code:string;board_skus?:Record<string,unknown>|null;finish_skus?:Record<string,unknown>|null;edging_skus?:Record<string,unknown>|null};
+export type SellableMaterial={id:string;category_code?:string|null;price?:{price_bdt:number;unit:string};kind:'board'|'finish'|'edging';name:string;code:string;board_skus?:Record<string,unknown>|null;finish_skus?:Record<string,unknown>|null;edging_skus?:Record<string,unknown>|null};
 export type MaterialCatalog={items:SellableMaterial[];compatibility:{board_item_id:string;finish_item_id:string}[]};
 export function validateMaterials(overrides:PanelOverrides,catalog:MaterialCatalog):string[] {
   const errors:string[]=[];
@@ -49,3 +49,42 @@ export function validateMaterials(overrides:PanelOverrides,catalog:MaterialCatal
   }
   return errors;
 }
+
+export type MaterialSlot='body'|'back'|'front';
+export type MaterialDefault=PanelMaterial&{previewColor?:string};
+export type MaterialDefaults=Partial<Record<MaterialSlot,MaterialDefault>>;
+export type MaterialSource={materialDefaults?:MaterialDefaults;panelOverrides?:PanelOverrides};
+export function parseMaterialDefaults(value:unknown):MaterialDefaults|null{
+ if(!record(value)||Object.keys(value).length>3)return null;
+ const result:MaterialDefaults={};
+ for(const [slot,raw]of Object.entries(value).sort(([a],[b])=>a.localeCompare(b))){
+  if(!['body','back','front'].includes(slot)||!record(raw))return null;
+  const {previewColor,...assignment}=raw;
+  if(previewColor!==undefined&&(typeof previewColor!=='string'||!/^#[0-9a-f]{6}$/i.test(previewColor)))return null;
+  const parsed=parseOverrides({'cabinet/top':assignment});if(!parsed)return null;
+  result[slot as MaterialSlot]={...parsed['cabinet/top'],...(previewColor!==undefined?{previewColor}:{})};
+ }
+ return result;
+}
+/** A separate board override replaces inherited board/finish data; partial edging/grain edits retain the group board. */
+export function materialForPanel(input:MaterialSource,panel:{panelId:string;materialSlot:MaterialSlot}):MaterialDefault{
+ const base=input.materialDefaults?.[panel.materialSlot]??{},override=input.panelOverrides?.[panel.panelId];
+ if(override?.boardId)return {...(override.boardId===base.boardId&&base.previewColor?{previewColor:base.previewColor}:{}),...override};
+ return {...base,...override,edges:{...base.edges,...override?.edges}};
+}
+export function materialAssignments(input:MaterialSource,panels:{panelId:string;materialSlot:MaterialSlot}[]):PanelOverrides{
+ return {...Object.fromEntries(Object.entries(input.materialDefaults??{}).map(([slot,value])=>['default/'+slot,value])),...Object.fromEntries(panels.map(panel=>[panel.panelId,materialForPanel(input,panel)]))};
+}
+export function previewPanelColor(input:MaterialSource,panel:{panelId:string;materialSlot:MaterialSlot},catalog:MaterialCatalog,face:'front'|'back'){
+ const material=materialForPanel(input,panel),id=face==='front'?material.frontFinishId:material.backFinishId;
+ const code=catalog.items.find(item=>item.id===id&&item.kind==='finish')?.finish_skus?.color_code;
+ return typeof code==='string'&&/^#[0-9a-f]{6}$/i.test(code)?code:previewBoardColor(input,panel,catalog);
+}
+
+/** Catalog board color is shared by all panels using that board; legacy preview colors remain a fallback. */
+export function previewBoardColor(input:MaterialSource,panel:{panelId:string;materialSlot:MaterialSlot},catalog:MaterialCatalog){
+ const material=materialForPanel(input,panel),color=catalog.items.find(item=>item.kind==='board'&&item.id===material.boardId)?.board_skus?.color_code;
+ return typeof color==='string'&&/^#[0-9a-f]{6}$/i.test(color)?color:material.previewColor??'#bda382';
+}
+
+export function physicalMaterial(value:MaterialDefault):PanelMaterial{const result={...value};delete result.previewColor;return result;}

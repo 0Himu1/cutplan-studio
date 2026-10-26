@@ -263,3 +263,69 @@ main { flex: 1; min-width: 0; }
 
 .cad-workspace {overflow:hidden;}
 @media(max-width:900px){.cad-workspace:has(.cad-dock[open]) .cad-sheets {visibility:hidden;}}
+/* Scoped status colors follow the app's explicit theme, independently of OS preference. */
+.cabinet-config {--config-available:#047857;--config-warning:#92400e;}
+.dark .cabinet-config {--config-available:#6ee7b7;--config-warning:#fcd34d;}
+.cad-inspector-scroll:has(.cabinet-config) {contain:layout paint;}
+
+/* Handle-only section reordering leaves the rest of the inspector touch-scrollable. */
+.cad-dialog .cad-section-grip {cursor:grab;touch-action:none;user-select:none;padding:0;color:var(--accent-text);}
+.cad-dialog .cad-section-grip:active {cursor:grabbing;}
+.cad-dialog .cad-section-grip:disabled {cursor:default;}
+.cad-reorder-section {position:relative;transition:opacity 100ms ease;}
+.cad-reorder-section[data-section-dragging=true] {opacity:.5;}
+.cad-reorder-section[data-drop-before=true]::before {content:"";position:absolute;top:-4px;left:0;right:0;height:2px;background:var(--accent);}
+.cad-section-drop {height:2px;background:var(--accent);margin:6px 0;}
+
+/* Always-open section groups keep type, height and actions in a compact reading order. */
+.cad-section-fields {margin:8px 0;padding:8px 0;border-top:1px solid var(--border);}
+.cad-section-header {display:flex;align-items:center;gap:4px;margin-bottom:6px;}
+.cad-dialog .cad-section-fields .cad-fields {gap:6px 10px;}
+.cad-dialog .cad-section-fields label {font-size:12px;}
+.cad-dialog .cad-section-fields input,.cad-dialog .cad-section-fields select {margin-top:2px;min-height:32px;padding:4px 8px;}
+.cad-dialog .cad-section-header button {min-height:32px;}
+.cad-section-fields .config-tabs {margin-bottom:4px;padding-bottom:4px;}
+.cad-section-fields .config-summary {margin:0;}
+@media(max-width:600px){.cad-dialog .cad-section-fields input,.cad-dialog .cad-section-fields select,.cad-dialog .cad-section-header button {min-height:44px;}.cad-section-header {flex-wrap:wrap;}}
+
+/* A field row shares label tops and control bottoms in both mm and inch/suta modes. */
+.cad-dialog .cabinet-config .cad-fields {column-gap:8px;align-items:stretch;}
+.cabinet-config .cad-fields>.config-field,
+.cabinet-config .cad-fields>.measurement-mm {display:flex;flex-direction:column;align-self:stretch;min-width:0;}
+.cabinet-config .cad-fields>.config-field>.config-field-label,
+.cabinet-config .measurement-label {display:block;line-height:16px;margin-bottom:4px;}
+.cabinet-config .cad-fields>.config-field>:is(input,select),
+.cabinet-config .cad-fields>.measurement-mm>input {margin-top:auto;}
+.cabinet-config .measurement-pair {grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+.cabinet-config .measurement-pair>label {display:flex;flex-direction:column;min-width:0;}
+.cabinet-config .measurement-pair>label>span {display:block;font-size:10px;line-height:14px;margin-bottom:2px;}
+.cad-field-with-help {position:relative;}
+.cad-field-with-help .measurement-label {padding-right:36px;}
+.cad-field-help {position:absolute;top:-8px;right:0;}
+@media(max-width:600px){.cad-field-help {top:-14px;}.cad-field-with-help .measurement-label {padding-right:48px;}}
+.cabinet-config .cad-fields>.config-readonly {display:flex;flex-direction:column;align-self:stretch;min-width:0;font-size:12px;color:var(--text-muted);}
+.cabinet-config .config-readonly>.config-field-label {line-height:16px;margin-bottom:4px;}
+.config-readonly-value {display:flex;align-items:center;min-height:32px;margin-top:auto;padding:4px 8px;background:var(--bg-surface);border-radius:6px;font-variant-numeric:tabular-nums;}
+@media(max-width:600px){.cabinet-config .config-readonly-value {min-height:44px;}}
+.cad-dialog .cabinet-config .cad-fields>button[role=switch] {align-self:end;}
+.cabinet-config .cad-field-with-help {margin-top:16px;}
+@media(max-width:600px){.cabinet-config .cad-field-with-help {margin-top:22px;}}
+.cabinet-config .config-field-label,.cabinet-config .measurement-label {font-size:12px;}
+/* Editable and calculated fields use one control-height token per input mode. */
+.cabinet-config {--config-control-height:32px;}
+.cad-dialog .cabinet-config :is(input,select),.cabinet-config .config-readonly-value {min-height:var(--config-control-height);}
+@media(max-width:600px),(pointer:coarse){.cabinet-config {--config-control-height:44px;}}
+/* Catalog uses the cabinet configurator's shared field geometry, scoped to its editor. */
+.catalog-workspace{--config-available:#047857;--config-warning:#92400e;}
+.dark .catalog-workspace{--config-available:#6ee7b7;--config-warning:#fcd34d;}
+.catalog-editor{height:var(--catalog-editor-height,min(560px,calc(100dvh - 220px)));min-height:0;}
+.catalog-workspace .catalog-form fieldset{border:0;padding:0;margin:0;min-width:0;}
+.catalog-workspace .catalog-form .cad-fields{column-gap:8px;row-gap:12px;align-items:stretch;}
+.catalog-workspace .catalog-form .config-field{display:flex;min-width:0;flex-direction:column;font-size:12px;color:var(--text-muted);}
+.catalog-workspace .catalog-form .config-field-label{display:block;line-height:16px;margin-bottom:4px;}
+.catalog-workspace .catalog-form :is(input:not([type=checkbox]):not([type=color]),select){display:block;width:100%;min-width:0;min-height:32px;border:1px solid var(--border);border-radius:6px;background:var(--bg-base);color:var(--text-primary);padding:5px 8px;font-size:12px;}
+.catalog-workspace .catalog-form input[type=color]{border:1px solid var(--border);border-radius:6px;background:var(--bg-base);}
+.catalog-workspace .catalog-form :is(input,select):disabled{opacity:.6;cursor:not-allowed;}
+.catalog-workspace .catalog-form .config-tabs{grid-template-columns:repeat(3,minmax(0,1fr));}
+.catalog-workspace .catalog-form .config-tabs button{min-height:32px;}
+@media(max-width:600px),(pointer:coarse){.catalog-workspace .catalog-form :is(input:not([type=checkbox]):not([type=color]),select),.catalog-workspace .catalog-form .config-tabs button{min-height:44px;}.catalog-editor{height:var(--catalog-editor-height,min(560px,calc(100dvh - 220px)));}}

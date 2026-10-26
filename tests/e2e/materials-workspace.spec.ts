@@ -1,0 +1,23 @@
+import {test,expect} from '@playwright/test';
+import {mkdir} from 'node:fs/promises';
+import {boardCatalog,bodyId,doorId,finishId} from '../fixtures/board-defaults';
+
+test('materials combines cabinet defaults, panel overrides, reset and cancel in one inspector',async({page})=>{
+ await page.route('**/api/catalog',route=>route.fulfill({json:boardCatalog}));
+ await page.goto('/projects/new?type=cabinet');await page.getByLabel('Project name',{exact:true}).fill('Materials workspace review');await page.getByRole('button',{name:'Create draft',exact:true}).click();
+ await page.getByRole('button',{name:'Dimensions',exact:true}).click();await expect(page.getByLabel('Body board',{exact:true})).toHaveCount(0);await expect(page.getByLabel('Construction thicknesses')).toBeVisible();await page.getByRole('button',{name:'Cancel',exact:true}).click();
+ await page.getByRole('button',{name:'Materials',exact:true}).click();await page.getByLabel('Body board',{exact:true}).selectOption(bodyId);await page.getByRole('button',{name:'Individual panel',exact:true}).click();
+ await page.getByLabel('Panel to edit',{exact:true}).selectOption('cabinet/side-left');await expect(page.getByText('Cabinet default ·',{exact:false})).toBeVisible();await page.getByLabel('Board',{exact:true}).selectOption(doorId);await expect(page.getByText('Panel override ·',{exact:false})).toBeVisible();await page.getByText('Face finishes',{exact:true}).click();await page.getByLabel('Front face finish',{exact:true}).selectOption(finishId);
+ await page.getByRole('button',{name:'Apply materials',exact:true}).click();await page.getByRole('button',{name:'Materials',exact:true}).click();await expect(page.getByLabel('Board',{exact:true})).toHaveValue(doorId);await page.getByRole('button',{name:'Use cabinet default',exact:true}).click();await expect(page.getByLabel('Board',{exact:true})).toHaveValue(bodyId);await page.getByRole('button',{name:'Apply materials',exact:true}).click();
+ await page.getByRole('button',{name:'Materials',exact:true}).click();await page.getByRole('button',{name:'Cabinet boards',exact:true}).click();await page.getByLabel('Body board',{exact:true}).selectOption(doorId);await page.getByRole('button',{name:'Cancel',exact:true}).click();
+ await page.getByRole('button',{name:'Materials',exact:true}).click();await page.getByRole('button',{name:'Cabinet boards',exact:true}).click();await expect(page.getByLabel('Body board',{exact:true})).toHaveValue(bodyId);
+ await mkdir('artifacts/review/materials-workspace',{recursive:true});for(const width of [1440,390]){await page.setViewportSize({width,height:900});for(const theme of ['light','dark']){await page.evaluate(value=>document.documentElement.classList.toggle('dark',value==='dark'),theme);const dialog=page.getByRole('dialog',{name:'Panel materials',exact:true});expect(await dialog.evaluate(element=>element.scrollWidth<=element.clientWidth+1)).toBe(true);await expect(page.getByRole('button',{name:'Apply materials',exact:true})).toBeInViewport();await page.screenshot({path:`artifacts/review/materials-workspace/boards-${width}-${theme}.png`});}}
+ await page.getByRole('button',{name:'Individual panel',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(1);await expect(page.getByLabel('Panel to edit',{exact:true})).toHaveValue('cabinet/side-left');
+});
+
+
+test('material loading recovers and unsuitable stock warns without blocking design editing',async({page})=>{
+ let failed=true;const catalog=structuredClone(boardCatalog);catalog.items[0].board_skus={...catalog.items[0].board_skus,sheet_width_mm:500,sheet_height_mm:500};
+ await page.route('**/api/catalog',route=>failed?route.fulfill({status:503,json:{error:'Unavailable'}}):route.fulfill({json:catalog}));
+ await page.goto('/projects/new?type=cabinet');await page.getByLabel('Project name',{exact:true}).fill('Stock warning review');await page.getByRole('button',{name:'Create draft',exact:true}).click();await page.getByRole('button',{name:'Materials',exact:true}).click();await expect(page.getByText('Materials unavailable. Your current choices are kept.',{exact:true})).toBeVisible();await expect(page.getByLabel('Body board',{exact:true})).toBeDisabled();failed=false;await page.getByRole('button',{name:'Retry',exact:true}).click();await expect(page.getByLabel('Body board',{exact:true})).toBeEnabled();await page.getByLabel('Body board',{exact:true}).selectOption(bodyId);await expect(page.getByText(/stock fit warnings/)).toBeVisible();await expect(page.getByRole('button',{name:'Apply materials',exact:true})).toBeEnabled();await page.getByRole('button',{name:'Apply materials',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);
+});

@@ -93,5 +93,5 @@ test('right-click selects the physical target before opening its panel actions',
   await canvas.click({button:'right',position:{x:bounds!.width/2,y:bounds!.height/2}});
   await expect(page.locator('.cad-context-dialog h2')).not.toHaveText('Cabinet actions');
   await page.getByRole('button',{name:'Panel materials',exact:true}).click();
-  await expect(page.getByRole('button',{name:'Choose Panel to edit',exact:true})).not.toHaveText('Choose a panel');
+  await expect(page.getByLabel('Panel to edit',{exact:true})).not.toHaveValue('');
 });

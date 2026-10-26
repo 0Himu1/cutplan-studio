@@ -29,9 +29,9 @@ test('asymmetric side thickness recalculates neighboring panels; material histor
   assert.deepEqual(redo(undo(history)).present.panelOverrides,input.panelOverrides);
   assert.notEqual(snapshotHash(designSnapshot('Cabinet',input)),snapshotHash(designSnapshot('Cabinet',DEFAULT_CABINET)));
 });
-test('per-panel grain and stock checks reject impossible assignments and removed identities',()=>{
+test('per-panel stock fit warns while removed identities remain invalid',()=>{
   const result=calculateCabinet({...DEFAULT_CABINET,panelOverrides:{'cabinet/side-left':{...assignment,stockWidthMm:1220,stockHeightMm:420,grainAxis:'width'}}});
-  assert.ok(result.blockingErrors.length);
+  assert.deepEqual(result.blockingErrors,[]);assert.ok(result.stockIssues.length);
   assert.ok(calculateCabinet({...DEFAULT_CABINET,panelOverrides:{'cabinet/shelf-20':assignment}}).blockingErrors.length);
 });
 

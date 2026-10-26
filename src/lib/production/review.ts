@@ -11,6 +11,7 @@ export const syntheticProfile:ReviewProfile={id:'synthetic-review',version:'1',s
 export function freezeReview(input:FurnitureInput):FrozenJob{const c=calculateFurniture(input);return {revisionId:'synthetic-revision',revisionHash:'synthetic-not-an-accepted-order',engineVersion:c.engineVersion,templateKey:c.templateKey,input:structuredClone(input),nesting:nestFurniture(input)};}
 export function productionIssues(job:FrozenJob,p:ReviewProfile):string[]{
  const issues:string[]=[],input=furnitureInput(job.input),calc=calculateFurniture(job.input),n=job.nesting;
+ if(calc.panels.some(p=>p.notches?.length))issues.push('Notched parts require contour cutting; this frozen review profile supports rectangles only.');
  if(!input||calc.blockingErrors.length||job.engineVersion!==calc.engineVersion||job.templateKey!==calc.templateKey||!job.revisionId||!job.revisionHash)issues.push('Invalid or unsupported frozen revision.');
  if(!n||n.inputKey!==JSON.stringify(input)||n.algorithm!=='shelf-first-fit-1'||n.errors.length||n.unplaced.length||!n.sheets.length||n.sheets.length>100||calc.panels.length>500)issues.push('Frozen nesting is incomplete or belongs to another design.');
  if(n)issues.push(...validateNesting(n,calc.panels,input??undefined));

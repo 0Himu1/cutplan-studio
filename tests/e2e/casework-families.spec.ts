@@ -47,9 +47,7 @@ test('new family materials retain their panel namespace and recalculate neighbor
  await page.route('**/api/catalog',route=>route.fulfill({json:{items:[{id:board,kind:'board',name:'Family test board',board_skus:{thickness_mm:24,sheet_width_mm:1219,sheet_height_mm:2438,grain_direction:'none'}}],compatibility:[]}}));
  for(const family of ['shoe_rack','bookshelf']){
   await create(page,family);await page.getByRole('button',{name:'Materials',exact:true}).click();
-  await page.getByRole('button',{name:'Choose Panel to edit',exact:true}).click();await page.getByRole('dialog',{name:'Choose Panel to edit',exact:true}).getByRole('button',{name:'Left side',exact:true}).click();
-  await page.getByRole('button',{name:'Choose Board',exact:true}).click();await page.keyboard.press('Escape');await expect(page.getByRole('dialog',{name:'Panel materials',exact:true})).toBeVisible();await expect(page.getByRole('button',{name:'Choose Board',exact:true})).toBeFocused();
-  await page.getByRole('button',{name:'Choose Board',exact:true}).click();await page.getByRole('dialog',{name:'Choose Board',exact:true}).getByRole('button',{name:'Family test board — 24 mm',exact:true}).click();await page.getByRole('button',{name:'Apply materials',exact:true}).click();
+  await page.getByLabel('Panel to edit',{exact:true}).selectOption(family+'/side-left');await page.getByLabel('Board',{exact:true}).selectOption(board);await page.getByRole('button',{name:'Apply materials',exact:true}).click();
   await page.getByRole('button',{name:'Save browser design',exact:true}).click();await expect(page.getByText('Design saved.',{exact:true})).toBeVisible();expect((await design(page)).panelOverrides[family+'/side-left'].thicknessMm).toBe(24);await page.reload();
   await page.getByRole('button',{name:'Show dimensions',exact:true}).click();await expect(page.getByRole('list',{name:'3D panel dimensions'})).toContainText(family==='shoe_rack'?'W 767 mm · H 324 mm':'W 558 mm · H 294 mm');
  }

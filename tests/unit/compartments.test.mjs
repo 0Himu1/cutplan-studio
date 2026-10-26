@@ -30,7 +30,7 @@ test('legacy geometry stays unchanged and overlay doors remain beyond carcass de
 test('manual compartments conserve widths, divider thickness and stable identities',()=>{
  const c=base(),calc=valid(c),partition=calc.panels.find(p=>p.role==='divider');
  assert.equal(cabinetInterior(c).width,964);assert.equal(partition.thicknessMm,18);
- assert.equal(partition.pose.positionMm[0],500);assert.equal(new Set(calc.panels.map(p=>p.panelId)).size,calc.panels.length);
+ assert.equal(partition.pose.positionMm[0],491);assert.equal(new Set(calc.panels.map(p=>p.panelId)).size,calc.panels.length);
  assert.equal(calc.panels.filter(p=>p.role==='door').length,4);
  const changed={...c,compartments:structuredClone(c.compartments)};changed.compartments[0].widthMm=474;
  assert.ok(calculateCabinet(changed).blockingErrors.length);
@@ -76,6 +76,8 @@ test('SQL migration accepts old families and nested cabinets while preserving pr
   const validate=async snapshot=>(await db.query('select public.cutplan_valid_project_snapshot($1::jsonb) valid',[JSON.stringify(snapshot)])).rows[0].valid;
   for(const f of ['cabinet','shoe_rack','bookshelf','table'])assert.equal(await validate(furnitureSnapshot('Old revision',defaultFurniture(f))),true);
   const c=base(),snapshot=designSnapshot('New layout',c);assert.equal(await validate(snapshot),true);
+  const framed={...c,panelOverrides:{'cabinet/layout/right/door-frame/partition':{grainAxis:'height'}}};assert.equal(await validate(designSnapshot('Framed layout',framed)),true);
+  const partial=base();partial.compartments[0].sections[0].heightMm=300;assert.equal(await validate(designSnapshot('Manual empty space',partial)),true);
   for(const mutate of [v=>v.cabinet.compartments[0].sections[0].extra=true,v=>v.cabinet.doorPosition='unsupported',v=>v.cabinet.compartments[0].doorCount=3,v=>v.cabinet.compartments[0].sections[0].heightMm=-1]){const bad=structuredClone(snapshot);mutate(bad);assert.equal(await validate(bad),false);}
   const id=valid(c).panels.find(p=>p.role==='divider').panelId;assert.equal(await validate(designSnapshot('Material', {...c,panelOverrides:{[id]:{grainAxis:'width'}}})),true);
   const owner='00000000-0000-4000-8000-000000000001',operation='00000000-0000-4000-8000-000000000201',source='00000000-0000-4000-8000-000000000101',project='0123456789abcdef01234567',hash='a'.repeat(64);

@@ -6,7 +6,8 @@ import { snapshotFurniture, ProjectError, type CloudProject, type SaveInput } fr
 import { projectIdentity, requestHash, snapshotHash } from './identity';
 import { resumeSave, type SaveOperation } from './protocol';
 import { publicCatalog } from '@/lib/catalog/public';
-import { validateMaterials } from '@/lib/furniture/materials';
+import {calculateFurniture} from '@/lib/furniture/families';
+import { materialAssignments,validateMaterials } from '@/lib/furniture/materials';
 
 export const PROJECT_COLUMNS='id,source_draft_id,name,furniture_type,version,current_revision_id,sync_status,pending_operation_id,created_at,updated_at';
 
@@ -41,10 +42,11 @@ async function complete(operation: SaveOperation) {
 
 export async function saveProject(owner: string, input: SaveInput) {
   const configuration=snapshotFurniture(input.snapshot);
-  if(configuration&&Object.keys(configuration.panelOverrides??{}).length){
+  const assignments=configuration?materialAssignments(configuration,calculateFurniture(configuration).panels):{};
+  if(configuration&&Object.values(assignments).some(value=>value.boardId||value.frontFinishId||value.backFinishId||Object.values(value.edges??{}).length)){
     const {data:existing,error:lookupError}=await createAdminClient().from('project_save_operations').select('id').eq('id',input.operationId).eq('owner_user_id',owner).maybeSingle();
     if(lookupError)throw new ProjectError(503,'storage_unavailable','Could not verify the earlier save. Retry.');
-    const errors=existing?[]:validateMaterials(configuration.panelOverrides!,await publicCatalog());
+    const errors=existing?[]:validateMaterials(assignments,await publicCatalog());
     if(errors.length)throw new ProjectError(422,'material_unavailable',errors.join(' '));
   }
   if (!mongoConfigured()) throw new ProjectError(503,'setup_pending','Account saving is being configured. Your local draft is safe.');

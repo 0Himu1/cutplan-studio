@@ -1,0 +1,378 @@
+{
+  "captured_at": "2026-10-25T14:33:03.297512+00:00",
+  "status": "unpublished_review_required",
+  "price_policy": "No prices imported; zero WooCommerce enquiry prices are not treated as free stock.",
+  "grain_policy": "Conservative height lock, not a manufacturer grain specification. Verify before publication.",
+  "items": [
+    {
+      "code": "AKIJ-3D-BLACK-PB-18",
+      "name": "Akij 3D-Black - Particle Board 18 mm",
+      "source_name": "Akij Board (grain unverified; height locked)",
+      "source_url": "https://akijboard.com/product/3d-black/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "variant_id": 4497,
+        "attributes": {
+          "attribute_pa_board-type": "particle-board",
+          "attribute_pa_size": "4x8-ft",
+          "attribute_pa_thickness": "18mm"
+        },
+        "size_basis": "Exact conversion of supplier 4x8 Feet: 1219.2 x 2438.4 mm; confirm factory nominal mm before publishing.",
+        "source_price": null,
+        "html_sha256": "992db7fffe1b42e9c863de9a7a2e7242ab88c6f8061e166d60f394f67f321316"
+      }
+    },
+    {
+      "code": "AKIJ-AKIJ-DARK-OAK-PB-18",
+      "name": "Akij Dark Oak - Particle Board 18 mm",
+      "source_name": "Akij Board (grain unverified; height locked)",
+      "source_url": "https://akijboard.com/product/akij-dark-oak/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "variant_id": 9138,
+        "attributes": {
+          "attribute_pa_board-type": "particle-board",
+          "attribute_pa_size": "4x8-ft",
+          "attribute_pa_thickness": "18mm"
+        },
+        "size_basis": "Exact conversion of supplier 4x8 Feet: 1219.2 x 2438.4 mm; confirm factory nominal mm before publishing.",
+        "source_price": null,
+        "html_sha256": "83d0a7adb72199abec21b58beff57682f1e5a4ac6ed7b99c57be7e0de806b5b8"
+      }
+    },
+    {
+      "code": "AKIJ-AKIJ-OAK-PB-18",
+      "name": "Akij Oak - Particle Board 18 mm",
+      "source_name": "Akij Board (grain unverified; height locked)",
+      "source_url": "https://akijboard.com/product/akij-oak/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "variant_id": 9174,
+        "attributes": {
+          "attribute_pa_board-type": "particle-board",
+          "attribute_pa_size": "4x8-ft",
+          "attribute_pa_thickness": "18mm"
+        },
+        "size_basis": "Exact conversion of supplier 4x8 Feet: 1219.2 x 2438.4 mm; confirm factory nominal mm before publishing.",
+        "source_price": null,
+        "html_sha256": "3cadce190f92d4f1e22d6416787fc024d9f5633dae4498ca80cd75d1be1e4670"
+      }
+    },
+    {
+      "code": "AKIJ-AMERICAN-TEAK-PB-18",
+      "name": "Akij American Teak - Particle Board 18 mm",
+      "source_name": "Akij Board (grain unverified; height locked)",
+      "source_url": "https://akijboard.com/product/american-teak/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "variant_id": 1969,
+        "attributes": {
+          "attribute_pa_board-type": "particle-board",
+          "attribute_pa_size": "4x8-ft",
+          "attribute_pa_thickness": "18mm"
+        },
+        "size_basis": "Exact conversion of supplier 4x8 Feet: 1219.2 x 2438.4 mm; confirm factory nominal mm before publishing.",
+        "source_price": null,
+        "html_sha256": "54cbb26dd297f6f338cd6451fb21d5cdc473338e450f85984e055c0e1d1ef7af"
+      }
+    },
+    {
+      "code": "AKIJ-ALBINO-OAK-PB-18",
+      "name": "Akij Albino Oak - Particle Board 18 mm",
+      "source_name": "Akij Board (grain unverified; height locked)",
+      "source_url": "https://akijboard.com/product/albino-oak/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "variant_id": 1750,
+        "attributes": {
+          "attribute_pa_board-type": "particle-board",
+          "attribute_pa_size": "4x8-ft",
+          "attribute_pa_thickness": "18mm"
+        },
+        "size_basis": "Exact conversion of supplier 4x8 Feet: 1219.2 x 2438.4 mm; confirm factory nominal mm before publishing.",
+        "source_price": null,
+        "html_sha256": "a5aaa0da7307eff3d7f48a5308095144dc3eb8b6ba4dde5d42dadaa8e580a24e"
+      }
+    },
+    {
+      "code": "AKIJ-BEECH-PB-18",
+      "name": "Akij Beech - Particle Board 18 mm",
+      "source_name": "Akij Board (grain unverified; height locked)",
+      "source_url": "https://akijboard.com/product/beech/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "variant_id": 2720,
+        "attributes": {
+          "attribute_pa_board-type": "particle-board",
+          "attribute_pa_size": "4x8-ft",
+          "attribute_pa_thickness": "18mm"
+        },
+        "size_basis": "Exact conversion of supplier 4x8 Feet: 1219.2 x 2438.4 mm; confirm factory nominal mm before publishing.",
+        "source_price": null,
+        "html_sha256": "5589a46f21039cb54254c4e6f3e761fdf836796062af21cc0cc8a9ec452bdc64"
+      }
+    },
+    {
+      "code": "AKIJ-ANATURE-PB-18",
+      "name": "Akij Anature - Particle Board 18 mm",
+      "source_name": "Akij Board (grain unverified; height locked)",
+      "source_url": "https://akijboard.com/product/anature/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "variant_id": 6884,
+        "attributes": {
+          "attribute_pa_board-type": "particle-board",
+          "attribute_pa_size": "4x8-ft",
+          "attribute_pa_thickness": "18mm"
+        },
+        "size_basis": "Exact conversion of supplier 4x8 Feet: 1219.2 x 2438.4 mm; confirm factory nominal mm before publishing.",
+        "source_price": null,
+        "html_sha256": "e784f7fcb1778595298ed03bfd175018d2f5927ff1339dca98eee6349b0b55cc"
+      }
+    },
+    {
+      "code": "AKIJ-ANTIC-PB-18",
+      "name": "Akij Antic - Particle Board 18 mm",
+      "source_name": "Akij Board (grain unverified; height locked)",
+      "source_url": "https://akijboard.com/product/antic/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "variant_id": 3781,
+        "attributes": {
+          "attribute_pa_board-type": "particle-board",
+          "attribute_pa_size": "4x8-ft",
+          "attribute_pa_thickness": "18mm"
+        },
+        "size_basis": "Exact conversion of supplier 4x8 Feet: 1219.2 x 2438.4 mm; confirm factory nominal mm before publishing.",
+        "source_price": null,
+        "html_sha256": "44b50ea1f41e89dd3772ced4ad9f61d6097e96ad4db897ccd181bdece2d4fff5"
+      }
+    },
+    {
+      "code": "AKIJ-RAW-MDF-6",
+      "name": "Akij Raw MDF Board 6 mm",
+      "source_name": "Akij Board (grain unverified; height locked)",
+      "source_url": "https://akijboard.com/mdf/",
+      "thickness_mm": 6,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "thickness_listing": "Available Thickness: 3, 6, 9, 12, 15, 18 & 25 MM Available Surfaces: Raw MDF, Melamine Board, Veneered Board, ",
+        "size_basis": "Exact conversion of listed 4x8 Feet; factory nominal mm pending confirmation.",
+        "source_price": null,
+        "html_sha256": "684968b56395478a92dae3319896d74526910f7a6b697e8e0866be500b0352c8"
+      }
+    },
+    {
+      "code": "AKIJ-MR-PLYWOOD-18",
+      "name": "Akij MR Grade Plywood 18 mm",
+      "source_name": "Akij Board (grain unverified; height locked)",
+      "source_url": "https://akijboard.com/plywood/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "thickness_listing": "Available Thickness: 6, 12, 15, 18, 20 & 25 MM Available Surfaces: Veneered Board Application Area Flexible to",
+        "size_basis": "Exact conversion of listed 4x8 Feet; factory nominal mm pending confirmation.",
+        "source_price": null,
+        "html_sha256": "fb5524c9b18741a7f583b33cb6b606001903499d5b0f0efcba29b3384819614a"
+      }
+    },
+    {
+      "code": "SUPER-PLAIN-MDF-18",
+      "name": "Super Board Plain MDF Board 18 mm",
+      "source_name": "SUPERBOARD (grain unverified; height locked)",
+      "source_url": "https://superboard.com.bd/product/plain-mdf/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1220,
+      "sheet_height_mm": 2440,
+      "grain_direction": "height",
+      "evidence": {
+        "specification_excerpt": "Product Details: Main Raw Material : Medium Density Fiber Density : 750 kg/m 3 and Above Size : 8 Feet × 4 Feet (2440mm × 1220mm) Thickness : 2.5mm, 12mm, 15mm, 18mm, 25mm Country of Origin : China, Malaysia, Thailand Applications/Usages: All kinds of Furniture, Ceiling, Partition etc. Features: Smooth surfaces | Tight edges | Excellent machine ability The above features make them preferred for fu",
+        "size_basis": "Published metric dimensions 2440 x 1220 mm.",
+        "substrate_note": "Use the supplier listing; no additional material claims inferred.",
+        "source_price": null,
+        "html_sha256": "1bf38ddeea2927d564f48bfcfeb18e0cc83f4e5a3503677c13dbca5cd30fd980"
+      }
+    },
+    {
+      "code": "SUPER-PPB-WOOD-CHIPS-16",
+      "name": "Super Board Plain Particle Board (Wood Chips) 16 mm",
+      "source_name": "SUPERBOARD (grain unverified; height locked)",
+      "source_url": "https://superboard.com.bd/product/plain-particle-board-wood-chips/",
+      "thickness_mm": 16,
+      "sheet_width_mm": 1220,
+      "sheet_height_mm": 2440,
+      "grain_direction": "height",
+      "evidence": {
+        "specification_excerpt": "Product Details: Main Raw Material : Wood Chips/Wood Wattle UF Glue (E2) * Density : 650-700 kg/m 3 Size : 8 Feet × 4 Feet (2440mm × 1220mm) Thickness : 12mm, 16mm, 18mm, 25mm Application/Usage: Cupboards Shutters Wardrobes Kitchen Cabinets Household Office Furniture Partitions Panel Doors Computer Furniture Table Tops Shelves Beds Doors Ceilings Categories: Plain Particle Board , Plain Particle B",
+        "size_basis": "Published metric dimensions 2440 x 1220 mm.",
+        "substrate_note": "Use the supplier listing; no additional material claims inferred.",
+        "source_price": null,
+        "html_sha256": "3840fa814e884cbba3c6b284c719f6a311e6fbbdc7355408db4ac859bcbbacb2"
+      }
+    },
+    {
+      "code": "SUPER-PPB-JUTE-CHIPS-18",
+      "name": "Super Board Plain Particle Board (Jute Chips) 18 mm",
+      "source_name": "SUPERBOARD (grain unverified; height locked)",
+      "source_url": "https://superboard.com.bd/product/plain-particle-board-jute-chips/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1220,
+      "sheet_height_mm": 2440,
+      "grain_direction": "height",
+      "evidence": {
+        "specification_excerpt": "Product Details: Main Raw Material : Jute Sticks UF Glue (E2) * Density : 500-550 kg/m 3 Size : 8 Feet × 4 Feet (2440mm × 1220mm) Thickness : 12mm, 18mm Application/Usage: Cupboards Shutters Wardrobes Kitchen Cabinets Household Office Furniture Partitions Panel Doors Computer Furniture Table Tops Shelves Beds Doors Ceilings Categories: Jute Chips , Jute Chips (Plain Board) , Plain Particle Board ,",
+        "size_basis": "Published metric dimensions 2440 x 1220 mm.",
+        "substrate_note": "Use the supplier listing; no additional material claims inferred.",
+        "source_price": null,
+        "html_sha256": "359acbc058179d0c5001bda5ff5d6ad1f188a52c68a6aeac213340d5d7fdb45f"
+      }
+    },
+    {
+      "code": "SUPER-MELAMINE-BOARD-126-18",
+      "name": "Super Board Melamine Board 126 18 mm",
+      "source_name": "SUPERBOARD (grain unverified; height locked)",
+      "source_url": "https://superboard.com.bd/product/melamine-board-126/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1220,
+      "sheet_height_mm": 2440,
+      "grain_direction": "height",
+      "evidence": {
+        "specification_excerpt": "Product Details: Main Raw Material : Plain Particle Board (Wood Chip)/MDF Board, Impregnated Paper, UF Resin & MF Resin Density : 650-700 kg/m 3 Size : 8 Feet × 4 Feet (2440mm × 1220mm) Thickness : 12mm, 15mm, 16mm, 18mm, 25mm Color : White, Gray, Red, Green, Blue, Orange, Yellow, Perot Green, Beach, Walnut, Rainy Drop, Deep & Light Cherry, Carpet, Knotty Teak And also, Wide range of colors Applic",
+        "size_basis": "Published metric dimensions 2440 x 1220 mm.",
+        "substrate_note": "Listing offers more than one substrate; exact core requires supplier confirmation.",
+        "source_price": null,
+        "html_sha256": "b18e93a6770415f6644ba897124056944d9d86d3d92ca0174fcd315b9cb226f9"
+      }
+    },
+    {
+      "code": "SUPER-MELAMINE-BOARD-811-18",
+      "name": "Super Board Melamine Board 811 18 mm",
+      "source_name": "SUPERBOARD (grain unverified; height locked)",
+      "source_url": "https://superboard.com.bd/product/melamine-board-811/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1220,
+      "sheet_height_mm": 2440,
+      "grain_direction": "height",
+      "evidence": {
+        "specification_excerpt": "Product Details: Main Raw Material : Plain Particle Board (Wood Chip)/MDF Board, Impregnated Paper, UF Resin & MF Resin Density : 650-700 kg/m 3 Size : 8 Feet × 4 Feet (2440mm × 1220mm) Thickness : 12mm, 15mm, 16mm, 18mm, 25mm Color : White, Gray, Red, Green, Blue, Orange, Yellow, Perot Green, Beach, Walnut, Rainy Drop, Deep & Light Cherry, Carpet, Knotty Teak And also, Wide range of colors Applic",
+        "size_basis": "Published metric dimensions 2440 x 1220 mm.",
+        "substrate_note": "Listing offers more than one substrate; exact core requires supplier confirmation.",
+        "source_price": null,
+        "html_sha256": "4073d01bc4266f5a9db0029915f0d00960fc562a4999177c317010add932cf8e"
+      }
+    },
+    {
+      "code": "SUPER-MELAMINE-BOARD-810-18",
+      "name": "Super Board Melamine Board 810 18 mm",
+      "source_name": "SUPERBOARD (grain unverified; height locked)",
+      "source_url": "https://superboard.com.bd/product/melamine-board-810/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1220,
+      "sheet_height_mm": 2440,
+      "grain_direction": "height",
+      "evidence": {
+        "specification_excerpt": "Product Details: Main Raw Material : Plain Particle Board (Wood Chip)/MDF Board, Impregnated Paper, UF Resin & MF Resin Density : 650-700 kg/m 3 Size : 8 Feet × 4 Feet (2440mm × 1220mm) Thickness : 12mm, 15mm, 16mm, 18mm, 25mm Color : White, Gray, Red, Green, Blue, Orange, Yellow, Perot Green, Beach, Walnut, Rainy Drop, Deep & Light Cherry, Carpet, Knotty Teak And also, Wide range of colors Applic",
+        "size_basis": "Published metric dimensions 2440 x 1220 mm.",
+        "substrate_note": "Listing offers more than one substrate; exact core requires supplier confirmation.",
+        "source_price": null,
+        "html_sha256": "cb6e25d78d527bb23237ea3bd009e861834998ec1f13342366134774512bd40c"
+      }
+    },
+    {
+      "code": "SUPER-MELAMINE-BOARD-807-18",
+      "name": "Super Board Melamine Board 807 18 mm",
+      "source_name": "SUPERBOARD (grain unverified; height locked)",
+      "source_url": "https://superboard.com.bd/product/melamine-board-807/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1220,
+      "sheet_height_mm": 2440,
+      "grain_direction": "height",
+      "evidence": {
+        "specification_excerpt": "Product Details: Main Raw Material : Plain Particle Board (Wood Chip)/MDF Board, Impregnated Paper, UF Resin & MF Resin Density : 650-700 kg/m 3 Size : 8 Feet × 4 Feet (2440mm × 1220mm) Thickness : 12mm, 15mm, 16mm, 18mm, 25mm Color : White, Gray, Red, Green, Blue, Orange, Yellow, Perot Green, Beach, Walnut, Rainy Drop, Deep & Light Cherry, Carpet, Knotty Teak And also, Wide range of colors Applic",
+        "size_basis": "Published metric dimensions 2440 x 1220 mm.",
+        "substrate_note": "Listing offers more than one substrate; exact core requires supplier confirmation.",
+        "source_price": null,
+        "html_sha256": "5d9806cd079e1649ecee7c5b1a0904f197bae95293c8425095f5f96b3a6a6439"
+      }
+    },
+    {
+      "code": "SUPER-SUPER-TEAK-18",
+      "name": "Super Board Super Teak 18 mm",
+      "source_name": "SUPERBOARD (grain unverified; height locked)",
+      "source_url": "https://superboard.com.bd/product/super-teak/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1220,
+      "sheet_height_mm": 2440,
+      "grain_direction": "height",
+      "evidence": {
+        "specification_excerpt": "Product Details: Main Raw Material : Plain Particle Board (Jute Chips, Wood Chips, MDF Board) Veneer Layon UF Glue (E2) * Density : 550 – 700 kg/m 3 Size : 8 Feet × 4 Feet (2440mm × 1220mm) Thickness : 12mm, 15mm, 18mm, 25mm Country of Origin : China, Malaysia, Thailand, Italy, Mayanmer, India. Applications/Usages: Kitchen Cabinet | Furniture | Various Decoration work Categories: Decorative Plywoo",
+        "size_basis": "Published metric dimensions 2440 x 1220 mm.",
+        "substrate_note": "Listing offers more than one substrate; exact core requires supplier confirmation.",
+        "source_price": null,
+        "html_sha256": "787481c90f88131ae26688b6924c0c951d1ba436c661bf378d79aef0e0ca3340"
+      }
+    },
+    {
+      "code": "SUPER-PET-LAMINATION-3014-18",
+      "name": "Super Board PET LAMINATION 3014 18 mm",
+      "source_name": "SUPERBOARD (grain unverified; height locked)",
+      "source_url": "https://superboard.com.bd/product/pet-lamination-3014/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "specification_excerpt": "Product Details: Density: 355-500 kg/m³ Size: 8 Feet x 4 Feet Thickness(mm): 1.75,2.75,3.75,4.75,5.75,6.75,7.50, 7.75, 8,10, 12, 15,18,25 Applications/Usages: Kitchen Cabinet | Furniture | Various Decoration Work Category: PET Lamination Share Facebook Twitter Google Email Pinterest Description Shipping & Delivery Description It has both smooth and hard surfaces It is anti-corrosive It resists mot",
+        "size_basis": "Exact conversion of listed 8 Feet x 4 Feet; factory nominal mm pending confirmation.",
+        "substrate_note": "Use the supplier listing; no additional material claims inferred.",
+        "source_price": null,
+        "html_sha256": "f60caef84a68dcf549e6a80f68fa9dcfeb42822607a31faf0bfac10a92c0cb53"
+      }
+    },
+    {
+      "code": "SUPER-PET-LAMINATION-3008-18",
+      "name": "Super Board PET LAMINATION 3008 18 mm",
+      "source_name": "SUPERBOARD (grain unverified; height locked)",
+      "source_url": "https://superboard.com.bd/product/pet-lamination-3008/",
+      "thickness_mm": 18,
+      "sheet_width_mm": 1219.2,
+      "sheet_height_mm": 2438.4,
+      "grain_direction": "height",
+      "evidence": {
+        "specification_excerpt": "Product Details: Density: 355-500 kg/m³ Size: 8 Feet x 4 Feet Thickness(mm): 1.75,2.75,3.75,4.75,5.75,6.75,7.50, 7.75, 8,10, 12, 15,18,25 Applications/Usages: Kitchen Cabinet | Furniture | Various Decoration Work Category: PET Lamination Share Facebook Twitter Google Email Pinterest Description Shipping & Delivery Description It has both smooth and hard surfaces It is anti-corrosive It resists mot",
+        "size_basis": "Exact conversion of listed 8 Feet x 4 Feet; factory nominal mm pending confirmation.",
+        "substrate_note": "Use the supplier listing; no additional material claims inferred.",
+        "source_price": null,
+        "html_sha256": "3da03159bffa094c4a2b82ed15bdb8fd83a9191416dc7fe456e7a2982b069d95"
+      }
+    }
+  ]
+}

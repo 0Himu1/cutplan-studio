@@ -1,0 +1,57 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {PGlite} from '@electric-sql/pglite';
+import {boardCategories,boardGroups,preferredVariant,validBoardThickness} from '../../src/lib/catalog/board-categories.ts';
+import {catalogInput} from '../../src/lib/catalog/contracts.ts';
+test('six board families group thicknesses once and preserve preferred physical thickness',()=>{
+ assert.equal(boardCategories.length,6);
+ assert.equal(validBoardThickness('PLAIN-MDF',16),false);
+ assert.equal(validBoardThickness('MR-PLYWOOD',20),true);
+ assert.equal(validBoardThickness('HPL',18),false);
+ assert.equal(catalogInput({action:'create',kind:'board',code:'COLOR',name:'Test board',details:{color_code:'red'}}),null);
+ assert.ok(catalogInput({action:'create',kind:'board',code:'COLOR',name:'Test board',details:{color_code:'#123456'}}));
+ const rows=[{id:'b',kind:'board',name:'MDF',category_code:'PLAIN-MDF',board_skus:{thickness_mm:18}},{id:'a',kind:'board',name:'MDF',category_code:'PLAIN-MDF',board_skus:{thickness_mm:6}},{id:'old',kind:'board',name:'Old MDF',category_code:'PLAIN-MDF',retired_at:'2026-10-25'},{id:'legacy',kind:'board',name:'Existing board'},{id:'finish',kind:'finish',name:'Finish'}];
+ const groups=boardGroups(rows);assert.equal(groups.length,2);
+ const mdf=groups.find(group=>group.key==='PLAIN-MDF');assert.deepEqual(mdf.variants.map(item=>item.id),['a','b']);assert.equal(preferredVariant(mdf.variants,18).id,'b');assert.equal(preferredVariant(mdf.variants,12).id,'a');
+ assert.equal(catalogInput({action:'create',kind:'board',code:'TEST',name:'MDF',category_code:'PLAIN-MDF',details:{thickness_mm:16}}),null);
+});
+test('category migration preserves access policies, isolated prices, legacy IDs and rejects invalid or duplicate variants',async()=>{
+ const db=new PGlite(),admin='00000000-0000-4000-8000-000000000001',customer='00000000-0000-4000-8000-000000000002';
+ try{
+ await db.exec(`create role anon;create role authenticated;create role service_role;create schema auth;grant usage on schema public,auth to authenticated,anon;create table auth.users(id uuid primary key);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;insert into auth.users values('${admin}'),('${customer}');`);
+ for(const name of ['202610210001_profiles_and_memberships.sql','202610220001_cloud_projects.sql','202610220002_material_catalog.sql','202610220003_catalog_sources.sql','202610220004_catalog_operations.sql','202610220005_cabinet_designs.sql','202610220006_panel_materials.sql'])await db.exec(await readFile(new URL('../../supabase/migrations/'+name,import.meta.url),'utf8'));
+ const acl=(await db.query("select proacl::text acl from pg_proc where oid='public.cutplan_catalog_change(jsonb)'::regprocedure")).rows[0].acl;
+ await db.exec(`insert into public.staff_memberships(user_id,role) values('${admin}','admin');select set_config('request.jwt.claim.sub','${admin}',false);`);
+ const call=async p=>(await db.query('select public.cutplan_catalog_change($1::jsonb) id',[JSON.stringify(p)])).rows[0].id;
+ const base={action:'create',kind:'board',name:'Plain MDF',details:{thickness_mm:18,sheet_width_mm:1220,sheet_height_mm:2440,grain_direction:'none'}};
+ const legacy=await call({...base,code:'LEGACY'});
+ await db.exec(await readFile(new URL('../../supabase/migrations/202610250002_board_category_variants.sql',import.meta.url),'utf8'));
+ await db.exec(await readFile(new URL('../../supabase/migrations/202610250003_board_colors.sql',import.meta.url),'utf8'));
+ assert.equal((await db.query("select proacl::text acl from pg_proc where oid='public.cutplan_catalog_change(jsonb)'::regprocedure")).rows[0].acl,acl);
+ assert.equal((await db.query('select category_code from public.catalog_items where id=$1',[legacy])).rows[0].category_code,null);
+ await db.exec('set role authenticated');
+ const first=await call({...base,code:'MDF-18',category_code:'PLAIN-MDF',details:{...base.details,color_code:'#345678'}}),second=await call({...base,code:'MDF-12',category_code:'PLAIN-MDF',details:{...base.details,thickness_mm:12}});
+ await assert.rejects(call({...base,code:'DUPLICATE',category_code:'PLAIN-MDF'}),/catalog_variant_exists/);
+ await assert.rejects(call({...base,code:'UNSUPPORTED',category_code:'PLAIN-MDF',details:{...base.details,thickness_mm:16}}),/catalog_category_thickness/);
+ await assert.rejects(call({...base,kind:'finish',code:'BAD-FINISH',category_code:'PLAIN-MDF'}),/catalog_board_category/);
+ await call({action:'price',id:first,version:1,amount:'1750',unit:'sheet',reason:'Verified test quote'});
+ await call({action:'price',id:second,version:1,amount:'1300',unit:'sheet',reason:'Verified test quote'});
+ await call({action:'publish',id:first,version:2,reviewed:true});
+ await call({action:'price',id:second,version:2,amount:'1400',unit:'sheet',reason:'Updated test quote'});
+ assert.equal((await db.query('select is_sellable from public.catalog_items where id=$1',[first])).rows[0].is_sellable,true);
+ assert.deepEqual((await db.query('select price_bdt::text amount from public.catalog_price_versions where item_id=$1 order by effective_from',[second])).rows.map(row=>row.amount),['1300.00','1400.00']);
+ assert.equal((await db.query('select color_code from public.board_skus where item_id=$1',[first])).rows[0].color_code,'#345678');
+ await assert.rejects(call({...base,code:'BAD-COLOR',category_code:'PLAIN-MDF',details:{...base.details,thickness_mm:3,color_code:'red'}}),/check constraint/);
+ await call({action:'edit',id:first,version:3,name:base.name,category_code:'PLAIN-MDF',details:{...base.details,color_code:'#abcdef'}});
+ assert.equal((await db.query('select is_sellable from public.catalog_items where id=$1',[first])).rows[0].is_sellable,false);
+ assert.equal((await db.query('select color_code from public.board_skus where item_id=$1',[first])).rows[0].color_code,'#abcdef');
+ assert.equal((await db.query('select color_code from public.board_skus where item_id=$1',[second])).rows[0].color_code,null);
+ assert.equal((await db.query('select count(*)::int n from public.catalog_price_versions where item_id=$1',[first])).rows[0].n,1);
+ await call({action:'retire',id:second,version:3});assert.equal((await db.query('select count(*)::int n from public.catalog_price_versions where item_id=$1',[second])).rows[0].n,2);
+ await db.exec(`select set_config('request.jwt.claim.sub','${customer}',false)`);
+ assert.equal((await db.query('select * from public.catalog_items')).rows.length,0);
+ await assert.rejects(call({...base,code:'CUSTOMER',category_code:'PLAIN-MDF'}),/catalog_forbidden/);
+ await db.exec('reset role;set role anon');await assert.rejects(db.query('select * from public.catalog_items'),/permission denied/);
+ }finally{await db.close();}
+});

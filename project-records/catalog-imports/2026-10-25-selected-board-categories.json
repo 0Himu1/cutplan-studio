@@ -1,0 +1,109 @@
+{
+  "status": "superseded-by-imported-category-variants",
+  "prepared_at": "2026-10-25",
+  "scope": "User-selected board families only. Surface finishes excluded.",
+  "pending_decisions": [],
+  "categories": [
+    {
+      "code": "PLAIN-MDF",
+      "name": "Plain MDF",
+      "thickness_options_mm": [
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        25
+      ],
+      "source_url": "https://akijboard.com/mdf/",
+      "sheet_size_source": "4 x 8 feet"
+    },
+    {
+      "code": "PLAIN-WOOD-PARTICLE",
+      "name": "Plain wood-chip particle board",
+      "thickness_options_mm": [
+        6,
+        9,
+        12,
+        15,
+        16,
+        18,
+        25
+      ],
+      "source_url": "https://akijboard.com/best-particle-board-price-in-bangladesh/",
+      "sheet_size_source": "4 x 8 feet"
+    },
+    {
+      "code": "MR-PLYWOOD",
+      "name": "MR-grade plywood",
+      "pending_grade_confirmation": true,
+      "thickness_options_mm": [
+        6,
+        12,
+        15,
+        18,
+        20,
+        25
+      ],
+      "source_url": "https://akijboard.com/plywood/",
+      "sheet_size_source": "4 x 8 feet"
+    },
+    {
+      "code": "GORJON-PLYWOOD",
+      "name": "Gorjon plywood",
+      "thickness_options_mm": [
+        3,
+        4,
+        6,
+        10,
+        12,
+        15,
+        18,
+        25
+      ],
+      "source_url": "https://bclgroupbd.com/wp-content/uploads/2024/11/BBML-Catalogue-Design-BCL-Group.pdf",
+      "sheet_size_source": "8 x 4 feet"
+    },
+    {
+      "code": "MARINE-PLYWOOD",
+      "name": "Marine-grade plywood",
+      "thickness_options_mm": [
+        6,
+        12,
+        16,
+        19,
+        25
+      ],
+      "source_url": "https://particlemela.com/product/mahmed-plywood-marine-gorjon/",
+      "sheet_size_source": "4 x 8 feet"
+    },
+    {
+      "code": "VENEERED-BOARD",
+      "name": "Veneered board",
+      "thickness_options_mm": [
+        12,
+        15,
+        18,
+        25
+      ],
+      "source_url": "https://superboard.com.bd/product/super-teak/",
+      "sheet_width_mm": 1220,
+      "sheet_height_mm": 2440,
+      "review_note": "Underlying core and veneer species must be specified before pricing or publication."
+    }
+  ],
+  "excluded_surface_finishes": [
+    "melamine",
+    "HPL",
+    "UV high gloss",
+    "acrylic"
+  ],
+  "review_notes": [
+    "No arbitrary thickness input intended.",
+    "Prices, grain and exact supplier stock remain subject to review.",
+    "Thickness lists are sourced family options, not an assertion that every supplier stocks every variant.",
+    "Do not create duplicate wood-chip entries for melamine surfaces."
+  ],
+  "implementation_record": "2026-10-25-board-categories/variants.json"
+}

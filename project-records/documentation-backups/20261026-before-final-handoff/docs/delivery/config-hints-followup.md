@@ -1,0 +1,11 @@
+# Compact cabinet help and space colors — 24 October 2026
+
+The cabinet configuration inspector retains its fields and calculations while reducing explanatory prose. Secondary add/remove/copy/reorder/equalize actions use compact Lucide icons with their original accessible names. Size, construction, sections, shelf clearance, hanging-rod and drawer guidance is available through reusable help icons. Field names, units, essential measurements and genuine validation errors remain visible. Stock warnings retain a visible count and an expandable affected-panel list.
+
+Space information uses a compact labelled summary: green for usable/remaining space, indigo for automatic allocation, amber for manual/used allocations and stock attention, red for overflow. Text labels and numeric values carry meaning alongside color. Scoped light/dark variables keep these accents independent of OS theme preference; measurements still follow global display units.
+
+Help uses native top-layer popovers rendered outside the scrolling form. It supports hover, keyboard focus and tap, Escape dismissal without closing the editor, outside-tap dismissal, hoverable content and viewport-bound positioning. Scrolling or resizing dismisses stale-position hints. Disabled actions explain why they are unavailable. Icons retain 16 px thin strokes with 32 px desktop buttons and 44 px phone hit areas. Layout/paint containment keeps form scrolling inside the inspector.
+
+Verification: nine cabinet/help/stock browser scenarios passed. Checks include hover, focus, touch, Escape, disabled reasons, action callbacks, overflow colors, desktop/phone/short-landscape dimensions, saved/reopened geometry, unit changes and light/dark screenshots. The final phone-hit-area adjustment passed both compact-layout reruns. TypeScript and ESLint pass. No calculation, persistence, database or release-gate changes are part of this UI follow-up.
+
+The mechanical design scan reported advisory metadata mismatches, including existing CAD grid/radius/type literals. The new 10 px summary label was corrected to the documented 12 px step. Scoped green/amber colors are intentional owner-requested status roles, documented in DESIGN.md; existing CAD grid and unrelated metadata were retained. Review captures and the scan are local under artifacts/review/config-hints/.

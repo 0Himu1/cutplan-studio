@@ -1,0 +1,74 @@
+[
+  {
+    "thickness": 3,
+    "price": 1380,
+    "attributes": {
+      "attribute_brand-company": "Ahmed",
+      "attribute_thickness-size": "3mm (4/8) Feet"
+    }
+  },
+  {
+    "thickness": 4,
+    "price": 1580,
+    "attributes": {
+      "attribute_brand-company": "Ahmed",
+      "attribute_thickness-size": "4 mm (4/8) Feet"
+    }
+  },
+  {
+    "thickness": 6,
+    "price": 2130,
+    "attributes": {
+      "attribute_brand-company": "Ahmed",
+      "attribute_thickness-size": "6 mm (4/8) Feet"
+    }
+  },
+  {
+    "thickness": 10,
+    "price": 2780,
+    "attributes": {
+      "attribute_brand-company": "Ahmed",
+      "attribute_thickness-size": "10 mm (4/8) Feet"
+    }
+  },
+  {
+    "thickness": 12,
+    "price": 2980,
+    "attributes": {
+      "attribute_brand-company": "Ahmed",
+      "attribute_thickness-size": "12 mm (4/8) Feet"
+    }
+  },
+  {
+    "thickness": 15,
+    "price": 3240,
+    "attributes": {
+      "attribute_brand-company": "Ahmed",
+      "attribute_thickness-size": "15 mm (4/8) Feet"
+    }
+  },
+  {
+    "thickness": 18,
+    "price": 3990,
+    "attributes": {
+      "attribute_brand-company": "Ahmed",
+      "attribute_thickness-size": "18 mm (4/8) Feet"
+    }
+  },
+  {
+    "thickness": 25,
+    "price": 4590,
+    "attributes": {
+      "attribute_brand-company": "Ahmed",
+      "attribute_thickness-size": "25 mm (4/8) Feet"
+    }
+  },
+  {
+    "thickness": 16,
+    "price": 3690,
+    "attributes": {
+      "attribute_brand-company": "Ahmed",
+      "attribute_thickness-size": "16 mm (4/8) Feet"
+    }
+  }
+]

@@ -1,0 +1,177 @@
+{
+  "verified_at": "2026-10-25T14:36:00.498Z",
+  "imported": 20,
+  "akij": 10,
+  "superboard": 10,
+  "total_boards": 23,
+  "published_imports": 0,
+  "imported_prices": 0,
+  "audit_create_events": 20,
+  "original_board_codes": [
+    "MEL-12-DESH",
+    "MEL-18-DESH",
+    "MEL-25-DESH"
+  ],
+  "items": [
+    {
+      "id": "2feb2672-5ba3-4246-87f5-7ec35eab4cb8",
+      "code": "AKIJ-BEECH-PB-18",
+      "name": "Akij Beech - Particle Board 18 mm",
+      "source_url": "https://akijboard.com/product/beech/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "4d45bc65-fa1f-48ad-8395-e913814c17dd",
+      "code": "AKIJ-ANATURE-PB-18",
+      "name": "Akij Anature - Particle Board 18 mm",
+      "source_url": "https://akijboard.com/product/anature/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "93a1a380-ea8f-4312-af9c-16c445163a86",
+      "code": "AKIJ-ANTIC-PB-18",
+      "name": "Akij Antic - Particle Board 18 mm",
+      "source_url": "https://akijboard.com/product/antic/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "07769ba6-a7d1-4d15-a099-38590a8a5c41",
+      "code": "AKIJ-RAW-MDF-6",
+      "name": "Akij Raw MDF Board 6 mm",
+      "source_url": "https://akijboard.com/mdf/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "76f1efc9-f816-44a7-a8e0-8bd682cfdd36",
+      "code": "AKIJ-MR-PLYWOOD-18",
+      "name": "Akij MR Grade Plywood 18 mm",
+      "source_url": "https://akijboard.com/plywood/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "928d2ca0-6c19-4eac-b324-f0e24f19e661",
+      "code": "SUPER-PLAIN-MDF-18",
+      "name": "Super Board Plain MDF Board 18 mm",
+      "source_url": "https://superboard.com.bd/product/plain-mdf/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "af165ead-d752-47ee-a0e0-7e5cf472221d",
+      "code": "SUPER-PPB-WOOD-CHIPS-16",
+      "name": "Super Board Plain Particle Board (Wood Chips) 16 mm",
+      "source_url": "https://superboard.com.bd/product/plain-particle-board-wood-chips/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "029b2828-e04d-41e1-b7fa-6c17acadf69a",
+      "code": "SUPER-PPB-JUTE-CHIPS-18",
+      "name": "Super Board Plain Particle Board (Jute Chips) 18 mm",
+      "source_url": "https://superboard.com.bd/product/plain-particle-board-jute-chips/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "270b45cb-0bce-43c8-8e12-99b90d192809",
+      "code": "SUPER-MELAMINE-BOARD-126-18",
+      "name": "Super Board Melamine Board 126 18 mm",
+      "source_url": "https://superboard.com.bd/product/melamine-board-126/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "cad90d95-547d-4a18-810d-7cb81135d841",
+      "code": "AKIJ-3D-BLACK-PB-18",
+      "name": "Akij 3D-Black - Particle Board 18 mm",
+      "source_url": "https://akijboard.com/product/3d-black/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "ec87e3aa-b002-4c41-987c-255fca1ecad1",
+      "code": "AKIJ-AKIJ-DARK-OAK-PB-18",
+      "name": "Akij Dark Oak - Particle Board 18 mm",
+      "source_url": "https://akijboard.com/product/akij-dark-oak/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "8e9cfeba-13e6-411d-80e6-6a19e4c343c5",
+      "code": "AKIJ-AKIJ-OAK-PB-18",
+      "name": "Akij Oak - Particle Board 18 mm",
+      "source_url": "https://akijboard.com/product/akij-oak/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "011ad048-a647-4567-9e6c-bcadaae0552a",
+      "code": "AKIJ-AMERICAN-TEAK-PB-18",
+      "name": "Akij American Teak - Particle Board 18 mm",
+      "source_url": "https://akijboard.com/product/american-teak/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "4fb3544a-f549-4ff8-85e5-374ee4359cb5",
+      "code": "AKIJ-ALBINO-OAK-PB-18",
+      "name": "Akij Albino Oak - Particle Board 18 mm",
+      "source_url": "https://akijboard.com/product/albino-oak/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "0884890f-1696-4073-9d1c-1a896c7fa77d",
+      "code": "SUPER-MELAMINE-BOARD-811-18",
+      "name": "Super Board Melamine Board 811 18 mm",
+      "source_url": "https://superboard.com.bd/product/melamine-board-811/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "18bf263c-5a42-43a8-be73-796ad7c280ab",
+      "code": "SUPER-MELAMINE-BOARD-810-18",
+      "name": "Super Board Melamine Board 810 18 mm",
+      "source_url": "https://superboard.com.bd/product/melamine-board-810/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "977eeaf9-79a7-4a99-99ca-4b8e5918d394",
+      "code": "SUPER-MELAMINE-BOARD-807-18",
+      "name": "Super Board Melamine Board 807 18 mm",
+      "source_url": "https://superboard.com.bd/product/melamine-board-807/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "435b6449-c7d0-4cdc-8f66-54bbf1bc1e57",
+      "code": "SUPER-SUPER-TEAK-18",
+      "name": "Super Board Super Teak 18 mm",
+      "source_url": "https://superboard.com.bd/product/super-teak/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "2591538e-983a-421c-b938-f2ee3b65977a",
+      "code": "SUPER-PET-LAMINATION-3014-18",
+      "name": "Super Board PET LAMINATION 3014 18 mm",
+      "source_url": "https://superboard.com.bd/product/pet-lamination-3014/",
+      "status": "unpublished",
+      "prices": 0
+    },
+    {
+      "id": "36cb771e-f90b-4533-9fc0-db280b5d49c0",
+      "code": "SUPER-PET-LAMINATION-3008-18",
+      "name": "Super Board PET LAMINATION 3008 18 mm",
+      "source_url": "https://superboard.com.bd/product/pet-lamination-3008/",
+      "status": "unpublished",
+      "prices": 0
+    }
+  ]
+}

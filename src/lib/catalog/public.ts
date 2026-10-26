@@ -4,7 +4,7 @@ import type { MaterialCatalog } from '@/lib/furniture/materials';
 export async function publicCatalog():Promise<MaterialCatalog> {
   const client=createAdminClient();
   const [{data,error},{data:compatibility,error:pairError}]=await Promise.all([
-    client.from('catalog_items').select('id,kind,code,name,board_skus(*),finish_skus(*),edging_skus(*),catalog_price_versions(price_bdt,unit,effective_from,effective_until)').eq('is_sellable',true).is('retired_at',null).order('name').limit(200),
+    client.from('catalog_items').select('id,kind,code,name,category_code,board_skus(*),finish_skus(*),edging_skus(*),catalog_price_versions(price_bdt,unit,effective_from,effective_until)').eq('is_sellable',true).is('retired_at',null).order('name').limit(200),
     client.from('board_finish_compatibility').select('board_item_id,finish_item_id')
   ]);
   if(error||pairError)throw new Error('Catalog unavailable');

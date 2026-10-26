@@ -1,0 +1,1097 @@
+{
+  "verified_at": "2026-10-25T15:16:13.534Z",
+  "items": [
+    {
+      "id": "b7fe819e-ae08-4a7f-9a60-0e9f33e78962",
+      "kind": "board",
+      "code": "PLAIN-MDF-3",
+      "name": "Plain MDF",
+      "category_code": "PLAIN-MDF",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Akij MDF specification; unpriced stock pending review",
+      "source_url": "https://akijboard.com/mdf/",
+      "board_skus": {
+        "item_id": "b7fe819e-ae08-4a7f-9a60-0e9f33e78962",
+        "thickness_mm": 3,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "3666dace-72bf-4e32-b9c2-e454d705032d",
+      "kind": "board",
+      "code": "PLAIN-MDF-6",
+      "name": "Plain MDF",
+      "category_code": "PLAIN-MDF",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Super MDF at Particle Mela; listed price pending supplier review",
+      "source_url": "https://particlemela.com/product/mdf-board-plain/",
+      "board_skus": {
+        "item_id": "3666dace-72bf-4e32-b9c2-e454d705032d",
+        "thickness_mm": 6,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "1dd24acc-c38d-40b6-a8cd-50efb33e0886",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "3666dace-72bf-4e32-b9c2-e454d705032d",
+          "price_bdt": 850,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.365543+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "df5878ac-bf7f-406f-bb1f-bb3f65cb4004",
+      "kind": "board",
+      "code": "PLAIN-MDF-9",
+      "name": "Plain MDF",
+      "category_code": "PLAIN-MDF",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Akij MDF specification; unpriced stock pending review",
+      "source_url": "https://akijboard.com/mdf/",
+      "board_skus": {
+        "item_id": "df5878ac-bf7f-406f-bb1f-bb3f65cb4004",
+        "thickness_mm": 9,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "a54477ac-9ade-48e2-92f2-ecc2f0fa74fb",
+      "kind": "board",
+      "code": "PLAIN-MDF-12",
+      "name": "Plain MDF",
+      "category_code": "PLAIN-MDF",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Super MDF at Particle Mela; listed price pending supplier review",
+      "source_url": "https://particlemela.com/product/mdf-board-plain/",
+      "board_skus": {
+        "item_id": "a54477ac-9ade-48e2-92f2-ecc2f0fa74fb",
+        "thickness_mm": 12,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "8a11d276-d6b6-418c-bc8f-84fb70165a2f",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "a54477ac-9ade-48e2-92f2-ecc2f0fa74fb",
+          "price_bdt": 1280,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.37168+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "40e16fa2-23b9-470d-9a33-9febb851fdf2",
+      "kind": "board",
+      "code": "PLAIN-MDF-15",
+      "name": "Plain MDF",
+      "category_code": "PLAIN-MDF",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Super MDF at Particle Mela; listed price pending supplier review",
+      "source_url": "https://particlemela.com/product/mdf-board-plain/",
+      "board_skus": {
+        "item_id": "40e16fa2-23b9-470d-9a33-9febb851fdf2",
+        "thickness_mm": 15,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "51dadd79-1932-4041-827f-770b1ba87ba5",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "40e16fa2-23b9-470d-9a33-9febb851fdf2",
+          "price_bdt": 1580,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.373792+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "38cc5c85-6b69-44b1-aa8d-58e582242a84",
+      "kind": "board",
+      "code": "PLAIN-MDF-18",
+      "name": "Plain MDF",
+      "category_code": "PLAIN-MDF",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Super MDF at Particle Mela; listed price pending supplier review",
+      "source_url": "https://particlemela.com/product/mdf-board-plain/",
+      "board_skus": {
+        "item_id": "38cc5c85-6b69-44b1-aa8d-58e582242a84",
+        "thickness_mm": 18,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "dbdfe6e1-c66c-4b78-b1c7-a2ab479ade70",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "38cc5c85-6b69-44b1-aa8d-58e582242a84",
+          "price_bdt": 1800,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.375794+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "2a72a18f-5a57-4da8-9a48-fcf5ec7ef7f0",
+      "kind": "board",
+      "code": "PLAIN-MDF-25",
+      "name": "Plain MDF",
+      "category_code": "PLAIN-MDF",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Akij MDF specification; unpriced stock pending review",
+      "source_url": "https://akijboard.com/mdf/",
+      "board_skus": {
+        "item_id": "2a72a18f-5a57-4da8-9a48-fcf5ec7ef7f0",
+        "thickness_mm": 25,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "104dafb5-3153-4188-826b-0672bac9bbe0",
+      "kind": "board",
+      "code": "PLAIN-WOOD-PARTICLE-6",
+      "name": "Plain wood-chip particle board",
+      "category_code": "PLAIN-WOOD-PARTICLE",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Akij published guide price; dealer confirmation required",
+      "source_url": "https://akijboard.com/best-particle-board-price-in-bangladesh/",
+      "board_skus": {
+        "item_id": "104dafb5-3153-4188-826b-0672bac9bbe0",
+        "thickness_mm": 6,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "7c4048d5-f8b4-4228-b65a-533a996e9014",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "104dafb5-3153-4188-826b-0672bac9bbe0",
+          "price_bdt": 920,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.378136+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "528cd0ce-4f20-4378-8c50-3aa011a30ccb",
+      "kind": "board",
+      "code": "PLAIN-WOOD-PARTICLE-9",
+      "name": "Plain wood-chip particle board",
+      "category_code": "PLAIN-WOOD-PARTICLE",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Akij published guide price; dealer confirmation required",
+      "source_url": "https://akijboard.com/best-particle-board-price-in-bangladesh/",
+      "board_skus": {
+        "item_id": "528cd0ce-4f20-4378-8c50-3aa011a30ccb",
+        "thickness_mm": 9,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "6db7d8d1-5946-4f77-86cc-0fbb19f736a5",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "528cd0ce-4f20-4378-8c50-3aa011a30ccb",
+          "price_bdt": 1025,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.379676+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "41d93a84-416f-4ae8-b4a4-12d57f18e662",
+      "kind": "board",
+      "code": "PLAIN-WOOD-PARTICLE-12",
+      "name": "Plain wood-chip particle board",
+      "category_code": "PLAIN-WOOD-PARTICLE",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Akij published guide price; dealer confirmation required",
+      "source_url": "https://akijboard.com/best-particle-board-price-in-bangladesh/",
+      "board_skus": {
+        "item_id": "41d93a84-416f-4ae8-b4a4-12d57f18e662",
+        "thickness_mm": 12,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "48a02984-4e0c-4b89-a6ec-a379cff96761",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "41d93a84-416f-4ae8-b4a4-12d57f18e662",
+          "price_bdt": 1200,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.381517+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "c04aefa9-c364-4f55-905a-cdc91db4a4c8",
+      "kind": "board",
+      "code": "PLAIN-WOOD-PARTICLE-15",
+      "name": "Plain wood-chip particle board",
+      "category_code": "PLAIN-WOOD-PARTICLE",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Akij published guide price; dealer confirmation required",
+      "source_url": "https://akijboard.com/best-particle-board-price-in-bangladesh/",
+      "board_skus": {
+        "item_id": "c04aefa9-c364-4f55-905a-cdc91db4a4c8",
+        "thickness_mm": 15,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "020ffb4d-2446-4055-a270-69a0d6e7750b",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "c04aefa9-c364-4f55-905a-cdc91db4a4c8",
+          "price_bdt": 1250,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.382728+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "ba89b198-b1ae-453a-b237-2a3d6ccbb0db",
+      "kind": "board",
+      "code": "PLAIN-WOOD-PARTICLE-16",
+      "name": "Plain wood-chip particle board",
+      "category_code": "PLAIN-WOOD-PARTICLE",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Akij published guide price; dealer confirmation required",
+      "source_url": "https://akijboard.com/best-particle-board-price-in-bangladesh/",
+      "board_skus": {
+        "item_id": "ba89b198-b1ae-453a-b237-2a3d6ccbb0db",
+        "thickness_mm": 16,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "5639925b-da8c-4e57-8b39-de5a540748d0",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "ba89b198-b1ae-453a-b237-2a3d6ccbb0db",
+          "price_bdt": 1300,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.383923+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "131f9f27-e72d-40f5-b937-a1a94f3ffcb5",
+      "kind": "board",
+      "code": "PLAIN-WOOD-PARTICLE-18",
+      "name": "Plain wood-chip particle board",
+      "category_code": "PLAIN-WOOD-PARTICLE",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Akij published guide price; dealer confirmation required",
+      "source_url": "https://akijboard.com/best-particle-board-price-in-bangladesh/",
+      "board_skus": {
+        "item_id": "131f9f27-e72d-40f5-b937-a1a94f3ffcb5",
+        "thickness_mm": 18,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "312d5732-72a7-4ed2-9a54-aa7f1751e9c6",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "131f9f27-e72d-40f5-b937-a1a94f3ffcb5",
+          "price_bdt": 1450,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.38511+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "7e99f26b-72de-4567-995b-1454546fdd6e",
+      "kind": "board",
+      "code": "PLAIN-WOOD-PARTICLE-25",
+      "name": "Plain wood-chip particle board",
+      "category_code": "PLAIN-WOOD-PARTICLE",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Akij published guide price; dealer confirmation required",
+      "source_url": "https://akijboard.com/best-particle-board-price-in-bangladesh/",
+      "board_skus": {
+        "item_id": "7e99f26b-72de-4567-995b-1454546fdd6e",
+        "thickness_mm": 25,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "none",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "83594306-108b-41db-93be-8f9d6dffa495",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "7e99f26b-72de-4567-995b-1454546fdd6e",
+          "price_bdt": 2100,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.38627+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "548b929a-7b71-4534-b01c-a5d6b2362bdd",
+      "kind": "board",
+      "code": "MR-PLYWOOD-6",
+      "name": "MR-grade plywood",
+      "category_code": "MR-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Akij MR plywood; price and grain pending review",
+      "source_url": "https://akijboard.com/plywood/",
+      "board_skus": {
+        "item_id": "548b929a-7b71-4534-b01c-a5d6b2362bdd",
+        "thickness_mm": 6,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "8a4ff5d3-f0cb-4e03-9e20-173c3ddd2254",
+      "kind": "board",
+      "code": "MR-PLYWOOD-12",
+      "name": "MR-grade plywood",
+      "category_code": "MR-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Akij MR plywood; price and grain pending review",
+      "source_url": "https://akijboard.com/plywood/",
+      "board_skus": {
+        "item_id": "8a4ff5d3-f0cb-4e03-9e20-173c3ddd2254",
+        "thickness_mm": 12,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "e72f5ba8-5025-4a66-97d4-aebb13f7ef11",
+      "kind": "board",
+      "code": "MR-PLYWOOD-15",
+      "name": "MR-grade plywood",
+      "category_code": "MR-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Akij MR plywood; price and grain pending review",
+      "source_url": "https://akijboard.com/plywood/",
+      "board_skus": {
+        "item_id": "e72f5ba8-5025-4a66-97d4-aebb13f7ef11",
+        "thickness_mm": 15,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "65775af7-fcc8-4af9-809c-c64afe58ccb3",
+      "kind": "board",
+      "code": "MR-PLYWOOD-18",
+      "name": "MR-grade plywood",
+      "category_code": "MR-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Akij MR plywood; price and grain pending review",
+      "source_url": "https://akijboard.com/plywood/",
+      "board_skus": {
+        "item_id": "65775af7-fcc8-4af9-809c-c64afe58ccb3",
+        "thickness_mm": 18,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "cec6167d-4628-48e5-9677-01240552c2cf",
+      "kind": "board",
+      "code": "MR-PLYWOOD-20",
+      "name": "MR-grade plywood",
+      "category_code": "MR-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Akij MR plywood; price and grain pending review",
+      "source_url": "https://akijboard.com/plywood/",
+      "board_skus": {
+        "item_id": "cec6167d-4628-48e5-9677-01240552c2cf",
+        "thickness_mm": 20,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "3e6a2bdd-f69b-4741-937b-62bf7d4f1d4e",
+      "kind": "board",
+      "code": "MR-PLYWOOD-25",
+      "name": "MR-grade plywood",
+      "category_code": "MR-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Akij MR plywood; price and grain pending review",
+      "source_url": "https://akijboard.com/plywood/",
+      "board_skus": {
+        "item_id": "3e6a2bdd-f69b-4741-937b-62bf7d4f1d4e",
+        "thickness_mm": 25,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "9b0131c0-4cc7-4ea8-8e6f-64821b4a5678",
+      "kind": "board",
+      "code": "GORJON-PLYWOOD-3",
+      "name": "Gorjon plywood",
+      "category_code": "GORJON-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed Gorjon listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/ahmed-gorjon-plywood/",
+      "board_skus": {
+        "item_id": "9b0131c0-4cc7-4ea8-8e6f-64821b4a5678",
+        "thickness_mm": 3,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "8d8f1652-4084-4af5-9bc3-b3697880d92f",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "9b0131c0-4cc7-4ea8-8e6f-64821b4a5678",
+          "price_bdt": 1380,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.392172+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "e65cf5a5-3c09-44e1-878b-270e412d874c",
+      "kind": "board",
+      "code": "GORJON-PLYWOOD-4",
+      "name": "Gorjon plywood",
+      "category_code": "GORJON-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed Gorjon listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/ahmed-gorjon-plywood/",
+      "board_skus": {
+        "item_id": "e65cf5a5-3c09-44e1-878b-270e412d874c",
+        "thickness_mm": 4,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "287f24ed-3fdc-47f0-9974-7547a46195a6",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "e65cf5a5-3c09-44e1-878b-270e412d874c",
+          "price_bdt": 1580,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.393319+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "c935f31e-32d2-45cc-92be-c759893b25ca",
+      "kind": "board",
+      "code": "GORJON-PLYWOOD-6",
+      "name": "Gorjon plywood",
+      "category_code": "GORJON-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed Gorjon listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/ahmed-gorjon-plywood/",
+      "board_skus": {
+        "item_id": "c935f31e-32d2-45cc-92be-c759893b25ca",
+        "thickness_mm": 6,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "15fc3113-ad95-448a-9135-ff5219e3b2aa",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "c935f31e-32d2-45cc-92be-c759893b25ca",
+          "price_bdt": 2130,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.394462+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "1656050e-85f5-422a-8c84-821a61bdca4e",
+      "kind": "board",
+      "code": "GORJON-PLYWOOD-10",
+      "name": "Gorjon plywood",
+      "category_code": "GORJON-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed Gorjon listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/ahmed-gorjon-plywood/",
+      "board_skus": {
+        "item_id": "1656050e-85f5-422a-8c84-821a61bdca4e",
+        "thickness_mm": 10,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "d35f2a42-794c-4441-9016-3b90483e3d3b",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "1656050e-85f5-422a-8c84-821a61bdca4e",
+          "price_bdt": 2780,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.395612+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "e5a1c2b1-4a72-4137-831c-26c7a58ecc21",
+      "kind": "board",
+      "code": "GORJON-PLYWOOD-12",
+      "name": "Gorjon plywood",
+      "category_code": "GORJON-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed Gorjon listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/ahmed-gorjon-plywood/",
+      "board_skus": {
+        "item_id": "e5a1c2b1-4a72-4137-831c-26c7a58ecc21",
+        "thickness_mm": 12,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "0b35f7f0-7366-4299-9bdc-0c09769dd0e1",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "e5a1c2b1-4a72-4137-831c-26c7a58ecc21",
+          "price_bdt": 2980,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.396759+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "9a7d9e1b-a0bd-4cbd-9dac-5a40c529b410",
+      "kind": "board",
+      "code": "GORJON-PLYWOOD-15",
+      "name": "Gorjon plywood",
+      "category_code": "GORJON-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed Gorjon listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/ahmed-gorjon-plywood/",
+      "board_skus": {
+        "item_id": "9a7d9e1b-a0bd-4cbd-9dac-5a40c529b410",
+        "thickness_mm": 15,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "96773bfc-820a-4b04-920a-e46b92493e9c",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "9a7d9e1b-a0bd-4cbd-9dac-5a40c529b410",
+          "price_bdt": 3240,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.397907+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "13707f84-1232-4aff-933a-8155e087b990",
+      "kind": "board",
+      "code": "GORJON-PLYWOOD-16",
+      "name": "Gorjon plywood",
+      "category_code": "GORJON-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed Gorjon listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/ahmed-gorjon-plywood/",
+      "board_skus": {
+        "item_id": "13707f84-1232-4aff-933a-8155e087b990",
+        "thickness_mm": 16,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "c1c85426-54ab-4f7e-976d-27d87cb18b82",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "13707f84-1232-4aff-933a-8155e087b990",
+          "price_bdt": 3690,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.399117+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "a2cd1d0d-fee6-43ec-ac0a-63c99faffb88",
+      "kind": "board",
+      "code": "GORJON-PLYWOOD-18",
+      "name": "Gorjon plywood",
+      "category_code": "GORJON-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed Gorjon listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/ahmed-gorjon-plywood/",
+      "board_skus": {
+        "item_id": "a2cd1d0d-fee6-43ec-ac0a-63c99faffb88",
+        "thickness_mm": 18,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "079a2a2e-c1ae-4513-a034-d8675409c7f3",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "a2cd1d0d-fee6-43ec-ac0a-63c99faffb88",
+          "price_bdt": 3990,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.400273+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "12b01544-06b2-440d-a106-aa7d6b821629",
+      "kind": "board",
+      "code": "GORJON-PLYWOOD-25",
+      "name": "Gorjon plywood",
+      "category_code": "GORJON-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed Gorjon listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/ahmed-gorjon-plywood/",
+      "board_skus": {
+        "item_id": "12b01544-06b2-440d-a106-aa7d6b821629",
+        "thickness_mm": 25,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "74c4787d-156b-4a6d-ad8a-3bb25a5267bd",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "12b01544-06b2-440d-a106-aa7d6b821629",
+          "price_bdt": 4590,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.401447+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "f9a8e86c-be8e-499b-9af7-155ca2b283ed",
+      "kind": "board",
+      "code": "MARINE-PLYWOOD-6",
+      "name": "Marine-grade plywood",
+      "category_code": "MARINE-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed marine listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/mahmed-plywood-marine-gorjon/",
+      "board_skus": {
+        "item_id": "f9a8e86c-be8e-499b-9af7-155ca2b283ed",
+        "thickness_mm": 6,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "d2373e17-2c42-4ae7-88ab-1dfba883e779",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "f9a8e86c-be8e-499b-9af7-155ca2b283ed",
+          "price_bdt": 2650,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.402737+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "fbd18663-524a-4518-bdcd-1f69ffc48620",
+      "kind": "board",
+      "code": "MARINE-PLYWOOD-12",
+      "name": "Marine-grade plywood",
+      "category_code": "MARINE-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed marine listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/mahmed-plywood-marine-gorjon/",
+      "board_skus": {
+        "item_id": "fbd18663-524a-4518-bdcd-1f69ffc48620",
+        "thickness_mm": 12,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "9318b459-bf42-49f9-ac93-3901ec803f20",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "fbd18663-524a-4518-bdcd-1f69ffc48620",
+          "price_bdt": 3980,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.403913+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "a1369085-f29a-4d87-a126-2560b40eaabe",
+      "kind": "board",
+      "code": "MARINE-PLYWOOD-16",
+      "name": "Marine-grade plywood",
+      "category_code": "MARINE-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed marine listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/mahmed-plywood-marine-gorjon/",
+      "board_skus": {
+        "item_id": "a1369085-f29a-4d87-a126-2560b40eaabe",
+        "thickness_mm": 16,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "9904a5c1-e11f-47f9-b88b-e90654af9a46",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "a1369085-f29a-4d87-a126-2560b40eaabe",
+          "price_bdt": 4550,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.405035+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "7ab66d51-6870-48d7-9d6a-52af5d024aea",
+      "kind": "board",
+      "code": "MARINE-PLYWOOD-18",
+      "name": "Marine-grade plywood",
+      "category_code": "MARINE-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ashiq marine at Woodmart Dinajpur; listed price pending supplier review",
+      "source_url": "https://www.woodmartdinajpur.com/",
+      "board_skus": {
+        "item_id": "7ab66d51-6870-48d7-9d6a-52af5d024aea",
+        "thickness_mm": 18,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "e03ab4eb-7bf3-4984-82b0-99dcf44fa0b2",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "7ab66d51-6870-48d7-9d6a-52af5d024aea",
+          "price_bdt": 3120,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.406205+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "b863a264-9c7c-4b67-ac1c-ff9215d60f85",
+      "kind": "board",
+      "code": "MARINE-PLYWOOD-19",
+      "name": "Marine-grade plywood",
+      "category_code": "MARINE-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed marine listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/mahmed-plywood-marine-gorjon/",
+      "board_skus": {
+        "item_id": "b863a264-9c7c-4b67-ac1c-ff9215d60f85",
+        "thickness_mm": 19,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "b3063f84-0796-4546-af82-5412e70772fc",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "b863a264-9c7c-4b67-ac1c-ff9215d60f85",
+          "price_bdt": 5080,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.407375+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "dbe176fe-6d92-49cd-af15-cbbb110ff270",
+      "kind": "board",
+      "code": "MARINE-PLYWOOD-25",
+      "name": "Marine-grade plywood",
+      "category_code": "MARINE-PLYWOOD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 2,
+      "source_name": "Ahmed marine listing; grain and price pending supplier review",
+      "source_url": "https://particlemela.com/product/mahmed-plywood-marine-gorjon/",
+      "board_skus": {
+        "item_id": "dbe176fe-6d92-49cd-af15-cbbb110ff270",
+        "thickness_mm": 25,
+        "sheet_width_mm": 1219.2,
+        "grain_direction": "height",
+        "sheet_height_mm": 2438.4
+      },
+      "catalog_price_versions": [
+        {
+          "id": "eb895008-b9aa-4f4a-ab1e-1ed5fdf70bd7",
+          "unit": "sheet",
+          "reason": "Published supplier price captured 2026-10-25; draft pending dealer confirmation.",
+          "item_id": "dbe176fe-6d92-49cd-af15-cbbb110ff270",
+          "price_bdt": 6480,
+          "created_at": "2026-10-25T15:15:20.335759+00:00",
+          "created_by": "13d9758e-6b2a-44d5-8467-6c4d4b1a32ce",
+          "effective_from": "2026-10-25T15:15:20.408507+00:00",
+          "effective_until": null
+        }
+      ]
+    },
+    {
+      "id": "6699835e-66af-4f09-ae52-06aa95868cc2",
+      "kind": "board",
+      "code": "VENEERED-BOARD-12",
+      "name": "Veneered board",
+      "category_code": "VENEERED-BOARD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Superboard veneer specification; core, species, grain and price pending review",
+      "source_url": "https://superboard.com.bd/product/super-teak/",
+      "board_skus": {
+        "item_id": "6699835e-66af-4f09-ae52-06aa95868cc2",
+        "thickness_mm": 12,
+        "sheet_width_mm": 1220,
+        "grain_direction": "height",
+        "sheet_height_mm": 2440
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "39c0237d-6957-40ef-bdb8-0bb10024a37d",
+      "kind": "board",
+      "code": "VENEERED-BOARD-15",
+      "name": "Veneered board",
+      "category_code": "VENEERED-BOARD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Superboard veneer specification; core, species, grain and price pending review",
+      "source_url": "https://superboard.com.bd/product/super-teak/",
+      "board_skus": {
+        "item_id": "39c0237d-6957-40ef-bdb8-0bb10024a37d",
+        "thickness_mm": 15,
+        "sheet_width_mm": 1220,
+        "grain_direction": "height",
+        "sheet_height_mm": 2440
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "02cd658d-cf25-4972-8b52-4768e3e86e14",
+      "kind": "board",
+      "code": "VENEERED-BOARD-18",
+      "name": "Veneered board",
+      "category_code": "VENEERED-BOARD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Superboard veneer specification; core, species, grain and price pending review",
+      "source_url": "https://superboard.com.bd/product/super-teak/",
+      "board_skus": {
+        "item_id": "02cd658d-cf25-4972-8b52-4768e3e86e14",
+        "thickness_mm": 18,
+        "sheet_width_mm": 1220,
+        "grain_direction": "height",
+        "sheet_height_mm": 2440
+      },
+      "catalog_price_versions": []
+    },
+    {
+      "id": "34ed4a02-3999-48c2-b9ed-a4b536e2294a",
+      "kind": "board",
+      "code": "VENEERED-BOARD-25",
+      "name": "Veneered board",
+      "category_code": "VENEERED-BOARD",
+      "retired_at": null,
+      "is_sellable": false,
+      "version": 1,
+      "source_name": "Superboard veneer specification; core, species, grain and price pending review",
+      "source_url": "https://superboard.com.bd/product/super-teak/",
+      "board_skus": {
+        "item_id": "34ed4a02-3999-48c2-b9ed-a4b536e2294a",
+        "thickness_mm": 25,
+        "sheet_width_mm": 1220,
+        "grain_direction": "height",
+        "sheet_height_mm": 2440
+      },
+      "catalog_price_versions": []
+    }
+  ]
+}

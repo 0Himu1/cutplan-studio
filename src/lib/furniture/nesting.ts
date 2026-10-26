@@ -1,3 +1,4 @@
+import {materialForPanel} from './materials.ts';
 import { calculateFurniture, furnitureInput, type FurnitureInput } from './families.ts';
 import type { Panel } from './cabinet.ts';
 export type Placement={panelId:string;x:number;y:number;width:number;height:number;rotation:0|90};
@@ -10,7 +11,7 @@ export function nestFurniture(input:FurnitureInput,kerf=4,margin=input.stockMarg
  if(calc.blockingErrors.length){plan.errors=calc.blockingErrors.map(e=>e.message);return plan;}
  if(!Number.isFinite(kerf)||kerf<0||kerf>30||!Number.isFinite(margin)||margin<0||margin>1000){plan.errors.push('Use spacing 0–30 mm and margin 0–1000 mm.');return plan;}
  const groups=new Map<string,{panels:Panel[];width:number;height:number}>();
- for(const panel of calc.panels){const a=input.panelOverrides?.[panel.panelId];const width=a?.stockWidthMm??input.stockWidthMm,height=a?.stockHeightMm??input.stockHeightMm;
+ for(const panel of calc.panels){const a=materialForPanel(input,panel);const width=a?.stockWidthMm??input.stockWidthMm,height=a?.stockHeightMm??input.stockHeightMm;
   const key=JSON.stringify([a?.boardId??'unassigned',panel.thicknessMm,width,height,a?.frontFinishId??null,a?.backFinishId??null,panel.grainAxis]);
   const group=groups.get(key)??{panels:[],width,height};group.panels.push(panel);groups.set(key,group);
  }
@@ -38,7 +39,7 @@ export function nestFurniture(input:FurnitureInput,kerf=4,margin=input.stockMarg
 export function validateNesting(plan:NestingPlan,panels:Panel[],input?:FurnitureInput):string[]{
  const errors:string[]=[],seen=new Set<string>(),byId=new Map(panels.map(p=>[p.panelId,p]));
  for(const sheet of plan.sheets)for(const a of sheet.placements){const p=byId.get(a.panelId);if(seen.has(a.panelId)||!p){errors.push('Duplicate or unknown panel.');continue;}seen.add(a.panelId);
-  if(input){const assignment=input.panelOverrides?.[p.panelId],width=assignment?.stockWidthMm??input.stockWidthMm,height=assignment?.stockHeightMm??input.stockHeightMm;const expected=JSON.stringify([assignment?.boardId??'unassigned',p.thicknessMm,width,height,assignment?.frontFinishId??null,assignment?.backFinishId??null,p.grainAxis]);if(sheet.stockKey!==expected||sheet.width!==width||sheet.height!==height||!plan.groups.some(g=>g.id===sheet.groupId&&g.stockKey===expected))errors.push('Panel is assigned to incompatible stock.');}
+  if(input){const assignment=materialForPanel(input,p),width=assignment?.stockWidthMm??input.stockWidthMm,height=assignment?.stockHeightMm??input.stockHeightMm;const expected=JSON.stringify([assignment?.boardId??'unassigned',p.thicknessMm,width,height,assignment?.frontFinishId??null,assignment?.backFinishId??null,p.grainAxis]);if(sheet.stockKey!==expected||sheet.width!==width||sheet.height!==height||!plan.groups.some(g=>g.id===sheet.groupId&&g.stockKey===expected))errors.push('Panel is assigned to incompatible stock.');}
   if(!p.allowedRotationsDeg.includes(a.rotation)||a.width!==(a.rotation===0?p.widthMm:p.heightMm)||a.height!==(a.rotation===0?p.heightMm:p.widthMm))errors.push('Invalid panel orientation or dimensions.');
   if(a.x<plan.margin||a.y<plan.margin||a.x+a.width>sheet.width-plan.margin||a.y+a.height>sheet.height-plan.margin)errors.push('Placement exceeds usable stock.');
   for(const b of sheet.placements)if(a!==b&&a.x<b.x+b.width+plan.kerf&&b.x<a.x+a.width+plan.kerf&&a.y<b.y+b.height+plan.kerf&&b.y<a.y+a.height+plan.kerf)errors.push('Panel collision or insufficient spacing.');

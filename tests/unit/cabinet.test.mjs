@@ -16,8 +16,8 @@ test('inset golden fixture has exact individual panels and transforms', () => {
     ['top', 764, 400, 18, [400,1191,200], [-Math.PI/2,0,0]],
     ['bottom', 764, 400, 18, [400,9,200], [-Math.PI/2,0,0]],
     ['back', 764, 1164, 6, [400,600,3], [0,0,0]],
-    ['shelf-1', 760, 374, 18, [400,403,193], [-Math.PI/2,0,0]],
-    ['shelf-2', 760, 374, 18, [400,797,193], [-Math.PI/2,0,0]],
+    ['shelf-1', 760, 348.6, 18, [400,403,180.3], [-Math.PI/2,0,0]],
+    ['shelf-2', 760, 348.6, 18, [400,797,180.3], [-Math.PI/2,0,0]],
     ['door-1', 379, 1160, 18, [209.5,600,391], [0,0,0]],
     ['door-2', 379, 1160, 18, [590.5,600,391], [0,0,0]]
   ];
@@ -49,7 +49,7 @@ test('invalid and unsupported runtime inputs return no partial geometry', () => 
 
 test('minimum face, shelf clearance and stock boundaries are enforced; thin backs are allowed', () => {
   assert.deepEqual(calculate({ backThicknessMm: 3 }).blockingErrors, []);
-  for (const changes of [{ widthMm: 80 }, { shelfCount: 20, heightMm: 300 }, { shelfSideClearanceMm: 400 }, { doorGapMm: 400 }, { doorThicknessMm: 400 }, { skirtingHeightMm: 20 }, { skirtingHeightMm: 1190 }, { skirtingHeightMm: 80, plinthSetbackMm: 395 }, { stockMarginMm: 700 }, { heightMm: 2600 }]) {
+  for (const changes of [{ widthMm: 80 }, { shelfCount: 20, heightMm: 300 }, { shelfSideClearanceMm: 400 }, { doorGapMm: 400 }, { doorThicknessMm: 400 }, { skirtingHeightMm: 20 }, { skirtingHeightMm: 1190 }, { skirtingHeightMm: 80, plinthSetbackMm: 395 }, { stockMarginMm: 700 }]) {
     const result = calculate(changes);
     assert.ok(result.blockingErrors.length, JSON.stringify(changes));
     assert.deepEqual(result.panels, []);
@@ -57,7 +57,7 @@ test('minimum face, shelf clearance and stock boundaries are enforced; thin back
   assert.deepEqual(calculate({ doorCount: 0, shelfCount: 0, widthMm: 86 }).blockingErrors, []); // 50 mm inner width, 18 mm sides
   assert.ok(calculate({ doorCount: 0, shelfCount: 0, widthMm: 85.99 }).blockingErrors.length);
   assert.deepEqual(calculate({ stockWidthMm: 1220, stockHeightMm: 784 }).blockingErrors, []); // rotated back fits exactly; side reaches usable stock width
-  assert.ok(calculate({ stockWidthMm: 1220, stockHeightMm: 784, grainAxis: 'height' }).blockingErrors.length);
+  assert.ok(calculate({ stockWidthMm: 1220, stockHeightMm: 784, grainAxis: 'height' }).stockIssues.length);
 });
 
 test('stable identities survive resizing and shelf additions; output is deterministic and input immutable', () => {

@@ -9,13 +9,14 @@ test('height allocations reserve each divider and share flexible space exactly',
  assert.equal(allocateHeight([1778,0],1778,18).valid,false);
  for(let count=1;count<=8;count++){const a=allocateHeight(Array(count).fill(0),1778,18);assert.equal(a.valid,true);assert.ok(Math.abs(a.resolved.reduce((x,y)=>x+y,0)+a.dividers-1778)<1e-8);}
  for(const heights of [[NaN],[Infinity],[-1],[1],[0,0]])assert.equal(allocateHeight(heights,50,18).valid,false);
- assert.equal(allocateHeight([500],1000,18).valid,false);
+ assert.equal(allocateHeight([500],1000,18).valid,true);assert.equal(allocateHeight([500],1000,18).empty,500);
 });
-test('manual edit creates an explicit automatic remainder, with separator reservation',()=>{
- const old=[sectionDefault('first')],next=editSectionHeight(old,0,762,1778,18,()=>sectionDefault('remainder'));
- assert.equal(old.length,1);assert.equal(old[0].heightMm,0);assert.equal(next.length,2);
- const a=allocateHeight(next.map(s=>s.heightMm),1778,18);assert.deepEqual(a.resolved,[762,998]);assert.equal(a.valid,true);
- assert.equal(editSectionHeight(old,0,1750,1778,18,()=>sectionDefault('remainder')).length,1);
+test('manual height edits leave empty space and never create another section',()=>{
+ const old=[sectionDefault('first')],next=editSectionHeight(old,0,762);
+ assert.equal(old.length,1);assert.equal(old[0].heightMm,0);assert.equal(next.length,1);
+ const a=allocateHeight(next.map(s=>s.heightMm),1778,18);assert.deepEqual(a.resolved,[762]);assert.equal(a.valid,true);assert.equal(a.empty,1016);
+ assert.equal(allocateHeight([762,200],1778,18).empty,798);
+ assert.equal(allocateHeight([762,0],1778,18).empty,0);
 });
 test('nested widths and automatic resizing retain all configured sections and IDs',()=>{
  const comp=compartmentDefault('first',800);comp.sections[0].type='divider';comp.sections[0].children=[compartmentDefault('a',391,0),compartmentDefault('b',391,0)];

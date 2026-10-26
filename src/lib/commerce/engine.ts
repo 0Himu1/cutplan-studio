@@ -1,3 +1,4 @@
+import {materialForPanel} from '../furniture/materials.ts';
 import {calculateFurniture,type FurnitureInput} from '../furniture/families.ts';
 import {nestFurniture,type NestingPlan} from '../furniture/nesting.ts';
 export type Policy={version:string;approved:boolean;approvalReference:string;templates:string[];engineVersion:string;machine:{version:string;approvalReference:string;maxWidthMm:number;maxHeightMm:number;spacingMm:number;marginMm:number};laborMinor:number;deliveryMinor:number;marginBps:number;taxBps:number;discountMinor:number;areas:string[];finishesIncluded:boolean;edgingIncluded:boolean;hardwareIncluded:boolean};
@@ -24,7 +25,7 @@ export function priceQuote(input:FurnitureInput,policy:Policy|undefined,prices:P
  const lines:QuoteLine[]=[];
  function add(kind:QuoteLine['kind'],label:string,quantity:bigint,denominator:bigint,price:Price|undefined){if(!price||!/^\d{1,16}$/.test(price.minor)){issues.push(`${label}: an active versioned selling price is required.`);return;}const amount=round(BigInt(price.minor)*quantity*BigInt(10000+policy!.marginBps),denominator*10000n);lines.push({kind,label,quantity:denominator===1n?quantity.toString():`${quantity/denominator}.${(quantity%denominator).toString().padStart(denominator.toString().length-1,'0')}`.replace(/0+$/,'').replace(/\.$/,''),unit:price.unit,unitPriceMinor:price.minor,amountMinor:amount.toString(),priceVersionId:price.versionId,itemId:price.itemId});}
  for(const group of nesting.groups){const spec=JSON.parse(group.stockKey),count=nesting.sheets.filter(s=>s.groupId===group.id).length;if(!count)continue;const price=prices.find(p=>p.itemId===spec[0]&&p.unit==='sheet');add('board',`Board sheets (${group.id})`,BigInt(count),1n,price);}
- for(const panel of calc.panels){const a=input.panelOverrides?.[panel.panelId];if(!a?.boardId)issues.push(`${panel.label}: assign a published board.`);
+ for(const panel of calc.panels){const a=materialForPanel(input,panel);if(!a?.boardId)issues.push(`${panel.label}: assign a published board.`);
   if(!policy.finishesIncluded)for(const face of [a?.frontFinishId,a?.backFinishId])if(face){const price=prices.find(p=>p.itemId===face);const micrometers=BigInt(Math.round(panel.widthMm*1000))*BigInt(Math.round(panel.heightMm*1000));add('finish',`Face finish (${panel.panelId})`,micrometers,1000000000000n,price?.unit==='square_meter'?price:undefined);}
   if(!policy.edgingIncluded)for(const [edge,item] of Object.entries(a?.edges??{})){const length=['top','bottom'].includes(edge)?panel.widthMm:panel.heightMm;add('edging',`Edging (${panel.panelId}, ${edge})`,BigInt(Math.round(length*1000)),1000000n,prices.find(p=>p.itemId===item&&p.unit==='meter'));}
  }

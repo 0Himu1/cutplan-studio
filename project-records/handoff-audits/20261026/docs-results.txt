@@ -1,0 +1,5 @@
+
+> cutplan-studio@0.1.0 check:docs
+> node scripts/check-docs.mjs
+
+PASS: documentation links and code fences.
