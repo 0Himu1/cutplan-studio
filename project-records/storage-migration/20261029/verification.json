@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-29",
+  "status": "hosted_cutover_applied_local_app_verified",
+  "rehearsal": {
+    "verified": true,
+    "projects": 4,
+    "readyRevisions": 10,
+    "exportedRevisions": 10,
+    "workingHeads": 4,
+    "isolatedImport": true,
+    "repeatedImportWithoutDuplicates": true,
+    "restoredDesignDocuments": 10,
+    "sqlArchiveSha256": "ef442d55705f21195c4e8c0e8d37a9ef9c547e03d3edaf85abbbba86d916a6ad",
+    "hostedChangesApplied": false
+  },
+  "migrations": [
+    {
+      "name": "202610290001_project_design_snapshots.sql",
+      "sha256": "ec146fd157ff266d5ae217a5018c8ea4474bd0b53180c1f810ce4d6178dc235f"
+    },
+    {
+      "name": "202610290002_atomic_project_storage.sql",
+      "sha256": "076bad8cb1e87c15342883124096d861f77ae7ff5c4556b4dc6dfd9b7e849fff"
+    },
+    {
+      "name": "202610290003_finalize_project_storage.sql",
+      "sha256": "15a336e3765e313bdb213d28d2295a805835a2a1aa5f3f9fc2544872d8644a95"
+    }
+  ],
+  "checks": {
+    "unitTests": 122,
+    "unitFailures": 0,
+    "browserContractTests": 5,
+    "browserContractFailures": 0,
+    "typecheck": "passed",
+    "lint": "passed",
+    "productionBuild": "passed",
+    "stage1LinkedDryRun": "only_202610290001"
+  },
+  "acceptancePending": [
+    "restore into hosted destination including Auth/private files",
+    "fresh live downstream photo/accepted-quote/assembly acceptance",
+    "remote application deployment (local app only verified)"
+  ],
+  "privateArchiveExcludedFromGit": true,
+  "approval": {
+    "received": true,
+    "date": "2026-10-29",
+    "scope": "three hosted migrations and verified original project import"
+  },
+  "hosted": {
+    "migrationsApplied": 3,
+    "migrationVersionsMatched": 20,
+    "ready": true,
+    "activeOriginalProjects": 4,
+    "originalRevisionsVerified": 10,
+    "originalMetadataExactlyUnchanged": true,
+    "totalProjectRecords": 5,
+    "totalSnapshots": 14,
+    "pendingSaves": 0,
+    "temporaryTestProjectArchived": true,
+    "temporaryBrowserDraftDeleted": true,
+    "ownerBrowserOriginalProjectsOpened": 4,
+    "ownerBrowserHistoricalRevisionsOpened": 10,
+    "realApiInitialClaim": true,
+    "realApiMeasuredSaveAndReload": true,
+    "realApiRename": true,
+    "realApiUndoRedoBeforeSave": true,
+    "realApiStaleEditRejectedWithInputPreserved": true,
+    "anonymousSnapshotAccessDenied": true,
+    "authenticatedSnapshotAccessDenied": true,
+    "legacyWriterExecutionRevoked": true,
+    "temporaryBackfillExecutionRevoked": true,
+    "twoHostedIdentitiesVerified": true,
+    "secondIdentityKind": "temporary real Supabase Auth login removed after live API checks",
+    "crossOwnerReadHistorySaveRecoveryDenied": true,
+    "signedOutApiDenied": true
+  },
+  "postCutoverRestore": {
+    "verified": true,
+    "projects": 5,
+    "readyRevisions": 14,
+    "exportedRevisions": 14,
+    "workingHeads": 5,
+    "isolatedImport": true,
+    "repeatedImportWithoutDuplicates": true,
+    "restoredDesignDocuments": 14,
+    "sqlArchiveSha256": "b90414a64865d6ae7dbec656d7d74f3422d747d29cb00094db332a7d5370e380",
+    "hostedChangesApplied": false,
+    "source": "actual hosted SQL metadata and snapshots",
+    "destination": "isolated PostgreSQL",
+    "hostedDestinationRestore": false
+  }
+}

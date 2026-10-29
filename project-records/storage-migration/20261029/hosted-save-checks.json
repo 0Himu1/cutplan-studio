@@ -1,0 +1,7 @@
+{
+  "hostedConcurrentSaveSingleWinner": true,
+  "responseLossRetryIdempotent": true,
+  "changedPayloadRetryRejected": true,
+  "testProjectVersion": 4,
+  "originalProjectsUnchanged": true
+}

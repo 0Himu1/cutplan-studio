@@ -1,0 +1,13 @@
+{
+  "secondIdentity": "temporary real hosted Supabase Auth login",
+  "signedInListingEmpty": true,
+  "crossOwnerCurrentReadsDenied": 4,
+  "crossOwnerHistoryDenied": true,
+  "crossOwnerRecoveryDenied": true,
+  "crossOwnerSaveDenied": true,
+  "authenticatedDirectSnapshotReadDenied": true,
+  "signedOutApiDenied": true,
+  "temporaryIdentityRemoved": true,
+  "staffGrantsCreated": false,
+  "emailsSent": false
+}

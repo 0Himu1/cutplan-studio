@@ -1,10 +1,8 @@
 import 'server-only';
-import { ObjectId } from 'mongodb';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { commitMongoRevision, readMongoRevision, mongoConfigured } from './mongo';
+import {readProjectSnapshot,requireProjectStorage,projectStorageReady} from './storage';
 import { snapshotFurniture, ProjectError, type CloudProject, type SaveInput } from './contracts';
-import { projectIdentity, requestHash, snapshotHash } from './identity';
-import { resumeSave, type SaveOperation } from './protocol';
+import { canonicalSnapshot,projectIdentity, requestHash, snapshotHash } from './identity';
 import { publicCatalog } from '@/lib/catalog/public';
 import {calculateFurniture} from '@/lib/furniture/families';
 import { materialAssignments,validateMaterials } from '@/lib/furniture/materials';
@@ -12,6 +10,9 @@ import { materialAssignments,validateMaterials } from '@/lib/furniture/materials
 export const PROJECT_COLUMNS='id,source_draft_id,name,furniture_type,version,current_revision_id,sync_status,pending_operation_id,created_at,updated_at';
 
 function rpcError(message: string): never {
+  if (/storage_maintenance/.test(message)) throw new ProjectError(503,'storage_maintenance','Account project storage is being migrated. Your work is preserved; retry after maintenance.');
+  if (/snapshot_missing|snapshot_conflict|snapshot_metadata_mismatch|invalid_snapshot/.test(message)) throw new ProjectError(503,'integrity_error','The saved design could not be verified. Your work is preserved; contact the studio owner.');
+  if (/invalid_save/.test(message)) throw new ProjectError(422,'invalid_input','The design contains unsupported or invalid measurements. Review it and retry.');
   if (/version_conflict/.test(message)) throw new ProjectError(409,'version_conflict','This project changed in another tab. Your typed name is still here. Reload the latest project before saving again.');
   if (/save_pending/.test(message)) throw new ProjectError(409,'save_pending','An earlier save needs to finish. Open the account project and choose Retry save.');
   if (/operation_conflict/.test(message)) throw new ProjectError(409,'operation_conflict','This save request has changed. Retry the original save before starting a new one.');
@@ -26,21 +27,8 @@ async function ownedProject(owner: string, id: string) {
   return data as CloudProject;
 }
 
-async function complete(operation: SaveOperation) {
-  return resumeSave(operation,{
-    commit: async op=>commitMongoRevision({_id:op.revision_id,projectId:new ObjectId(op.project_id),ownerUserId:op.owner_user_id,operationId:op.id,revisionNumber:op.expected_version+1,schemaVersion:1,engineVersion:op.payload!.stage!=='project-shell'?op.payload!.engineVersion:'project-shell-v1',snapshot:op.payload!,snapshotHash:op.snapshot_hash,createdAt:new Date(op.created_at)}),
-    verify: async op=>{ await readMongoRevision(op.owner_user_id,op.project_id,op.revision_id,op.snapshot_hash); },
-    finish: async op=>{
-      const {data,error}=await createAdminClient().rpc('cutplan_finish_project_save',{p_owner:op.owner_user_id,p_operation:op.id,p_snapshot_hash:op.snapshot_hash});
-      if (error) rpcError(error.message);
-      // Return only customer metadata, never the privileged row or operation payload.
-      return ownedProject(op.owner_user_id,(data as {id:string}).id);
-    },
-    read: op=>ownedProject(op.owner_user_id,op.project_id)
-  });
-}
-
 export async function saveProject(owner: string, input: SaveInput) {
+  await requireProjectStorage();
   const configuration=snapshotFurniture(input.snapshot);
   const assignments=configuration?materialAssignments(configuration,calculateFurniture(configuration).panels):{};
   if(configuration&&Object.values(assignments).some(value=>value.boardId||value.frontFinishId||value.backFinishId||Object.values(value.edges??{}).length)){
@@ -49,29 +37,33 @@ export async function saveProject(owner: string, input: SaveInput) {
     const errors=existing?[]:validateMaterials(assignments,await publicCatalog());
     if(errors.length)throw new ProjectError(422,'material_unavailable',errors.join(' '));
   }
-  if (!mongoConfigured()) throw new ProjectError(503,'setup_pending','Account saving is being configured. Your local draft is safe.');
   const id=projectIdentity(owner,input.sourceDraftId);
   if (input.projectId && input.projectId!==id) throw new ProjectError(404,'not_found','This account project is unavailable.');
-  const {data,error}=await createAdminClient().rpc('cutplan_begin_project_save',{
+  const {data,error}=await createAdminClient().rpc('cutplan_save_project',{
     p_owner:owner,p_operation:input.operationId,p_project:id,p_source:input.sourceDraftId,p_expected:input.expectedVersion,
-    p_request_hash:requestHash(owner,input,id),p_snapshot_hash:snapshotHash(input.snapshot),p_payload:input.snapshot
+    p_request_hash:requestHash(owner,input,id),p_snapshot_hash:snapshotHash(input.snapshot),p_payload:input.snapshot,p_canonical:canonicalSnapshot(input.snapshot)
   });
   if (error) rpcError(error.message);
-  if ((data as {already_claimed?:boolean}).already_claimed) return {project:await ownedProject(owner,id),alreadyClaimed:true};
-  return {project:await complete(data as SaveOperation),alreadyClaimed:false};
+  return {project:await ownedProject(owner,id),alreadyClaimed:Boolean((data as {alreadyClaimed?:boolean}).alreadyClaimed)};
 }
 
 export async function recoverProject(owner: string,id: string) {
+  await requireProjectStorage();
   const project=await ownedProject(owner,id);
   if (!project.pending_operation_id) return project;
   const {data,error}=await createAdminClient().from('project_save_operations').select('*').eq('id',project.pending_operation_id).eq('owner_user_id',owner).maybeSingle();
   if (error) rpcError(error.message);
   if (!data) throw new ProjectError(503,'integrity_error','This save needs recovery. Contact the studio owner.');
-  return complete(data as SaveOperation);
+  const {error:recoverError}=await createAdminClient().rpc('cutplan_recover_project_save',{
+    p_owner:owner,p_project:id,p_operation:data.id,p_canonical:data.payload?canonicalSnapshot(data.payload):null
+  });
+  if(recoverError)rpcError(recoverError.message);
+  return ownedProject(owner,id);
 }
 
 export async function projectRevision(owner: string,id: string, revisionId?: string) {
   const project=await ownedProject(owner,id);
+  if(!await projectStorageReady())throw new ProjectError(503,'storage_maintenance','Account project storage is being migrated. Browser drafts remain available. Retry after maintenance.');
   const target=revisionId??project.current_revision_id;
   const {data:historyData,error:historyError}=await createAdminClient().from('design_revision_index')
     .select('id,revision_number,created_at').eq('project_id',id).eq('state','ready').order('revision_number',{ascending:false}).limit(101);
@@ -81,7 +73,7 @@ export async function projectRevision(owner: string,id: string, revisionId?: str
   const {data,error}=await createAdminClient().from('design_revision_index').select('id,revision_number,snapshot_hash,created_at').eq('project_id',id).eq('id',target).eq('state','ready').maybeSingle();
   if (error) rpcError(error.message);
   if (!data) throw new ProjectError(404,'not_found','This saved revision is unavailable.');
-  const revision=await readMongoRevision(owner,id,target,data.snapshot_hash);
+  const revision=await readProjectSnapshot(id,target,data.snapshot_hash);
   return {project,revision:{id:data.id,number:data.revision_number,snapshot:revision.snapshot,createdAt:data.created_at},history,hasMoreHistory:(historyData?.length??0)>100};
 }
 

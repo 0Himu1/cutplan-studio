@@ -1,0 +1,6 @@
+{
+  "name": "cutplan-private-storage-export",
+  "private": true,
+  "type": "module",
+  "dependencies": {"mongodb": "7.7.0"}
+}

@@ -1,5 +1,9 @@
 # Project documentation
 
+**Storage migration, 29 October 2026:** [Supabase-only project storage and completed cutover](integrations/supabase-project-storage-cutover.md). All three hosted migrations are applied, four original projects/ten revisions preserved, and real saves verified. This supersedes earlier MongoDB runtime instructions; remaining acceptance limits are recorded there.
+
+Latest requested refinement: [Landing-page GSAP motion and layout](delivery/landing-motion-followup.md), 26 October 2026. This follows the final handoff and repository transfer; it does not add a numbered phase.
+
 **Current entrypoint: [Final implementation handoff — 26 October 2026](handoff-final/README.md).** This reconciles Phase 22 with subsequent requests, current code, migrations and operational limits. Read it before the chronological records below.
 
 Implementation scope is closed; Phase 22 remains the final numbered phase, separate from launch approval. Current board model: six families, 39 active thickness variants. See [current catalog/publication state](handoff-final/05-materials-catalog.md).

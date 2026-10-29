@@ -21,7 +21,10 @@
     "db:migrations": "supabase migration list --linked",
     "db:plan": "supabase db push --linked --dry-run",
     "db:query": "supabase db query --linked",
-    "db:mongo:setup": "node --env-file=.env.local scripts/setup-mongodb.mjs",
+    "db:project-storage:verify": "node --env-file=.env.local scripts/check-project-storage.mjs",
+    "db:project-storage:backup": "node --env-file=.env.local scripts/backup-project-storage.mjs",
+    "db:project-storage:security": "supabase db query --linked --file scripts/verify-project-storage-security.sql",
+    "db:project-storage:transfer": "node --env-file=.env.local scripts/project-storage-transfer.mjs",
     "photos:cleanup": "node --env-file=.env.local scripts/cleanup-photos.mjs",
     "recovery:drill": "node scripts/recovery-drill.mjs",
     "release:check": "node scripts/release-readiness.mjs"
@@ -32,8 +35,8 @@
   "dependencies": {
     "@supabase/ssr": "0.12.7",
     "@supabase/supabase-js": "2.118.0",
+    "gsap": "3.15.0",
     "lucide-react": "1.61.0",
-    "mongodb": "7.7.0",
     "next": "16.4.2",
     "next-themes": "0.4.6",
     "pdf-lib": "^1.17.1",

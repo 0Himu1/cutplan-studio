@@ -54,14 +54,6 @@ test('SQL accepts role defaults, preserves old snapshots and keeps validator pri
  }finally{await db.close();}
 });
 
-test('Mongo snapshot schema accepts role defaults only on cabinets and retains strict preview-color shape',async()=>{
- const {cabinetSchema,snapshotSchema}=await import('../../scripts/cabinet-document-schema.mjs');
- assert.equal(cabinetSchema.properties.materialDefaults.additionalProperties,false);assert.deepEqual(Object.keys(cabinetSchema.properties.materialDefaults.properties),['body','back','front']);
- assert.equal(cabinetSchema.properties.materialDefaults.properties.body.properties.previewColor.pattern,'^#[0-9A-Fa-f]{6}$');
- for(const item of snapshotSchema.oneOf)if(item.properties.configuration)assert.equal(item.properties.configuration.properties.materialDefaults,undefined);
-});
-
-
 test('catalog board colors drive both faces and edges, with finish priority and legacy fallback',()=>{
  const catalog=structuredClone(boardCatalog);catalog.items.find(item=>item.id===bodyId).board_skus.color_code='#123456';catalog.items.find(item=>item.id===doorId).board_skus.color_code='#abcdef';
  const c=configured();c.materialDefaults.body.previewColor='#ff0000';const p=calculateCabinet(c).panels.find(panel=>panel.materialSlot==='body');

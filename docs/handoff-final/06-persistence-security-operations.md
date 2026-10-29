@@ -1,5 +1,7 @@
 # Persistence, security, migrations and operations
 
+**Superseded storage architecture:** the [29 October Supabase migration runbook](../integrations/supabase-project-storage-cutover.md) describes the completed hosted database cutover and verified local application. MongoDB descriptions below record the original audit, not the new runtime.
+
 ## Storage and relationships
 
 These stores serve different purposes. Removing a record from one does not delete the others.

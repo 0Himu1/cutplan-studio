@@ -1,4 +1,5 @@
 node_modules/
+.private/
 .next/
 .next-auth-contract/
 out/

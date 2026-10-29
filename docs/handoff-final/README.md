@@ -1,8 +1,12 @@
 # CutPlan Studio — final implementation handoff
 
+**29 October storage follow-up:** [Supabase project-storage cutover](../integrations/supabase-project-storage-cutover.md) supersedes the Atlas runtime architecture below. All three hosted migrations are applied; four projects/ten revisions are preserved and real saves verified. Original audit evidence stays historical.
+
 **26 October 2026 · Asia/Dhaka. Covers Phase 22 plus all recovered subsequent owner requests.**
 
 **Repository transfer follow-up:** the owner subsequently authorized committing and pushing the current tree. [Transfer record](../delivery/repository-transfer-20261026.md) supersedes this audit's local-only Git status; the audit receipts remain historical evidence.
+
+**Later requested refinement:** [Landing-page GSAP motion and layout](../delivery/landing-motion-followup.md) records the owner's subsequent home-page work. The 68-record ledger below remains the original audit snapshot, not a claim to include requests made after its completion.
 
 The owner has closed implementation scope. Phase 22 remains the final numbered phase; later changes are refinements, not new phases. The current software includes the CAD workspace, guided cabinet configuration, category/variant catalog, board appearance, cutting worksheets and notch-aware inspection described here. **Software completion is separate from launch/manufacturing approval: the release ledger still returns `not_ready`.**
 

@@ -1,5 +1,7 @@
 # CutPlan Studio operational handover
 
+**29 October storage update:** the [Supabase cutover](../integrations/supabase-project-storage-cutover.md) is applied and verified against hosted storage. Use its backup/security commands and rollback rules. Earlier Atlas recovery instructions below are historical. The current isolated drill restores design content from SQL itself; a hosted destination restore remains unverified.
+
 ## Release state
 
 The local review build is available. **Public launch is not approved.** `npm run release:check` prints the current approval ledger and deliberately exits 2 while release is blocked. `/review/launch` presents the same missing evidence. The staff JSON view requires an active admin at `/api/admin/readiness`. This ledger is an explicit review record, not a live monitor or claim that external prerequisites have been checked automatically.
