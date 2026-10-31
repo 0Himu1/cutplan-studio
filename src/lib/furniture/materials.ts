@@ -30,6 +30,9 @@ export function parseOverrides(value:unknown):PanelOverrides|null {
 
 export type SellableMaterial={id:string;category_code?:string|null;price?:{price_bdt:number;unit:string};kind:'board'|'finish'|'edging';name:string;code:string;board_skus?:Record<string,unknown>|null;finish_skus?:Record<string,unknown>|null;edging_skus?:Record<string,unknown>|null};
 export type MaterialCatalog={items:SellableMaterial[];compatibility:{board_item_id:string;finish_item_id:string}[]};
+export function compatibleFinishes(catalog:MaterialCatalog,boardId:string|undefined){
+ return catalog.items.filter(item=>item.kind==='finish'&&catalog.compatibility.some(pair=>pair.board_item_id===boardId&&pair.finish_item_id===item.id));
+}
 export function validateMaterials(overrides:PanelOverrides,catalog:MaterialCatalog):string[] {
   const errors:string[]=[];
   for(const [id,item] of Object.entries(overrides)){

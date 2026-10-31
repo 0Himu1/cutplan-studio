@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-31",
+  "status": "implemented_locally_hosted_image_storage_verified",
+  "graphifyContextUsed": true,
+  "baseCommit": "4536ba2906446a311db71a7401601c935637b09b",
+  "unitTestsPassed": 126,
+  "doorAndMaterialsBrowserTestsPassed": 4,
+  "catalogBrowserTestsPassed": 9,
+  "typecheck": "passed",
+  "lint": "passed",
+  "productionBuild": "passed",
+  "documentationChecks": "passed",
+  "savedProjectStorage": {
+    "ready": true,
+    "verifiedRevisions": 14,
+    "pendingSaves": 0
+  },
+  "checks": [
+    "per-door front finish with back and edges preserved",
+    "catalog name/color/image upload and HTTPS URL",
+    "published compatible finishes only",
+    "actual-door context selection",
+    "cancel and Undo/Redo",
+    "saved reload",
+    "image success and named-color fallback",
+    "mobile resize keeps rendered model visible",
+    "pending-upload form closure prevents catalog creation",
+    "anonymous and cross-origin API denial",
+    "unique identity fields through Board/Finish/Edging switches; regression failed before fix and passes after",
+    "separate material forms use shared inputs and kind-specific validated payloads",
+    "HTML v-mode code pattern and field-specific API validation"
+  ],
+  "hostedMigrationApplied": true,
+  "realCustomerCatalogEntriesCreated": false,
+  "pushed": false,
+  "deployed": false,
+  "measurementBrowserTestsPassed": 1
+}

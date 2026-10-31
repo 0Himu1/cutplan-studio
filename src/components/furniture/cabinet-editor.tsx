@@ -6,10 +6,11 @@ import {ThemeToggle} from '@/components/theme-toggle';
 import {MeasurementInput} from '@/components/measurement/measurement-input';
 import {UnitSelect,useMeasurementUnit} from '@/components/measurement/unit-provider';
 import {MaterialsWorkspace} from './materials-workspace';
+import {DoorFinishPicker} from './door-finish-picker';
 import {CabinetConfig} from './cabinet-config';
 import { materialAssignments,validateMaterials, type MaterialCatalog } from '@/lib/furniture/materials';
 import Link from 'next/link';
-import { ArrowLeft, Box, Check, FileText, ImagePlus, Expand, DoorOpen, DoorClosed, PanelTop, Eye, FolderOpen, Layers, SwatchBook, MousePointer2, Redo2, Ruler, Save, Undo2, ZoomIn, ZoomOut } from 'lucide-react';
+import { ArrowLeft, Box, Check, FileText, ImagePlus, Expand, DoorOpen, DoorClosed, PanelTop, Palette, Eye, FolderOpen, Layers, SwatchBook, MousePointer2, Redo2, Ruler, Save, Undo2, ZoomIn, ZoomOut } from 'lucide-react';
 import { EditorDialog } from './editor-dialog';
 import {ViewGizmo,type GizmoAxes} from './view-gizmo';
 import { SheetPreview } from './sheet-preview';
@@ -52,10 +53,11 @@ export function CabinetEditor({ commerce, family='cabinet', projectName='Furnitu
   const [mode,setMode]=useState<'3d'|'2d'|'sheets'>('3d');
   const [webglUnavailable,setWebglUnavailable]=useState(false);
   const unavailable=useCallback(()=>{setWebglUnavailable(true);setMode('2d');},[]);
-  const [task,setTask]=useState<null|'dimensions'|'construction'|'materials'|'panels'|'project'|'cutlist'|'recovery'|'quote'|'photo'|'commands'|'assembly'>(null);
+  const [task,setTask]=useState<null|'dimensions'|'construction'|'materials'|'finishings'|'panels'|'project'|'cutlist'|'recovery'|'quote'|'photo'|'commands'|'assembly'>(null);
   const [step,setStep]=useState(0);
   const [draft,setDraft]=useState<CabinetInput|null>(null);
   const [context,setContext]=useState<{x:number;y:number}|null>(null);
+  const panelContext=useCallback((panelId:string,position:{x:number;y:number})=>{setSelectedPanel(panelId);setPanelMode(true);setContext({x:Math.min(position.x,window.innerWidth-230),y:Math.min(position.y,window.innerHeight-390)});},[]);
   const [panelMode,setPanelMode]=useState(false);
   const [exploded,setExploded]=useState(false);
   const [doorsOpen,setDoorsOpen]=useState(false);
@@ -157,11 +159,11 @@ export function CabinetEditor({ commerce, family='cabinet', projectName='Furnitu
   }
 
   const active=calculateCabinet(preview).panels.find(panel=>panel.panelId===selectedPanel);
-  const taskTitle=task==='assembly'?'Assembly documents':task==='commands'?'Editor commands':task==='photo'?'Photo suggestions':task==='quote'?'Quote and order':task==='dimensions'?'Edit dimensions':task==='construction'?'Construction':task==='materials'?'Panel materials':task==='panels'?'Select a panel':task==='cutlist'?'Current cut list':task==='recovery'?'Recovery and save status':'Project and history';
+  const taskTitle=task==='finishings'?'Select Finishings':task==='assembly'?'Assembly documents':task==='commands'?'Editor commands':task==='photo'?'Photo suggestions':task==='quote'?'Quote and order':task==='dimensions'?'Edit dimensions':task==='construction'?'Construction':task==='materials'?'Panel materials':task==='panels'?'Select a panel':task==='cutlist'?'Current cut list':task==='recovery'?'Recovery and save status':'Project and history';
   function apply(){
     if(invalid)return;
     const errors=validateMaterials(materialAssignments(candidate,validation.panels),catalog);
-    if(errors.length&&(task==='materials'||candidate.materialDefaults)){setMessage(errors.join(' '));return;}
+    if(errors.length&&(task==='materials'||task==='finishings'||candidate.materialDefaults)){setMessage(errors.join(' '));return;}
     commit(candidate);dismissTask(candidate);
   }
   function orient(next:'front'|'floor'|'right'|'iso'){
@@ -194,6 +196,7 @@ export function CabinetEditor({ commerce, family='cabinet', projectName='Furnitu
         {rail('Materials',SwatchBook,()=>{setPanelMode(true);openTask('materials');},!closingTask&&task==='materials')}
         {rail('Select',MousePointer2,()=>{setPanelMode(false);setSelectedPanel('');},!panelMode)}
         {rail('Panels',Layers,()=>{setPanelMode(true);openTask('panels');},panelMode)}
+        {active?.role==='door'&&rail('Select Finishings',Palette,()=>openTask('finishings'),!closingTask&&task==='finishings')}
       </nav>
       <nav className="cad-rail cad-right" aria-label={`${title} tools`}>
         {rail('Explode',Expand,()=>setExploded(value=>!value),exploded)}
@@ -205,7 +208,7 @@ export function CabinetEditor({ commerce, family='cabinet', projectName='Furnitu
       </nav>
         {webglUnavailable&&<p className="cad-texture-note" role="status">3D unavailable on this device. Measured 2D remains available.</p>}
         <div className="cad-mode" role="group" aria-label="Preview mode">{(['3d','2d','sheets'] as const).map(value=><button type="button" key={value} disabled={value==='3d'&&webglUnavailable} aria-pressed={mode===value} onClick={()=>{setMode(value);setCuttingSettingsOpen(false);}}>{value.toUpperCase()}</button>)}</div>
-        {!ready?<p className="cad-center" role="status">Loading cabinet editor…</p>:readOnly&&!initial?<p className="cad-center">This revision has no saved furniture dimensions.</p>:mode==='sheets'?<SheetPreview catalog={catalog} settingsOpen={cuttingSettingsOpen} onSettingsOpen={setCuttingSettingsOpen} jobKey={recoveryKey} input={preview} selected={selectedPanel} onSelect={setSelectedPanel}/>:mode==='3d'?<CabinetViewport axes={gizmoAxes} input={preview} selected={selectedPanel} onSelect={setSelectedPanel} catalog={catalog} embedded hideDoors={hideDoors} hideBack={hideBack} doorsOpen={doorsOpen} showDimensions={showDimensions} xray={xray} exploded={exploded} memory={cameraStore} cameraCommand={camera} onUnavailable={unavailable}/>:<CabinetDrawing input={preview} view={view} selected={selectedPanel} onSelect={setSelectedPanel} zoom={drawingZoom}/>}
+        {!ready?<p className="cad-center" role="status">Loading cabinet editor…</p>:readOnly&&!initial?<p className="cad-center">This revision has no saved furniture dimensions.</p>:mode==='sheets'?<SheetPreview catalog={catalog} settingsOpen={cuttingSettingsOpen} onSettingsOpen={setCuttingSettingsOpen} jobKey={recoveryKey} input={preview} selected={selectedPanel} onSelect={setSelectedPanel}/>:mode==='3d'?<CabinetViewport onPanelContext={panelContext} axes={gizmoAxes} input={preview} selected={selectedPanel} onSelect={setSelectedPanel} catalog={catalog} embedded hideDoors={hideDoors} hideBack={hideBack} doorsOpen={doorsOpen} showDimensions={showDimensions} xray={xray} exploded={exploded} memory={cameraStore} cameraCommand={camera} onUnavailable={unavailable}/>:<CabinetDrawing input={preview} view={view} selected={selectedPanel} onSelect={setSelectedPanel} zoom={drawingZoom}/>}
         <div className="cad-selection pointer-events-none inline-flex min-h-11 items-center rounded-md px-3 text-xs">{panelMode?(active?.label??'Choose a panel'):title}</div>
         {mode!=='sheets'&&<ViewGizmo axes={gizmoAxes} view={mode==='2d'?view:camera.view} onView={orient}/>}
         <div className="cad-zoom"><button type="button" aria-label="Zoom out" onClick={()=>zoom(-1)}><ZoomOut size={18}/></button><button type="button" aria-label="Fit model" onClick={()=>{setDrawingZoom(1);setCamera(previous=>({...previous,serial:previous.serial+1,zoom:0}));}}><Expand size={18}/></button><button type="button" aria-label="Zoom in" onClick={()=>zoom(1)}><ZoomIn size={18}/></button></div>
@@ -213,7 +216,7 @@ export function CabinetEditor({ commerce, family='cabinet', projectName='Furnitu
 
     </div>
     <footer className="cad-status"><button type="button" onClick={()=>openTask('recovery')}>{message||recoveryProblem||(!readOnly&&baseVersion!==version?'Saved project changed — review recovery':readOnly?'Saved revision — read-only':dirty?'Design has unsaved changes.':'Design matches the saved project.')}</button><span>Proposed construction · {unit==='mm'?'mm':'inch/suta'}</span><span className="cad-size">W {current.widthMm} · H {current.heightMm} · D {current.depthMm}</span></footer>
-    {context&&<EditorDialog anchor={context} title={active&&panelMode?active.label:`${title} actions`} onClose={()=>setContext(null)}><div className="cad-context" role="group" aria-label="Cabinet context actions">{(['dimensions','construction','materials','cutlist','commands','assembly'] as const).filter(value=>family!=='cabinet'||value!=='construction').map(value=><button type="button" key={value} onClick={()=>openTask(value)}>{value==='dimensions'?'Edit dimensions':value==='construction'?'Construction':value==='materials'?'Panel materials':value==='commands'?'Editor commands':value==='assembly'?'Assembly documents':'Cut list'}</button>)}</div></EditorDialog>}
+    {context&&<EditorDialog anchor={context} title={active&&panelMode?active.label:`${title} actions`} onClose={()=>setContext(null)}><div className="cad-context" role="group" aria-label="Cabinet context actions">{active?.role==='door'&&<button type="button" onClick={()=>openTask('finishings')}>Select Finishings</button>}{(['dimensions','construction','materials','cutlist','commands','assembly'] as const).filter(value=>family!=='cabinet'||value!=='construction').map(value=><button type="button" key={value} onClick={()=>openTask(value)}>{value==='dimensions'?'Edit dimensions':value==='construction'?'Construction':value==='materials'?'Panel materials':value==='commands'?'Editor commands':value==='assembly'?'Assembly documents':'Cut list'}</button>)}</div></EditorDialog>}
     {task&&<EditorDialog docked closing={closingTask} title={taskTitle} onClose={closeTask}>
       {family==='cabinet'&&(task==='dimensions'||task==='construction')&&<CabinetConfig catalog={catalog} catalogLoading={catalogLoading} catalogError={catalogError} retryCatalog={()=>{setCatalogLoading(true);setCatalogAttempt(value=>value+1);}} input={candidate} disabled={locked} onChange={input=>{setDraft(input);setRaw(fields(input));}} onApply={apply} onCancel={closeTask} error={validation.blockingErrors[0]?.message}/>}
       {family!=='cabinet'&&(task==='dimensions'||task==='construction')&&<form aria-label="Cabinet parameters" onSubmit={event=>{event.preventDefault();apply();}}>
@@ -228,6 +231,7 @@ export function CabinetEditor({ commerce, family='cabinet', projectName='Furnitu
         {invalid&&<p role="alert" className="cad-error">{validation.blockingErrors[0]?.message}</p>}
         <div className="cad-dialog-actions"><button type="button" onClick={closeTask}>Cancel</button><button type="submit" className="cad-primary" disabled={locked||invalid}>Apply measurements</button></div>
       </form>}
+      {task==='finishings'&&<><DoorFinishPicker input={draft??current} selected={selectedPanel} onSelect={setSelectedPanel} onChange={input=>{setDraft(input);setRaw(fields(input));}} catalog={catalog} loading={catalogLoading} error={catalogError} retry={()=>{setCatalogLoading(true);setCatalogAttempt(value=>value+1);}} disabled={locked}/>{(invalid||message)&&<p role="alert" className="cad-error">{message||validation.blockingErrors[0]?.message}</p>}<div className="cad-dialog-actions"><button onClick={closeTask}>Cancel</button><button className="cad-primary" disabled={locked||invalid||catalogLoading||Boolean(catalogError)} onClick={apply}>Apply finishing</button></div></>}
       {task==='materials'&&<><MaterialsWorkspace family={family} input={draft??current} selected={selectedPanel} onSelect={setSelectedPanel} onChange={input=>{setDraft(input);setRaw(fields(input));}} catalog={catalog} loading={catalogLoading} error={catalogError} retry={()=>{setCatalogLoading(true);setCatalogAttempt(value=>value+1);}} disabled={locked}/>{(invalid||message)&&<p role="alert" className="cad-error">{message||validation.blockingErrors[0]?.message}</p>}<div className="cad-dialog-actions"><button onClick={closeTask}>Cancel</button><button className="cad-primary" disabled={locked||invalid} onClick={apply}>Apply materials</button></div></>}
       {(task==='panels'||task==='cutlist')&&<><ul className="cad-panel-list">{calculation.panels.map(panel=><li key={panel.panelId}><button aria-pressed={selectedPanel===panel.panelId} onClick={()=>{setSelectedPanel(panel.panelId);setPanelMode(true);if(task==='panels')closeTask();}}><span>{panel.label}</span><small>{panel.widthMm} × {panel.heightMm} × {panel.thicknessMm} mm</small></button></li>)}</ul></>}
       {task==='assembly'&&<AssemblyWorkflow input={current} disabled={!ready||disabled}/>}

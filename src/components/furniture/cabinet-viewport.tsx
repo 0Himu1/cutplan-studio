@@ -2,6 +2,7 @@
 import {materialForPanel,previewPanelColor,previewBoardColor} from '@/lib/furniture/materials';
 import {findPanelClashes} from '@/lib/furniture/collisions';
 import {panelGeometry} from './panel-geometry';
+import {finishMapping} from '@/lib/furniture/finish-mapping';
 
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import * as THREE from 'three';
@@ -28,7 +29,7 @@ function paintDimension(canvas:HTMLCanvasElement,panel:Panel,unit:MeasurementUni
  if(unit==='in'){text(`W ${formatMeasurement(panel.widthMm,unit)}`,128);text(`H ${formatMeasurement(panel.heightMm,unit)}`,206);}else text(`${Number(panel.widthMm.toFixed(2))} × ${Number(panel.heightMm.toFixed(2))} mm`,170);
 }
 
-export function CabinetViewport({axes,input,selected,onSelect,catalog,embedded=false,cameraCommand,onUnavailable,memory,exploded,doorsOpen=false,showDimensions=false,xray=false,hideDoors=false,hideBack=false}:{hideDoors?:boolean;hideBack?:boolean;axes?:RefObject<GizmoAxes>;doorsOpen?:boolean;showDimensions?:boolean;xray?:boolean;memory?:RefObject<{position:number[];target:number[]}|null>;exploded?:boolean;embedded?:boolean;cameraCommand?:{view:string;serial:number;zoom:number};onUnavailable?:()=>void;input:CabinetInput;selected:string;onSelect:(id:string)=>void;catalog:MaterialCatalog}) {
+export function CabinetViewport({onPanelContext,axes,input,selected,onSelect,catalog,embedded=false,cameraCommand,onUnavailable,memory,exploded,doorsOpen=false,showDimensions=false,xray=false,hideDoors=false,hideBack=false}:{onPanelContext?:(id:string,position:{x:number;y:number})=>void;hideDoors?:boolean;hideBack?:boolean;axes?:RefObject<GizmoAxes>;doorsOpen?:boolean;showDimensions?:boolean;xray?:boolean;memory?:RefObject<{position:number[];target:number[]}|null>;exploded?:boolean;embedded?:boolean;cameraCommand?:{view:string;serial:number;zoom:number};onUnavailable?:()=>void;input:CabinetInput;selected:string;onSelect:(id:string)=>void;catalog:MaterialCatalog}) {
   const {resolvedTheme}=useTheme();
   const viewportTheme=resolvedTheme==='dark'?'dark':'light';
   const palette=useRef(viewportPalettes[viewportTheme]);
@@ -61,6 +62,7 @@ export function CabinetViewport({axes,input,selected,onSelect,catalog,embedded=f
   useEffect(()=>{
     const element=host.current;if(!element||failed)return;
     let active=true;
+    queueMicrotask(()=>{if(active)setTextureFailed(false);});
     let renderer:THREE.WebGLRenderer;
     try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch{queueMicrotask(()=>setFailed(true));return;}
     renderer.setPixelRatio(Math.min(devicePixelRatio,2));element.appendChild(renderer.domElement);
@@ -88,7 +90,7 @@ export function CabinetViewport({axes,input,selected,onSelect,catalog,embedded=f
       mesh.material=[...( ['right','left','top','bottom'] as const).map(edge=>new THREE.MeshStandardMaterial({color:assignment?.edges?.[edge]?'#65513d':previewBoardColor(input,panel,catalog),roughness:.8})),front,back];
       for(const material of mesh.material)material.emissive.setHex(panel.panelId===selectionRef.current?0x333366:0);
       const loader=new THREE.TextureLoader();
-      for(const [finishId,material] of [[assignment?.frontFinishId,front],[assignment?.backFinishId,back]] as const){const url=catalog.items.find(item=>item.id===finishId)?.finish_skus?.texture_url;if(typeof url==='string'&&url.startsWith('https://'))loader.load(url,texture=>{if(!active){texture.dispose();return;}texture.colorSpace=THREE.SRGBColorSpace;texture.center.set(.5,.5);texture.rotation=assignment?.grainAxis==='height'?Math.PI/2:0;material.map=texture;material.needsUpdate=true;},undefined,()=>{if(active)setTextureFailed(true);});}
+      for(const [finishId,material] of [[assignment?.frontFinishId,front],[assignment?.backFinishId,back]] as const){const url=catalog.items.find(item=>item.id===finishId)?.finish_skus?.texture_url;if(typeof url==='string'&&url.startsWith('https://'))loader.load(url,texture=>{if(!active){texture.dispose();return;}texture.colorSpace=THREE.SRGBColorSpace;texture.matrixAutoUpdate=false;texture.matrix.set(...finishMapping(panel.widthMm,panel.heightMm,texture.image.width,texture.image.height,assignment?.stockWidthMm,assignment?.stockHeightMm,assignment?.grainAxis==='height'));texture.wrapS=texture.wrapT=THREE.RepeatWrapping;texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());material.map=texture;material.color.set('#ffffff');material.needsUpdate=true;},undefined,()=>{if(active)setTextureFailed(true);});}
       const textCanvas=document.createElement('canvas');textCanvas.width=768;textCanvas.height=256;paintDimension(textCanvas,panel,labelUnit.current);
       {const texture=new THREE.CanvasTexture(textCanvas);labelTextures.current.push({canvas:textCanvas,panel,texture});texture.colorSpace=THREE.SRGBColorSpace;const labelWidth=Math.min(panel.widthMm*.92,panel.heightMm*2.5,600);const label=new THREE.Mesh(new THREE.PlaneGeometry(labelWidth,labelWidth/3),new THREE.MeshBasicMaterial({map:texture,transparent:true,side:THREE.FrontSide,depthWrite:false}));label.position.z=panel.thicknessMm/2+1;label.userData.dimensionLabel=true;label.visible=presentation.current.showDimensions;mesh.add(label);const reverse=new THREE.Mesh(label.geometry.clone(),(label.material as THREE.MeshBasicMaterial).clone());reverse.rotation.y=Math.PI;reverse.position.z=-panel.thicknessMm/2-1;reverse.userData.dimensionLabel=true;reverse.visible=label.visible;mesh.add(reverse);}
       const edges=new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry),new THREE.LineBasicMaterial({color:0x444455}));mesh.add(edges);
@@ -108,12 +110,12 @@ export function CabinetViewport({axes,input,selected,onSelect,catalog,embedded=f
     element.dataset.hardwareCount=String(rods.length);
     const ray=new THREE.Raycaster();const pointer=new THREE.Vector2();let down=[0,0];
     const start=(event:PointerEvent)=>{down=[event.clientX,event.clientY];};
-    const pickAt=(event:{clientX:number;clientY:number})=>{const box=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-box.left)/box.width*2-1,-(event.clientY-box.top)/box.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(meshes.filter(mesh=>mesh.visible),false)[0];onSelect(hit?.object.userData.panelId??'');};
+    const pickAt=(event:{clientX:number;clientY:number})=>{const box=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-box.left)/box.width*2-1,-(event.clientY-box.top)/box.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(meshes.filter(mesh=>mesh.visible),false)[0];const panelId=hit?.object.userData.panelId??'';onSelect(panelId);return panelId;};
     const pick=(event:PointerEvent)=>{if(Math.hypot(event.clientX-down[0],event.clientY-down[1])<=5)pickAt(event);};
-    const contextPick=(event:MouseEvent)=>{event.preventDefault();if(Math.hypot(event.clientX-down[0],event.clientY-down[1])>5){event.stopPropagation();return;}pickAt(event);};
+    const contextPick=(event:MouseEvent)=>{event.preventDefault();if(Math.hypot(event.clientX-down[0],event.clientY-down[1])>5){event.stopPropagation();return;}const panelId=pickAt(event);if(onPanelContext){event.stopPropagation();onPanelContext(panelId,{x:event.clientX,y:event.clientY});}};
     renderer.domElement.addEventListener('pointerdown',start);renderer.domElement.addEventListener('pointerup',pick);renderer.domElement.addEventListener('contextmenu',contextPick);
     const lost=(event:Event)=>{event.preventDefault();setFailed(true);};renderer.domElement.addEventListener('webglcontextlost',lost);
-    const observer=new ResizeObserver(()=>{const width=element.clientWidth,height=element.clientHeight;renderer.setSize(width,height);const aspect=width/Math.max(1,height),distanceScale=Math.max(1,1/aspect)/Math.max(1,1/camera.aspect);camera.position.sub(controls.target).multiplyScalar(distanceScale).add(controls.target);camera.aspect=aspect;camera.updateProjectionMatrix();controls.update();});observer.observe(element);
+    const observer=new ResizeObserver(()=>{const width=element.clientWidth,height=element.clientHeight;if(width<1||height<1)return;renderer.setSize(width,height);const aspect=width/height,distanceScale=Math.max(1,1/aspect)/Math.max(1,1/camera.aspect);camera.position.sub(controls.target).multiplyScalar(distanceScale).add(controls.target);camera.aspect=aspect;camera.updateProjectionMatrix();controls.update();});observer.observe(element);
     const applyTheme=()=>{
       const colors=grid.geometry.getAttribute('color'),normal=new THREE.Color(palette.current.grid),axis=new THREE.Color(palette.current.axis);
       for(let i=0;i<colors.count;i++){const color=Math.floor(i/4)===20?axis:normal;colors.setXYZ(i,color.r,color.g,color.b);}colors.needsUpdate=true;

@@ -1,5 +1,7 @@
 # CutPlan Studio — final implementation handoff
 
+**31 October door finishings:** [Formica / HPL follow-up](../delivery/door-finishes-followup.md) adds named image/color catalog finishes and a per-door inspector. Approved hosted image storage is applied; application changes remain local. Earlier records remain historical.
+
 **29 October storage follow-up:** [Supabase project-storage cutover](../integrations/supabase-project-storage-cutover.md) supersedes the Atlas runtime architecture below. All three hosted migrations are applied; four projects/ten revisions are preserved and real saves verified. Original audit evidence stays historical.
 
 **26 October 2026 · Asia/Dhaka. Covers Phase 22 plus all recovered subsequent owner requests.**

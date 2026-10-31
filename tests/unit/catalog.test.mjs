@@ -4,7 +4,15 @@ import {readFile} from 'node:fs/promises';
 import {PGlite} from '@electric-sql/pglite';
 import {DEFAULT_CABINET} from '../../src/lib/furniture/editor.ts';
 import {designSnapshot} from '../../src/lib/projects/contracts.ts';
-import {catalogInput} from '../../src/lib/catalog/contracts.ts';
+import {catalogInput,catalogInputError,CATALOG_CODE_PATTERN} from '../../src/lib/catalog/contracts.ts';
+
+test('catalog codes share a valid HTML pattern and finish creation does not require prices or board dimensions',()=>{
+ const html=new RegExp(`^(?:${CATALOG_CODE_PATTERN})$`,'v');
+ const finish={action:'create',kind:'finish',code:'HPL-CREAM_01',name:'Formica cream',details:{surface:'laminate',color_code:'#eee5d6',texture_url:''}};
+ assert.ok(catalogInput(finish));assert.ok(html.test(finish.code));
+ for(const code of ['bad code','A','Bad/code']){assert.equal(html.test(code),false);assert.match(catalogInputError({...finish,code}),/Code must/);assert.equal(catalogInput({...finish,code}),null);}
+ assert.match(catalogInputError({...finish,name:'X'}),/Name must/);assert.match(catalogInputError({...finish,details:{...finish.details,color_code:'blue'}}),/six-digit color/);
+});
 test('catalog input rejects unsafe prices and unreviewed publishing',()=>{
  const base={id:'00000000-0000-4000-8000-000000000001',version:1};
  assert.equal(catalogInput({...base,action:'price',amount:'NaN',unit:'sheet',reason:'new price'}),null);
@@ -21,7 +29,7 @@ test('catalog transactions deny customers, preserve prices, reject stale edits a
  const forged=structuredClone(snapshot);forged.cabinet.panelOverrides['cabinet/side-left'].edges.top='not-a-uuid';
  assert.equal((await db.query('select public.cutplan_valid_project_snapshot($1::jsonb) valid',[JSON.stringify(forged)])).rows[0].valid,false);
  await db.exec(`insert into public.staff_memberships(user_id,role) values('${owner}','admin');set role authenticated;select set_config('request.jwt.claim.sub','${customer}',false);`);
- const call=async p=>(await db.query('select public.cutplan_catalog_change($1::jsonb) id',[JSON.stringify(p)])).rows[0].id;
+ const call=async p=>{assert.ok(catalogInput(p),catalogInputError(p)??'Invalid catalog payload');return (await db.query('select public.cutplan_catalog_change($1::jsonb) id',[JSON.stringify(p)])).rows[0].id;};
  const create={action:'create',kind:'board',code:'TEST-18',name:'Test board',details:{thickness_mm:18,sheet_width_mm:1220,sheet_height_mm:2440,grain_direction:'none'}};
  await assert.rejects(call(create),/catalog_forbidden/);
  await db.exec(`select set_config('request.jwt.claim.sub','${owner}',false);`);
@@ -36,7 +44,8 @@ test('catalog transactions deny customers, preserve prices, reject stale edits a
  await db.exec('reset role;');
  await assert.rejects(db.query(`update public.catalog_price_versions set price_bdt=999`),/catalog_price_immutable/);
  await db.exec('set role authenticated;');
- const finish=await call({action:'create',kind:'finish',code:'FINISH-TEST',name:'Test finish',details:{surface:'laminate',color_code:'#FFFFFF'}});
+ const finish=await call({action:'create',kind:'finish',code:'FINISH-TEST',name:'Test finish',details:{surface:'laminate',color_code:'#FFFFFF',texture_url:'https://example.com/formica.webp'}});
+ assert.deepEqual((await db.query('select surface,color_code,texture_url from public.finish_skus where item_id=$1',[finish])).rows[0],{surface:'laminate',color_code:'#FFFFFF',texture_url:'https://example.com/formica.webp'});
  const edging=await call({action:'create',kind:'edging',code:'EDGE-TEST',name:'Test PVC edge',details:{material:'pvc',thickness_mm:1.2,width_mm:22}});
  await assert.rejects(call({action:'price',id:edging,version:1,amount:'100',unit:'piece',reason:'Supplier review'}),/catalog_edging_unit/);
  await call({action:'price',id:edging,version:1,amount:'100',unit:'meter',reason:'Supplier review'});

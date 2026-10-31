@@ -4,12 +4,12 @@ import {calculateFurniture,type FurnitureInput} from '@/lib/furniture/families';
 import {BoardPicker} from '@/components/catalog/board-picker';
 import {ConfigSelect,ConfigValue} from '@/components/ui/config-fields';
 import {ConfigHint} from '@/components/ui/config-hint';
-import {physicalMaterial,materialForPanel,previewBoardColor,EDGES,type MaterialCatalog,type PanelMaterial} from '@/lib/furniture/materials';
+import {compatibleFinishes,physicalMaterial,materialForPanel,previewBoardColor,EDGES,type MaterialCatalog,type PanelMaterial} from '@/lib/furniture/materials';
 
 export function PanelMaterials({input,selected,onSelect,onChange,catalog,loading,error,retry,disabled,compact=false}:{input:FurnitureInput;selected:string;onSelect:(id:string)=>void;onChange:(input:FurnitureInput)=>void;catalog:MaterialCatalog;loading:boolean;error:string;retry:()=>void;disabled:boolean;compact?:boolean}){
  const panels=calculateFurniture(input).panels,panel=panels.find(item=>item.panelId===selected);
  const value=panel?physicalMaterial(materialForPanel(input,panel)):{},board=catalog.items.find(item=>item.id===value.boardId&&item.kind==='board');
- const finishes=catalog.items.filter(item=>item.kind==='finish'&&catalog.compatibility.some(pair=>pair.board_item_id===value.boardId&&pair.finish_item_id===item.id));
+ const finishes=compatibleFinishes(catalog,value.boardId);
  const edging=catalog.items.filter(item=>item.kind==='edging'&&Number(item.edging_skus?.width_mm)>=Number(value.thicknessMm));
  const missing=Object.keys(input.panelOverrides??{}).filter(id=>!panels.some(item=>item.panelId===id)),overridden=Boolean(input.panelOverrides?.[selected]);
  function change(next:PanelMaterial){onChange({...input,panelOverrides:{...input.panelOverrides,[selected]:next}});}

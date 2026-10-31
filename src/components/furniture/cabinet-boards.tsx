@@ -2,7 +2,7 @@
 import {useState} from 'react';
 import {Layers,Info} from 'lucide-react';
 import type {CabinetInput} from '@/lib/furniture/cabinet';
-import type {MaterialCatalog,MaterialDefault,MaterialSlot} from '@/lib/furniture/materials';
+import {compatibleFinishes,type MaterialCatalog,type MaterialDefault,type MaterialSlot} from '@/lib/furniture/materials';
 import {materialThicknessKey,selectGroupBoard,setGroupThickness} from '@/lib/furniture/material-defaults';
 import {ConfigSelect} from '@/components/ui/config-fields';
 import {ConfigHint} from '@/components/ui/config-hint';
@@ -18,7 +18,7 @@ export function CabinetBoards({input,onChange,catalog,loading,error,retry}:{inpu
  {!loading&&!error&&!boards.length&&<p className="cad-help">No published boards available. Set thickness and preview colors below; publish reviewed stock in the material catalog.</p>}
  <div role="group" aria-label="Cabinet board groups" className="mt-3 grid grid-cols-3 gap-2">{slots.map(([slot,label])=>{const value=input.materialDefaults?.[slot],board=boards.find(item=>item.id===value?.boardId),color=String(board?.board_skus?.color_code??value?.previewColor??'#bda382');return <button type="button" key={slot} aria-label={`Edit ${label} material`} aria-pressed={activeSlot===slot} onClick={()=>setActiveSlot(slot)} className="min-h-16 min-w-0 rounded-md border border-[var(--border)] bg-base p-2 text-left text-xs transition-colors hover:bg-surface aria-pressed:border-[var(--accent-text)] aria-pressed:bg-accent-soft"><span className="flex items-center justify-between gap-1"><span className="font-medium">{slot==='front'?'Doors':label}</span><span className="size-3 shrink-0 rounded-sm border border-[var(--border)]" style={{backgroundColor:color}} aria-hidden="true"/></span><span className="mt-1 block text-muted">{input[materialThicknessKey[slot]]} mm</span></button>;})}</div>
  {slots.filter(([slot])=>slot===activeSlot).map(([slot,label])=>{
-  const value=input.materialDefaults?.[slot]??{},key=materialThicknessKey[slot],board=boards.find(item=>item.id===value.boardId),finishes=catalog.items.filter(item=>item.kind==='finish'&&catalog.compatibility.some(pair=>pair.board_item_id===value.boardId&&pair.finish_item_id===item.id));
+  const value=input.materialDefaults?.[slot]??{},key=materialThicknessKey[slot],board=boards.find(item=>item.id===value.boardId),finishes=compatibleFinishes(catalog,value.boardId);
   const boardColor=typeof board?.board_skus?.color_code==='string'?board.board_skus.color_code:undefined;
   const finishId=value.frontFinishId??'',color=String(catalog.items.find(item=>item.id===finishId)?.finish_skus?.color_code??boardColor??value.previewColor??'#bda382');
   return <div key={slot} className="mt-4" role="group" aria-label={`${label} material`}><div className="mb-2 flex items-center gap-2 text-xs font-medium"><Layers size={14} aria-hidden="true"/><span>{slot==='front'?'Doors and drawer faces':label}</span><span className="ml-auto size-4 rounded-sm border border-[var(--border)]" style={{backgroundColor:color}} aria-hidden="true"/></div><div className="cad-fields">

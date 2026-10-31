@@ -1,5 +1,7 @@
 # Project documentation
 
+**Door finishing refinement, 31 October 2026:** [Formica / HPL catalog images and per-door selection](delivery/door-finishes-followup.md). Implementation is tested and the approved hosted image bucket is applied. Application changes remain local for review.
+
 **Storage migration, 29 October 2026:** [Supabase-only project storage and completed cutover](integrations/supabase-project-storage-cutover.md). All three hosted migrations are applied, four original projects/ten revisions preserved, and real saves verified. This supersedes earlier MongoDB runtime instructions; remaining acceptance limits are recorded there.
 
 Latest requested refinement: [Landing-page GSAP motion and layout](delivery/landing-motion-followup.md), 26 October 2026. This follows the final handoff and repository transfer; it does not add a numbered phase.
